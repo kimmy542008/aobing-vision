@@ -17,7 +17,7 @@ import java.util.concurrent.*;
 
 /** Standalone API19 edition; no AndroidX, Media3, WebView or native ABI dependencies. */
 public class MainActivity extends Activity {
-    static final String VERSION="0.4.2";
+    static final String VERSION="0.4.3";
     final ExecutorService executor=Executors.newSingleThreadExecutor();
     final ArrayList<Entry> channels=new ArrayList<Entry>();
     final ArrayList<Entry> shown=new ArrayList<Entry>();
@@ -40,6 +40,10 @@ public class MainActivity extends Activity {
         super.onCreate(state);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         prefs=getSharedPreferences("aobing-legacy",MODE_PRIVATE);
+        try {
+            InputStream root = getAssets().open("isrgrootx1.pem");
+            try { Net.configureTrust(root); } finally { root.close(); }
+        } catch (Exception e) { android.util.Log.w("AobingTLS", "Using system trust anchors", e); }
         try { defaultApi=new JSONObject(asset("vod.json")).getJSONArray("sites").getJSONObject(0).optString("api"); } catch(Exception ignored){}
         home(); loadLive();
     }
@@ -199,19 +203,28 @@ public class MainActivity extends Activity {
             status=text("正在连接："+entry.name+"\n返回：频道列表；菜单：播放操作",19);status.setBackgroundColor(0x99000000);
             FrameLayout.LayoutParams sp=new FrameLayout.LayoutParams(-1,-2,Gravity.BOTTOM);screen.addView(status,sp);
             setContentView(screen);playing=true;
-            video.setOnPreparedListener(new MediaPlayer.OnPreparedListener(){public void onPrepared(MediaPlayer mp){note(entry.name+"  ·  确定暂停/继续；菜单查看更多");video.start();}});
-            video.setOnErrorListener(new MediaPlayer.OnErrorListener(){public boolean onError(MediaPlayer mp,int what,int extra){note("播放失败（"+what+" / "+extra+"），可切换频道或按菜单用其他播放器打开");return true;}});
+            final VideoView attempt = video;
+            final Runnable timeout = new Runnable(){public void run(){
+                if (video == attempt) {
+                    attempt.stopPlayback();
+                    note("连接超时 · 按返回换集，或按菜单重试");
+                }
+            }};
+            attempt.postDelayed(timeout, 25000);
+            video.setOnPreparedListener(new MediaPlayer.OnPreparedListener(){public void onPrepared(MediaPlayer mp){attempt.removeCallbacks(timeout);if(video==attempt){note(entry.name+"  ·  确定暂停/继续；菜单查看更多");attempt.start();}}});
+            video.setOnErrorListener(new MediaPlayer.OnErrorListener(){public boolean onError(MediaPlayer mp,int what,int extra){attempt.removeCallbacks(timeout);if(video==attempt)note("播放失败（"+what+" / "+extra+"），可按菜单重试或用其他播放器打开");return true;}});
             video.setOnCompletionListener(new MediaPlayer.OnCompletionListener(){public void onCompletion(MediaPlayer mp){note("播放结束 · 返回选择其他内容");}});
             video.setVideoURI(Uri.parse(local));video.requestFocus();video.start();
         }catch(Exception e){if(playing)backFromPlayer();note("无法播放："+e.getMessage());}
     }
     void backFromPlayer(){++requestId;if(video!=null)video.stopPlayback();ArrayList<Entry> saved=beforePlayback;home();if(saved!=null)rows(saved,mode.equals("live")?"直播":"点播 / 剧集");}
     void playbackMenu(){
-        new AlertDialog.Builder(this).setTitle(currentName).setItems(new String[]{"暂停 / 继续","后退15秒","前进15秒","使用其他播放器","返回列表"},new DialogInterface.OnClickListener(){public void onClick(DialogInterface d,int which){
+        new AlertDialog.Builder(this).setTitle(currentName).setItems(new String[]{"暂停 / 继续","后退15秒","前进15秒","使用其他播放器","返回列表","重新连接"},new DialogInterface.OnClickListener(){public void onClick(DialogInterface d,int which){
             if(which==0)toggle();else if(which==1)seek(-15000);else if(which==2)seek(15000);else if(which==3){
                 Intent intent=new Intent(Intent.ACTION_VIEW);intent.setDataAndType(Uri.parse(currentUrl),"video/*");
                 if(intent.resolveActivity(getPackageManager())!=null){if(video!=null)video.pause();startActivity(intent);}else Toast.makeText(MainActivity.this,"没有其他可用的视频播放器",Toast.LENGTH_LONG).show();
-            }else backFromPlayer();
+            }else if(which==4)backFromPlayer();
+            else {if(video!=null)video.stopPlayback();play(new Entry(currentName,currentUrl,"",""));}
         }}).show();
     }
     void toggle(){if(video!=null){if(video.isPlaying()){video.pause();note(currentName+" · 已暂停");}else{video.start();note(currentName);}}}

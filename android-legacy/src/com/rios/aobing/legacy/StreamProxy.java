@@ -60,7 +60,7 @@ final class StreamProxy {
             }
             String address = URLDecoder.decode(request[1].substring(prefix.length()),"UTF-8");
             remote = Net.open(address, range);
-            int status = remote.getResponseCode();
+            int status = remote.getResponseCode(); android.util.Log.i("AobingRelay", remote.getURL().getHost()+" HTTP "+status+" "+remote.getContentType());
             OutputStream out = socket.getOutputStream();
             if (status != 200 && status != 206) { send(out,502,"text/plain",("源站返回 HTTP "+status).getBytes("UTF-8"),false); return; }
             String mime = remote.getContentType();
@@ -83,7 +83,7 @@ final class StreamProxy {
                 }
             } finally { in.close(); }
         } catch (Exception e) {
-            try { send(socket.getOutputStream(),502,"text/plain","视频连接失败".getBytes("UTF-8"),false); } catch (Exception ignored) { }
+            android.util.Log.w("AobingRelay",e.getClass().getSimpleName()+" "+e.getMessage()); try { send(socket.getOutputStream(),502,"text/plain","视频连接失败".getBytes("UTF-8"),false); } catch (Exception ignored) { }
         } finally {
             if (remote != null) remote.disconnect();
             try { socket.close(); } catch (IOException ignored) { }
