@@ -12,7 +12,7 @@ Windows 与 Intel Mac 影视直播播放器：电影电视剧分类、片名搜�
 |---|---|---|
 | Windows 10/11 x64 | 0.2.0 | 便携 EXE；本机曾实际播放抽样点播 1080p、直播 720p；非每个频道验证 |
 | Intel Mac x86_64 | 0.2.0 | macOS 13+；测试版，未经过用户 Intel Mac 实机播放验证；没有 Apple Developer ID 签名或公证 |
-| Android TV | 0.3.0 | 早期蜂蜜旧版衍生测试版本，与本仓库桌面代码不同，尚未纳入此桌面构建流程 |
+| Android TV / Android 9.0 | 0.4.0 | ARM32、ARM64、双ARM架构独立APK，v1/v2签名；待用户机顶盒验证，见 [安卓说明](android/README.md) |
 
 桌面版是独立实现，并非 FongMi/TV 官方产品。Mac CI 构建使用本机临时签名，不等同于苹果公证。
 
@@ -47,6 +47,6 @@ Mac 构建脚本仅对本应用执行 ad-hoc 签名，不会关闭 Gatekeeper �
 
 ## 版权与数据
 
-原创桌面代码采用 MIT；第三方版权及许可分别保留。Electron/Chromium 许可证随官方运行时附带，hls.js 使用 Apache-2.0，见 `desktop/vendor/HLS-LICENSE`。频道索引来自 [IPTV-org](https://github.com/iptv-org/iptv)，项目不托管节目视频。用户提供的图标在显示与打包时等比缩放。
+原创桌面代码采用 MIT；Android 蜂蜜衍生版本采用 GPL-3.0，见 `android/LICENSE-GPL-3.0.md`，完整对应源码随安卓Release附带。第三方版权及许可分别保留。Electron/Chromium 许可证随官方运行时附带，hls.js 使用 Apache-2.0，见 `desktop/vendor/HLS-LICENSE`。频道索引来自 [IPTV-org](https://github.com/iptv-org/iptv)，项目不托管节目视频。用户提供的图标在显示与打包时等比缩放。
 
 应用在本机保存收藏、历史和源配置；片名搜索和播放请求会发送到用户所选的第三方源。

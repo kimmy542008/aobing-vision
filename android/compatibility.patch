@@ -1,0 +1,343 @@
+--- a/app/build.gradle
++++ b/app/build.gradle
+@@ -5,16 +5,16 @@
+ android {
+     namespace 'com.fongmi.android.tv'
+ 
+-    compileSdk 35
++    compileSdk 34
+     flavorDimensions = ["mode", "api", "abi"]
+ 
+     defaultConfig {
+-        applicationId "com.fongmi.android.tv"
++        applicationId "com.rios.aobing.tv"
+         minSdk 21
+         //noinspection ExpiredTargetSdkVersion
+         targetSdk 28
+-        versionCode 258
+-        versionName "2.5.8"
++        versionCode 260
++        versionName "0.4.0"
+         javaCompileOptions {
+             annotationProcessorOptions {
+                 arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
+@@ -35,6 +35,10 @@
+         python {
+             dimension "api"
+         }
++        universal {
++            dimension "abi"
++            ndk { abiFilters "armeabi-v7a", "arm64-v8a" }
++        }
+         x86 {
+             dimension "abi"
+             ndk { abiFilters "x86" }
+@@ -52,6 +56,13 @@
+     buildFeatures {
+         buildConfig true
+         viewBinding true
++    }
++
++    signingConfigs {
++        debug {
++            v1SigningEnabled true
++            v2SigningEnabled true
++        }
+     }
+ 
+     buildTypes {
+--- a/app/src/leanback/AndroidManifest.xml
++++ b/app/src/leanback/AndroidManifest.xml
+@@ -17,7 +17,7 @@
+     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+ 
+-    <application android:banner="@drawable/ic_banner">
++    <application android:banner="@drawable/aobing_banner">
+ 
+         <meta-data
+             android:name="design_width_in_dp"
+--- a/app/src/leanback/java/com/fongmi/android/tv/Updater.java
++++ b/app/src/leanback/java/com/fongmi/android/tv/Updater.java
+@@ -69,7 +69,7 @@
+     }
+ 
+     public void start(Activity activity) {
+-        App.execute(() -> doInBackground(activity));
++        if (!BuildConfig.APPLICATION_ID.equals("com.rios.aobing.tv")) App.execute(() -> doInBackground(activity));
+     }
+ 
+     private boolean need(int code, String name) {
+--- a/app/src/leanback/java/com/fongmi/android/tv/ui/activity/SettingActivity.java
++++ b/app/src/leanback/java/com/fongmi/android/tv/ui/activity/SettingActivity.java
+@@ -264,11 +264,11 @@
+     }
+ 
+     private void onVersion(View view) {
+-        Updater.get().force().release().start(this);
++        new android.app.AlertDialog.Builder(this).setTitle("敖丙视界 0.4.0").setMessage("开发者：Rios敖丙\n微信：liao542008\n基于 FongMi/TV 蜂蜜衍生分支 2.5.8，遵循 GPL-3.0。保留原项目及第三方版权。\n直播、点播订阅可在设置中修改。").setPositiveButton("确定", null).show();
+     }
+ 
+     private boolean onVersionDev(View view) {
+-        Updater.get().force().dev().start(this);
++        onVersion(view);
+         return true;
+     }
+ 
+--- a/app/src/main/AndroidManifest.xml
++++ b/app/src/main/AndroidManifest.xml
+@@ -34,11 +34,11 @@
+         android:allowBackup="false"
+         android:appCategory="video"
+         android:hardwareAccelerated="true"
+-        android:icon="@mipmap/ic_launcher"
++        android:icon="@drawable/aobing_mascot"
+         android:label="@string/app_name"
+         android:largeHeap="true"
+         android:requestLegacyExternalStorage="true"
+-        android:roundIcon="@mipmap/ic_launcher_round"
++        android:roundIcon="@drawable/aobing_mascot"
+         android:supportsRtl="true"
+         android:theme="@style/AppTheme"
+         android:usesCleartextTraffic="true"
+--- a/app/src/main/java/com/fongmi/android/tv/bean/Config.java
++++ b/app/src/main/java/com/fongmi/android/tv/bean/Config.java
+@@ -206,12 +206,12 @@
+ 
+     public static Config vod() {
+         Config item = AppDatabase.get().getConfigDao().findOne(0);
+-        return item == null ? create(0) : item;
++        return item == null || TextUtils.isEmpty(item.getUrl()) ? create(0, "assets://aobing/vod.json", "敖丙内置影视") : item;
+     }
+ 
+     public static Config live() {
+         Config item = AppDatabase.get().getConfigDao().findOne(1);
+-        return item == null ? create(1) : item;
++        return item == null ? create(1, "assets://aobing/live-config.json", "敖丙内置直播") : item;
+     }
+ 
+     public static Config wall() {
+--- a/app/src/main/java/com/fongmi/android/tv/ui/dialog/SubtitleDialog.java
++++ b/app/src/main/java/com/fongmi/android/tv/ui/dialog/SubtitleDialog.java
+@@ -69,23 +69,23 @@
+     }
+ 
+     private void onUp(View view) {
+-        subtitleView.addBottomPadding(0.005f);
+-        Setting.putSubtitleBottomPadding(subtitleView.getBottomPadding());
++        float value = Math.min(0.9f, (Setting.getSubtitleBottomPadding() > 0 ? Setting.getSubtitleBottomPadding() : SubtitleView.DEFAULT_BOTTOM_PADDING_FRACTION) + 0.005f); subtitleView.setBottomPaddingFraction(value);
++        Setting.putSubtitleBottomPadding(value);
+     }
+ 
+     private void onDown(View view) {
+-        subtitleView.subBottomPadding(0.005f);
+-        Setting.putSubtitleBottomPadding(subtitleView.getBottomPadding());
++        float value = Math.max(0.005f, (Setting.getSubtitleBottomPadding() > 0 ? Setting.getSubtitleBottomPadding() : SubtitleView.DEFAULT_BOTTOM_PADDING_FRACTION) - 0.005f); subtitleView.setBottomPaddingFraction(value);
++        Setting.putSubtitleBottomPadding(value);
+     }
+ 
+     private void onLarge(View view) {
+-        subtitleView.addTextSize(0.002f);
+-        Setting.putSubtitleTextSize(subtitleView.getTextSize());
++        float value = Math.min(0.15f, (Setting.getSubtitleTextSize() > 0 ? Setting.getSubtitleTextSize() : SubtitleView.DEFAULT_TEXT_SIZE_FRACTION) + 0.002f); subtitleView.setFractionalTextSize(value);
++        Setting.putSubtitleTextSize(value);
+     }
+ 
+     private void onSmall(View view) {
+-        subtitleView.subTextSize(0.002f);
+-        Setting.putSubtitleTextSize(subtitleView.getTextSize());
++        float value = Math.max(0.01f, (Setting.getSubtitleTextSize() > 0 ? Setting.getSubtitleTextSize() : SubtitleView.DEFAULT_TEXT_SIZE_FRACTION) - 0.002f); subtitleView.setFractionalTextSize(value);
++        Setting.putSubtitleTextSize(value);
+     }
+ 
+     private void onReset(View view) {
+--- a/app/src/main/res/values-zh-rCN/strings.xml
++++ b/app/src/main/res/values-zh-rCN/strings.xml
+@@ -1,7 +1,7 @@
+ <resources xmlns:xliff="http://schemas.android.com/apk/res-auto">
+ 
+     <!-- App -->
+-    <string name="app_name">OK影视</string>
++    <string name="app_name">敖丙视界</string>
+     <string name="app_exit">再按一次返回键退出</string>
+ 
+     <!-- Vod -->
+--- a/app/src/main/res/values-zh-rTW/strings.xml
++++ b/app/src/main/res/values-zh-rTW/strings.xml
+@@ -1,7 +1,7 @@
+ <resources xmlns:xliff="http://schemas.android.com/apk/res-auto">
+ 
+     <!-- App -->
+-    <string name="app_name">OK影視</string>
++    <string name="app_name">敖丙视界</string>
+     <string name="app_exit">再按一次返回鍵退出</string>
+ 
+     <!-- Vod -->
+--- a/app/src/main/res/values/strings.xml
++++ b/app/src/main/res/values/strings.xml
+@@ -1,7 +1,7 @@
+ <resources xmlns:tools="http://schemas.android.com/tools" xmlns:xliff="http://schemas.android.com/apk/res-auto" tools:ignore="MissingTranslation">
+ 
+     <!-- App -->
+-    <string name="app_name">OKTV</string>
++    <string name="app_name">敖丙视界</string>
+     <string name="app_exit">Press back again to exit</string>
+ 
+     <!-- Vod -->
+--- a/build.gradle
++++ b/build.gradle
+@@ -1,6 +1,6 @@
+ plugins {
+-    id 'com.android.application' version '8.5.0' apply false
+-    id 'com.android.library' version '8.5.0' apply false
++    id 'com.android.application' version '8.2.2' apply false
++    id 'com.android.library' version '8.2.2' apply false
+     id 'com.chaquo.python' version '14.0.2' apply false
+ }
+ 
+--- a/catvod/build.gradle
++++ b/catvod/build.gradle
+@@ -5,7 +5,7 @@
+ android {
+     namespace 'com.github.catvod.crawler'
+ 
+-    compileSdk 35
++    compileSdk 34
+ 
+     defaultConfig {
+         minSdk 21
+--- a/forcetech/build.gradle
++++ b/forcetech/build.gradle
+@@ -5,7 +5,7 @@
+ android {
+     namespace 'com.forcetech'
+ 
+-    compileSdk 35
++    compileSdk 34
+ 
+     defaultConfig {
+         minSdk 21
+--- a/hook/build.gradle
++++ b/hook/build.gradle
+@@ -5,7 +5,7 @@
+ android {
+     namespace 'com.fongmi.hook'
+ 
+-    compileSdk 35
++    compileSdk 34
+ 
+     defaultConfig {
+         minSdk 21
+--- a/ijkplayer/build.gradle
++++ b/ijkplayer/build.gradle
+@@ -5,7 +5,7 @@
+ android {
+     namespace 'tv.danmaku.ijk.media.player'
+ 
+-    compileSdk 35
++    compileSdk 34
+ 
+     defaultConfig {
+         minSdk 21
+--- a/jianpian/build.gradle
++++ b/jianpian/build.gradle
+@@ -5,7 +5,7 @@
+ android {
+     namespace 'com.p2p'
+ 
+-    compileSdk 35
++    compileSdk 34
+ 
+     defaultConfig {
+         minSdk 21
+--- a/pyramid/build.gradle
++++ b/pyramid/build.gradle
+@@ -6,7 +6,7 @@
+ android {
+     namespace 'com.undcover.freedom.pyramid'
+ 
+-    compileSdk 35
++    compileSdk 34
+     flavorDimensions = ["abi"]
+ 
+     defaultConfig {
+--- a/quickjs/build.gradle
++++ b/quickjs/build.gradle
+@@ -5,7 +5,7 @@
+ android {
+     namespace 'com.fongmi.quickjs'
+ 
+-    compileSdk 35
++    compileSdk 34
+ 
+     defaultConfig {
+         minSdk 21
+--- a/settings.gradle
++++ b/settings.gradle
+@@ -1,16 +1,20 @@
+ pluginManagement {
+     repositories {
++        maven { url 'https://maven.aliyun.com/repository/google' }
++        maven { url 'https://maven.aliyun.com/repository/public' }
+         gradlePluginPortal()
+         mavenCentral()
+-        jcenter()
++
+         google()
+     }
+ }
+ dependencyResolutionManagement {
+     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+     repositories {
++        maven { url 'https://maven.aliyun.com/repository/google' }
++        maven { url 'https://maven.aliyun.com/repository/public' }
+         mavenCentral()
+-        jcenter()
++
+         google()
+         flatDir {
+             dirs "$rootDir/app/libs", "$rootDir/quickjs/libs"
+--- a/thunder/build.gradle
++++ b/thunder/build.gradle
+@@ -5,7 +5,7 @@
+ android {
+     namespace 'com.ghost.thunder'
+ 
+-    compileSdk 35
++    compileSdk 34
+ 
+     defaultConfig {
+         minSdk 21
+--- a/tvbus/build.gradle
++++ b/tvbus/build.gradle
+@@ -5,7 +5,7 @@
+ android {
+     namespace 'com.tvbus.engine'
+ 
+-    compileSdk 35
++    compileSdk 34
+ 
+     defaultConfig {
+         minSdk 21
+--- a/youtube/build.gradle
++++ b/youtube/build.gradle
+@@ -5,7 +5,7 @@
+ android {
+     namespace 'com.github.kiulian.downloader'
+ 
+-    compileSdk 35
++    compileSdk 34
+ 
+     defaultConfig {
+         minSdk 21
+--- a/zlive/build.gradle
++++ b/zlive/build.gradle
+@@ -5,7 +5,7 @@
+ android {
+     namespace 'com.east.android.zlive'
+ 
+-    compileSdk 35
++    compileSdk 34
+ 
+     defaultConfig {
+         minSdk 21
