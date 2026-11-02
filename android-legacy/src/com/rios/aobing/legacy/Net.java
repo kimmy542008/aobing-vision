@@ -4,13 +4,14 @@ import java.io.*;
 import java.net.*;
 import java.util.*;
 import javax.net.ssl.*;
+import org.conscrypt.Conscrypt;
 
 /** API19 TLS transport. Certificate and hostname verification remain enabled. */
 final class Net {
     static final class Tls extends SSLSocketFactory {
         final SSLSocketFactory delegate;
         Tls() throws Exception {
-            SSLContext context = SSLContext.getInstance("TLS");
+            SSLContext context = SSLContext.getInstance("TLS", Conscrypt.newProvider());
             context.init(null, null, null);
             delegate = context.getSocketFactory();
         }
@@ -26,7 +27,11 @@ final class Net {
         }
         public String[] getDefaultCipherSuites() { return delegate.getDefaultCipherSuites(); }
         public String[] getSupportedCipherSuites() { return delegate.getSupportedCipherSuites(); }
-        public Socket createSocket(Socket s,String h,int p,boolean c)throws IOException{return configure(delegate.createSocket(s,h,p,c));}
+        public Socket createSocket(Socket s,String h,int p,boolean c)throws IOException{
+            SSLSocket socket = (SSLSocket) delegate.createSocket(s,h,p,c);
+            if (Conscrypt.isConscrypt(socket)) Conscrypt.setHostname(socket,h);
+            return configure(socket);
+        }
         public Socket createSocket(String h,int p)throws IOException{return configure(delegate.createSocket(h,p));}
         public Socket createSocket(String h,int p,InetAddress l,int lp)throws IOException{return configure(delegate.createSocket(h,p,l,lp));}
         public Socket createSocket(InetAddress h,int p)throws IOException{return configure(delegate.createSocket(h,p));}
@@ -39,7 +44,7 @@ final class Net {
             HttpURLConnection c = (HttpURLConnection) url.openConnection();
             if (c instanceof HttpsURLConnection) ((HttpsURLConnection)c).setSSLSocketFactory(new Tls());
             c.setConnectTimeout(12000); c.setReadTimeout(20000); c.setInstanceFollowRedirects(false);
-            c.setRequestProperty("User-Agent", "Mozilla/5.0 AobingTV/0.4.1");
+            c.setRequestProperty("User-Agent", "Mozilla/5.0 AobingTV/0.4.2");
             c.setRequestProperty("Accept-Encoding", "identity");
             if (range != null) c.setRequestProperty("Range", range);
             int code = c.getResponseCode();

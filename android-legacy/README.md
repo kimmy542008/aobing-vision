@@ -1,8 +1,8 @@
-# 敖丙视界 API19 兼容版 0.4.1
+# 敖丙视界 API19 兼容版 0.4.2
 
 开发者：Rios敖丙 · 联系微信：liao542008。
 
-用户志高 CHIGO A10 旗舰版报告 Android 字符串 9.0，但设备检测返回 SDK_INT=19、armeabi-v7a/armeabi、bigfish、970x_box，固件包含 KOT49H。安装器按 API 等兼容条件判断，原0.3/0.4包要求API21，因此与此设备API不匹配。此版使用Android19的android.jar编译全部Java与资源，minSdk19、targetSdk27，无AndroidX/Media3/WebView及额外本地解码库。
+用户志高 CHIGO A10 旗舰版报告 Android 字符串 9.0，但设备检测返回 SDK_INT=19、armeabi-v7a/armeabi、bigfish、970x_box，固件包含 KOT49H。安装器按 API 等兼容条件判断，原0.3/0.4包要求API21，因此与此设备API不匹配。此版使用Android19的android.jar编译全部Java与资源，minSdk19、targetSdk27，无AndroidX/Media3/WebView，使用 Conscrypt 2.5.2 提供 TLS，许可证为 Apache-2.0。
 
 这是独立的基础播放器兼容版，包名 `com.rios.aobing.legacy`，不覆盖或清除原应用。不是把原版所有功能直接移植。它提供：
 
