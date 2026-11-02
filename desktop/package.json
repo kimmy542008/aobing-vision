@@ -1,0 +1,10 @@
+{
+  "name": "aobing-vision",
+  "productName": "敖丙视界",
+  "version": "0.2.0",
+  "description": "影视与电视直播聚合播放器",
+  "author": "Rios敖丙",
+  "main": "main.cjs",
+  "private": true,
+  "license": "MIT"
+}

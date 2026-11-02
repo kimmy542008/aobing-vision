@@ -1,0 +1,2004 @@
+[
+  {
+    "name": "湖南卫视 (2160p)",
+    "category": "国内",
+    "url": "http://hlsal-ldvt.qing.mgtv.com/nn_live/nn_x64/dWlwPTEyNy4wLjAuMSZ1aWQ9cWluZy1jbXMmbm5fdGltZXpvbmU9OCZjZG5leF9pZD1hbF9obHNfbGR2dCZ1dWlkPTliODY4NmU5ZTM2YzYwMmMmZT02OTE0NjA0JnY9MSZpZD1ITldTWkdTVCZzPTcwN2RiYTc2YzJjNmJmMTQ4MmUyZGYzOWU2NWM3YWFi/HNWSZGST.m3u8",
+    "quality": "2160",
+    "logo": "https://parco-zh.github.io/demo/HNWS.png",
+    "latency": 69,
+    "checkedAt": "2026-11-02T12:25:02.001Z",
+    "check": "playlist-and-segment",
+    "codec": "hevc"
+  },
+  {
+    "name": "河北卫视 (2160p)",
+    "category": "国内",
+    "url": "https://event.pull.hebtv.com/live/live101.m3u8",
+    "quality": "2160",
+    "logo": "https://i.imgur.com/Z5Ppzbi.png",
+    "latency": 297,
+    "checkedAt": "2026-11-02T12:25:01.630Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "通化电视台 (1080p)",
+    "category": "国内",
+    "url": "http://lsfb.avap.jilintv.cn/zqvk7vpj/channel/43ea5771aa44421591f9dfd2b71f1b9b/index.m3u8",
+    "quality": "1080",
+    "logo": "https://www.tvchinese.net/uploads/tv/thtv1.jpg",
+    "latency": 472,
+    "checkedAt": "2026-11-02T12:25:06.689Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "Cartoon Network Asia (720p)",
+    "category": "卡通动漫",
+    "url": "https://cdn4.skygo.mn/live/disk1/Cartoon_Network/HLSv3-FTA/Cartoon_Network.m3u8",
+    "quality": "720",
+    "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Cartoon_Network_2010_logo.svg/960px-Cartoon_Network_2010_logo.svg.png",
+    "latency": 970,
+    "checkedAt": "2026-11-02T12:26:09.343Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "Discovering China (1080p)",
+    "category": "文化",
+    "url": "https://fastlive.cctvplus.com/out/v1/8442c3bfd4c64a3984389328f6087879/index.m3u8",
+    "quality": "1080",
+    "logo": "https://i.imgur.com/wr2bLaA.png",
+    "latency": 1194,
+    "checkedAt": "2026-11-02T12:26:45.612Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "Weathernews (720p)",
+    "category": "国际",
+    "url": "https://rch01e-alive-hls.akamaized.net/38fb45b25cdb05a1/out/v1/4e907bfabc684a1dae10df8431a84d21/index.m3u8",
+    "quality": "720",
+    "logo": "https://i.imgur.com/A8uRSTS.png",
+    "latency": 1359,
+    "checkedAt": "2026-11-02T12:26:54.689Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "¡Viva Latino! (1080p)",
+    "category": "音乐",
+    "url": "http://stream.mcquack.net/285/index.m3u8",
+    "quality": "1080",
+    "logo": "https://i.imgur.com/KRakHAq.png",
+    "latency": 1368,
+    "checkedAt": "2026-11-02T12:25:56.270Z",
+    "check": "playlist-and-segment",
+    "codec": "h264"
+  },
+  {
+    "name": "Asianet HD (1080p)",
+    "category": "娱乐",
+    "url": "https://da86m1sqpm3o0.cloudfront.net/28072023/smil:starasianet.smil/chunklist_b1928000.m3u8",
+    "quality": "1080",
+    "logo": "https://i.imgur.com/Wv7MOzg.png",
+    "latency": 1545,
+    "checkedAt": "2026-11-02T12:25:39.620Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "CCTV-Weapon & Technology (1080p)",
+    "category": "国内",
+    "url": "http://38.75.136.137:98/gslb/dsdqpub/gfjs.m3u8?auth=testpub",
+    "quality": "1080",
+    "logo": "https://i.imgur.com/QlF96eS.png",
+    "latency": 1568,
+    "checkedAt": "2026-11-02T12:25:01.333Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "CCTV-Storm Football (1080p)",
+    "category": "国内",
+    "url": "http://38.75.136.137:98/gslb/dsdqpub/fyzq.m3u8?auth=testpub",
+    "quality": "1080",
+    "logo": "https://i.imgur.com/Fy6HkX0.png",
+    "latency": 1578,
+    "checkedAt": "2026-11-02T12:25:01.200Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "CCTV-Storm Theater (1080p)",
+    "category": "国内",
+    "url": "http://38.75.136.137:98/gslb/dsdqpub/fyjc.m3u8?auth=testpub",
+    "quality": "1080",
+    "logo": "https://i.imgur.com/rEttkKm.png",
+    "latency": 1602,
+    "checkedAt": "2026-11-02T12:25:01.332Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "CCTV-16 HD (1080p)",
+    "category": "国内",
+    "url": "http://74.91.26.218:82/live/cctv16hd.m3u8",
+    "quality": "1080",
+    "logo": "https://i.imgur.com/ZzV6JQp.png",
+    "latency": 1639,
+    "checkedAt": "2026-11-02T12:25:00.043Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "Dukh Nivaran (720p) [Not 24/7]",
+    "category": "文化",
+    "url": "http://cdn12.henico.net:8080/live/dncal/index.m3u8",
+    "quality": "720",
+    "logo": "https://i.imgur.com/Zh60l1x.png",
+    "latency": 1641,
+    "checkedAt": "2026-11-02T12:26:47.253Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "DAZN 5 (720p)",
+    "category": "体育",
+    "url": "http://23.237.104.106:8080/DAZN_5/index.m3u8",
+    "quality": "720",
+    "logo": "https://i.imgur.com/HD2XaeS.png",
+    "latency": 1685,
+    "checkedAt": "2026-11-02T12:25:51.759Z",
+    "check": "playlist-and-segment",
+    "codec": "h264"
+  },
+  {
+    "name": "HGTV (Italy) (1080p)",
+    "category": "生活健康",
+    "url": "https://streaming.aurora.enhanced.live/live/mpc/enl0eG1mLmVncmVzcy5mZDJ2eHI=/out/v1/IT_SIMULCAST/HGTV/CMAF/index.m3u8",
+    "quality": "1080",
+    "logo": "https://i.imgur.com/ejPii8T.png",
+    "latency": 1688,
+    "checkedAt": "2026-11-02T12:26:34.513Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "CCTV-10 (720p)",
+    "category": "国内",
+    "url": "http://74.91.26.218:82/live/cctv10hd.m3u8",
+    "quality": "720",
+    "logo": "https://i.imgur.com/sSSO7UD.png",
+    "latency": 1692,
+    "checkedAt": "2026-11-02T12:24:59.730Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "CCTV-Golf & Tennis (1080p)",
+    "category": "国内",
+    "url": "http://38.75.136.137:98/gslb/dsdqpub/gefwq.m3u8?auth=testpub",
+    "quality": "1080",
+    "logo": "https://i.imgur.com/iqJJTmH.png",
+    "latency": 1759,
+    "checkedAt": "2026-11-02T12:25:00.698Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "Antenne Kaernten (720p)",
+    "category": "音乐",
+    "url": "https://60efd7a2b4d02.streamlock.net/a_kaernten/ngrp:livestream_all/playlist.m3u8",
+    "quality": "720",
+    "logo": "https://i.imgur.com/nUKFDsb.jpeg",
+    "latency": 1788,
+    "checkedAt": "2026-11-02T12:26:02.057Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "ACC Network (720p)",
+    "category": "体育",
+    "url": "http://23.239.31.26:8989/accnetwork/index.m3u8",
+    "quality": "720",
+    "logo": "https://i.imgur.com/TpCkbkT.png",
+    "latency": 1800,
+    "checkedAt": "2026-11-02T12:25:40.677Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "CCTV-8K HD (1080p)",
+    "category": "国内",
+    "url": "http://192.151.150.154/live/cctv8k.m3u8",
+    "quality": "1080",
+    "logo": "https://i.imgur.com/fxVPMJF.png",
+    "latency": 1802,
+    "checkedAt": "2026-11-02T12:24:59.765Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "beIN SPORTS XTRA (1080p)",
+    "category": "体育",
+    "url": "https://bein-xtra-bein.amagi.tv/playlist.m3u8",
+    "quality": "1080",
+    "logo": "https://i.ibb.co/HT49GPmB/XTRA-2.png",
+    "latency": 1818,
+    "checkedAt": "2026-11-02T12:25:46.385Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "Fashion TV (1080p)",
+    "category": "生活健康",
+    "url": "http://stream.mcquack.net/287/index.m3u8",
+    "quality": "1080",
+    "logo": "https://i.imgur.com/Bk7W39G.png",
+    "latency": 1835,
+    "checkedAt": "2026-11-02T12:26:30.974Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "GSTV (720p)",
+    "category": "国际",
+    "url": "https://japaneast.av.mk.io/mediakindcdn-mediakind/ca01a143-f823-4432-b670-c22ff9643ce4/index.qfm/manifest(format=m3u8-cmaf)",
+    "quality": "720",
+    "logo": "https://i.imgur.com/ECnVG5I.png",
+    "latency": 1843,
+    "checkedAt": "2026-11-02T12:26:53.558Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "CCTV-Culture of Quality SD (1080p)",
+    "category": "国内",
+    "url": "http://38.75.136.137:98/gslb/dsdqpub/ysjp.m3u8?auth=testpub",
+    "quality": "1080",
+    "logo": "https://i.imgur.com/Paig8gG.png",
+    "latency": 1920,
+    "checkedAt": "2026-11-02T12:25:00.642Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "Nei Monggol TV (960p)",
+    "category": "国内",
+    "url": "https://cdn4.skygo.mn/live/disk1/NeigMGL/HLSv3-FTA/NeigMGL.m3u8",
+    "quality": "960",
+    "logo": "https://i.imgur.com/WeugJBE.png",
+    "latency": 1958,
+    "checkedAt": "2026-11-02T12:25:05.214Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "CCTV-3 (720p)",
+    "category": "国内",
+    "url": "http://74.91.26.218:82/live/cctv3hd.m3u8",
+    "quality": "720",
+    "logo": "https://i.imgur.com/iFlkIuw.png",
+    "latency": 1979,
+    "checkedAt": "2026-11-02T12:24:59.932Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "Shinsegae TV Shopping (720p)",
+    "category": "国际",
+    "url": "https://liveout.catenoid.net/live-02-shinsegaetvshopping/shinsegaetvshopping_720p/playlist.m3u8",
+    "quality": "720",
+    "logo": "https://i.imgur.com/Hq3yjqA.png",
+    "latency": 1986,
+    "checkedAt": "2026-11-02T12:27:08.831Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "1HD Music Television (1080p)",
+    "category": "音乐",
+    "url": "http://176.118.197.101/1HD/index.m3u8",
+    "quality": "1080",
+    "logo": "https://i.imgur.com/4Ww7CsR.png",
+    "latency": 2029,
+    "checkedAt": "2026-11-02T12:25:53.837Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": ".red HD (1080p)",
+    "category": "娱乐",
+    "url": "http://178.134.1.158:8081/red/index.m3u8",
+    "quality": "1080",
+    "logo": "https://i.imgur.com/GET9Qut.png",
+    "latency": 2033,
+    "checkedAt": "2026-11-02T12:25:27.286Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "CCTV-Billiards (1080p)",
+    "category": "国内",
+    "url": "http://38.75.136.137:98/gslb/dsdqpub/ystq.m3u8?auth=testpub",
+    "quality": "1080",
+    "logo": "https://i.imgur.com/WK3keM9.png",
+    "latency": 2069,
+    "checkedAt": "2026-11-02T12:25:00.599Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "CCTV-Nostalgia Theater (1080p)",
+    "category": "国内",
+    "url": "http://38.75.136.137:98/gslb/dsdqpub/hjjc.m3u8?auth=testpub",
+    "quality": "1080",
+    "logo": "https://i.imgur.com/TVs9PBc.png",
+    "latency": 2145,
+    "checkedAt": "2026-11-02T12:25:01.389Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "Cartoon Network Latin America Brazil (720p)",
+    "category": "卡通动漫",
+    "url": "http://45.162.64.114/CARTOON_NETWORK/index.m3u8",
+    "quality": "720",
+    "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Cartoon_Network_2010_logo.svg/960px-Cartoon_Network_2010_logo.svg.png",
+    "latency": 2206,
+    "checkedAt": "2026-11-02T12:26:10.708Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "beIN SPORTS XTRA en Espanol (1080p)",
+    "category": "体育",
+    "url": "https://dc1644a9jazgj.cloudfront.net/beIN_Sports_Xtra_Espanol.m3u8",
+    "quality": "1080",
+    "logo": "https://i.imgur.com/V562tpO.png",
+    "latency": 2208,
+    "checkedAt": "2026-11-02T12:25:46.915Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "Classic Arts Showcase (720p)",
+    "category": "文化",
+    "url": "https://classicarts.akamaized.net/hls/live/1024257/CAS/master.m3u8",
+    "quality": "720",
+    "logo": "https://i.imgur.com/M6FFkc3.png",
+    "latency": 2215,
+    "checkedAt": "2026-11-02T12:26:45.621Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "TV Chosun (720p)",
+    "category": "国际",
+    "url": "http://onair.cdn.tvchosun.com/origin1/_definst_/tvchosun_s1/playlist.m3u8",
+    "quality": "720",
+    "logo": "https://i.imgur.com/62EwaCG.png",
+    "latency": 2221,
+    "checkedAt": "2026-11-02T12:27:10.721Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "CT Sport (720p)",
+    "category": "体育",
+    "url": "http://88.212.15.50/live/test_ctsport_25p/playlist.m3u8",
+    "quality": "720",
+    "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/%C4%8CT_sport_logo.png/960px-%C4%8CT_sport_logo.png",
+    "latency": 2223,
+    "checkedAt": "2026-11-02T12:25:52.015Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "CCTV-Women's Fashion SD (1080p)",
+    "category": "生活健康",
+    "url": "http://38.75.136.137:98/gslb/dsdqpub/nxss.m3u8?auth=testpub",
+    "quality": "1080",
+    "logo": "https://i.imgur.com/FVbP0aP.png",
+    "latency": 2256,
+    "checkedAt": "2026-11-02T12:26:26.978Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "TV Chosun 2 (720p)",
+    "category": "国际",
+    "url": "http://onair2.cdn.tvchosun.com/origin2/_definst_/tvchosun_s3/playlist.m3u8",
+    "quality": "720",
+    "logo": "https://i.imgur.com/Ev5JoBJ.png",
+    "latency": 2257,
+    "checkedAt": "2026-11-02T12:27:10.128Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "360TuneBox (1080p)",
+    "category": "音乐",
+    "url": "https://dash3.antik.sk/live/test_360_tunebox_medium_atk/playlist.m3u8",
+    "quality": "1080",
+    "logo": "https://i.imgur.com/1Fyezng.png",
+    "latency": 2260,
+    "checkedAt": "2026-11-02T12:25:57.100Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "AS3 Sport TV (1080p)",
+    "category": "体育",
+    "url": "https://streamtv.as3sport.online:3394/hybrid/play.m3u8",
+    "quality": "1080",
+    "logo": "https://i.ibb.co/bRmGbsyV/A3-SPORTTV.jpg",
+    "latency": 2278,
+    "checkedAt": "2026-11-02T12:25:43.027Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "ATR (1080p)",
+    "category": "文化",
+    "url": "http://stream.mcquack.net/244/index.m3u8",
+    "quality": "1080",
+    "logo": "https://i.imgur.com/lRJAXC7.png",
+    "latency": 2355,
+    "checkedAt": "2026-11-02T12:26:39.811Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "5AAB TV (720p) [Not 24/7]",
+    "category": "娱乐",
+    "url": "http://158.69.124.9:1935/5aabtv/5aabtv/playlist.m3u8",
+    "quality": "720",
+    "logo": "https://i.imgur.com/jrGrfof.png",
+    "latency": 2361,
+    "checkedAt": "2026-11-02T12:25:24.545Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "Avang TV (1080p)",
+    "category": "音乐",
+    "url": "https://hls.avang.live/hls/stream.m3u8",
+    "quality": "1080",
+    "logo": "https://i.imgur.com/3I1n7fO.png",
+    "latency": 2441,
+    "checkedAt": "2026-11-02T12:26:04.536Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "Arte 1 (720p)",
+    "category": "文化",
+    "url": "http://45.162.64.114/ARTE1/index.m3u8",
+    "quality": "720",
+    "logo": "https://i.imgur.com/Ivnk7A6.png",
+    "latency": 2527,
+    "checkedAt": "2026-11-02T12:26:39.483Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "Apna Punjab TV (720p)",
+    "category": "娱乐",
+    "url": "https://plus.gigabitcdn.net/live-stream/apna-punjab-H3sE/playlist.m3u8",
+    "quality": "720",
+    "logo": "https://i.imgur.com/IM4D8Wz.png",
+    "latency": 2537,
+    "checkedAt": "2026-11-02T12:25:38.597Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "CDN Deportes (720p) [Not 24/7]",
+    "category": "体育",
+    "url": "https://hls.tvabierta.net/hls/036.m3u8",
+    "quality": "720",
+    "logo": "https://i.imgur.com/yU5LqTL.png",
+    "latency": 2573,
+    "checkedAt": "2026-11-02T12:25:49.720Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "Hmong TV Network (720p)",
+    "category": "文化",
+    "url": "https://livefta.malimarcdn.com/ftaedge00/cvabroadcasting.stream/playlist.m3u8",
+    "quality": "720",
+    "logo": "https://yt3.googleusercontent.com/aj3kdBQTgfxP-bDnleou4m1ykjPRFexvfTZZuvWlNc75Hn9-NTqXYEdEJ_KOcTSsbKj24K1B9BM=s512-c-k-c0x00ffffff-no-rj",
+    "latency": 2612,
+    "checkedAt": "2026-11-02T12:26:53.398Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "AbejalesTV (720p)",
+    "category": "娱乐",
+    "url": "https://183.bozztv.com/giatv/giatv-AbejalesTV/AbejalesTV/playlist.m3u8",
+    "quality": "720",
+    "logo": "https://blogger.googleusercontent.com/img/a/AVvXsEgao1fVZ7tV_ExJErlM5JsI8Rxv5TXJSU7ZE6p-g_qSXOiRKrAjCmX650Aw1PYv6cPqML3eKDQGZ_Z5BPYpeLwwAbZay3g4mpTVBW9Xs5D9nEVPD1i9xfOKQsRCFrOJhBgRt9L9yhfLimbu7S4Ozio2tiZ5uc45lRtyS6RjMpI-Ts1n2m_THG8K19R4STns=w800",
+    "latency": 2627,
+    "checkedAt": "2026-11-02T12:25:29.913Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "Hobby Maker (720p)",
+    "category": "生活健康",
+    "url": "https://lo3.gemporia.com/abrhobbymakerukgfx/smil:livestreamFullHD.smil/playlist.m3u8",
+    "quality": "720",
+    "logo": "https://i.imgur.com/VWHp5Tl.png",
+    "latency": 2645,
+    "checkedAt": "2026-11-02T12:26:35.896Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "Balle Balle HD (720p)",
+    "category": "音乐",
+    "url": "https://mcncdndigital.com/balleballetv/index.m3u8",
+    "quality": "1080",
+    "logo": "https://jiotvimages.cdn.jio.com/dare_images/images/Balle_Balle_TV.png",
+    "latency": 2665,
+    "checkedAt": "2026-11-02T12:26:06.667Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "Hmong Star TV (720p) [Not 24/7]",
+    "category": "文化",
+    "url": "https://livefta.malimarcdn.com/ftaedge00/hmongstartv.sdp/playlist.m3u8",
+    "quality": "720",
+    "logo": "https://i.imgur.com/dRsacao.png",
+    "latency": 2671,
+    "checkedAt": "2026-11-02T12:26:53.350Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "Aamar Bangla (720p)",
+    "category": "娱乐",
+    "url": "https://app.ncare.live/c3VydmVyX8RpbEU9Mi8xNy8yMDE0GIDU6RgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcGVMZEJCTEFWeVN3PTOmdFsaWRtaW51aiPhnPTI/amarbanglatv.stream/playlist.m3u8",
+    "quality": "720",
+    "logo": "https://jiotvimages.cdn.jio.com/dare_images/images/Amaar_Bangla.png",
+    "latency": 2683,
+    "checkedAt": "2026-11-02T12:25:29.653Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "arte (France) (1080p)",
+    "category": "娱乐",
+    "url": "http://5.180.164.197:8080/ARTEFR/index.m3u8",
+    "quality": "1080",
+    "logo": "https://i.imgur.com/ecXMjNl.png",
+    "latency": 2693,
+    "checkedAt": "2026-11-02T12:25:38.877Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "CRTV (Chile) (720p)",
+    "category": "体育",
+    "url": "https://stmv2.voxtvhd.com.br/crtvchile/crtvchile/playlist.m3u8",
+    "quality": "720",
+    "logo": "https://i2.paste.pics/bf68b159547597c39574aec9dd7c626a.png",
+    "latency": 2703,
+    "checkedAt": "2026-11-02T12:25:52.423Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "VoA TV China (1080p)",
+    "category": "国内",
+    "url": "https://voa-ingest.akamaized.net/hls/live/2033878/tvmc08/playlist.m3u8",
+    "quality": "1080",
+    "logo": "https://i.imgur.com/XCTZkoq.png",
+    "latency": 2711,
+    "checkedAt": "2026-11-02T12:25:09.400Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "GikTVMX (720p)",
+    "category": "文化",
+    "url": "https://pistream.ddns.net/hls/stream.m3u8",
+    "quality": "720",
+    "logo": "https://i.imgur.com/Gwz78jZ.png",
+    "latency": 2766,
+    "checkedAt": "2026-11-02T12:26:51.850Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "CCTV-The First Theater (1080p)",
+    "category": "国内",
+    "url": "http://38.75.136.137:98/gslb/dsdqpub/dyjc.m3u8?auth=testpub",
+    "quality": "1080",
+    "logo": "https://i.imgur.com/eFxD3hq.png",
+    "latency": 2791,
+    "checkedAt": "2026-11-02T12:25:02.530Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "CCTV-Health (1080p)",
+    "category": "生活健康",
+    "url": "http://38.75.136.137:98/gslb/dsdqpub/wsjk.m3u8?auth=testpub",
+    "quality": "1080",
+    "logo": "https://i.imgur.com/AzpRtCz.png",
+    "latency": 2799,
+    "checkedAt": "2026-11-02T12:26:27.395Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "AfroLandTV (1080p)",
+    "category": "娱乐",
+    "url": "https://alt-al.otteravision.com/alt/al/al.m3u8",
+    "quality": "1080",
+    "logo": "https://i.imgur.com/jvnkrEF.png",
+    "latency": 2801,
+    "checkedAt": "2026-11-02T12:25:31.790Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "AsianCrush (1080p)",
+    "category": "娱乐",
+    "url": "https://linear-900.frequency.stream/dist/cineverse/900/hls/master/playlist.m3u8",
+    "quality": "1080",
+    "logo": "https://i.imgur.com/hW6z1RG.png",
+    "latency": 2811,
+    "checkedAt": "2026-11-02T12:25:40.736Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "GS Shop (1080p)",
+    "category": "国际",
+    "url": "https://gstv-gsshop.gsshop.com/gsshop_hd/gsshop_hd.stream/playlist.m3u8",
+    "quality": "720",
+    "logo": "https://i.imgur.com/F7QDbEy.png",
+    "latency": 2828,
+    "checkedAt": "2026-11-02T12:26:58.504Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "FashionTV (Russia) (1080p)",
+    "category": "生活健康",
+    "url": "http://fashionlive.mediacdn.ru/cdn/fashiontv/playlist.m3u8",
+    "quality": "1080",
+    "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Fashion_TV_logo.svg/960px-Fashion_TV_logo.svg.png",
+    "latency": 2854,
+    "checkedAt": "2026-11-02T12:26:33.063Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "Azahares Radiovisual Multimedia (720p)",
+    "category": "音乐",
+    "url": "https://streamyes.alsolnet.com/azaharesfm/live/playlist.m3u8",
+    "quality": "720",
+    "logo": "https://i.imgur.com/g1BFoSs.png",
+    "latency": 2879,
+    "checkedAt": "2026-11-02T12:26:05.836Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "Disney Jr. Latin America North HD (1080p)",
+    "category": "卡通动漫",
+    "url": "http://181.78.14.26:4000/play/a073/index.m3u8",
+    "quality": "1080",
+    "logo": "https://upload.wikimedia.org/wikipedia/commons/e/e3/2024_Disney_Jr._Logo.svg",
+    "latency": 2901,
+    "checkedAt": "2026-11-02T12:26:15.551Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "CCTV-World Geography SD (1080p)",
+    "category": "国内",
+    "url": "http://38.75.136.137:98/gslb/dsdqpub/sjdl.m3u8?auth=testpub",
+    "quality": "1080",
+    "logo": "https://i.imgur.com/V2ncOXi.png",
+    "latency": 2904,
+    "checkedAt": "2026-11-02T12:25:02.836Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "ABN (720p)",
+    "category": "国际",
+    "url": "https://vod2.abn.co.kr/IPHONE/abn.m3u8",
+    "quality": "720",
+    "logo": "https://www.abn.co.kr/resources/images/logo.png",
+    "latency": 2944,
+    "checkedAt": "2026-11-02T12:26:56.294Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "HLAT-DTV (1080p) [Not 24/7]",
+    "category": "国际",
+    "url": "https://5c3639aa99149.streamlock.net/live_TV/tv/playlist.m3u8",
+    "quality": "1080",
+    "logo": "https://i.imgur.com/3VSuYsn.png",
+    "latency": 2967,
+    "checkedAt": "2026-11-02T12:27:00.761Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "98.1 Pearl FM (720p)",
+    "category": "音乐",
+    "url": "https://live2.tensila.com/pearl-v-1.pearlfm/hls/live/mystream.m3u8",
+    "quality": "720",
+    "logo": "https://i.imgur.com/GY750xh.jpg",
+    "latency": 3014,
+    "checkedAt": "2026-11-02T12:25:57.096Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "AXS TV (720p)",
+    "category": "音乐",
+    "url": "http://23.239.31.26:8989/axstv/index.m3u8",
+    "quality": "720",
+    "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/AXS_TV_logo.svg/960px-AXS_TV_logo.svg.png",
+    "latency": 3014,
+    "checkedAt": "2026-11-02T12:26:05.178Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "Shopping NT (720p)",
+    "category": "国际",
+    "url": "https://live.shoppingntmall.com/live/10011.m3u8",
+    "quality": "720",
+    "logo": "https://i.imgur.com/BgbJp5X.png",
+    "latency": 3039,
+    "checkedAt": "2026-11-02T12:27:10.704Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "DD Sports (1080p)",
+    "category": "体育",
+    "url": "https://d3qs3d2rkhfqrt.cloudfront.net/out/v1/b17adfe543354fdd8d189b110617cddd/index.m3u8",
+    "quality": "1080",
+    "logo": "https://dtil.tmsimg.com/assets/s158255_ld_h15_aa.png?lock=720x540",
+    "latency": 3081,
+    "checkedAt": "2026-11-02T12:25:54.840Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "360 (720p) [Not 24/7]",
+    "category": "新闻",
+    "url": "https://turkmedya-live.ercdn.net/tv360/tv360.m3u8",
+    "quality": "720",
+    "logo": "https://i.imgur.com/agn47sQ.png",
+    "latency": 3085,
+    "checkedAt": "2026-11-02T12:25:18.419Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "Mr Bean Animated IT (1080p)",
+    "category": "卡通动漫",
+    "url": "https://amg00627-amg00627c29-rakuten-it-3989.playouts.now.amagi.tv/playlist/amg00627-banijayfast-mrbeanitcc-rakutenit/playlist.m3u8",
+    "quality": "1080",
+    "logo": "https://static.wikia.nocookie.net/logopedia/images/2/25/Mr._Bean_Animated_Series_stacked_logo.png",
+    "latency": 3092,
+    "checkedAt": "2026-11-02T12:26:21.863Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "Fashion&LifeStyle (1080p)",
+    "category": "生活健康",
+    "url": "http://stream.mcquack.net/119/index.m3u8",
+    "quality": "1080",
+    "logo": "https://i.imgur.com/ETmpllL.png",
+    "latency": 3095,
+    "checkedAt": "2026-11-02T12:26:33.251Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "TV BRICS Chinese (1080p)",
+    "category": "国内",
+    "url": "https://chibrics.mediacdn.ru/cdn/brics/chinese/playlist.m3u8",
+    "quality": "1080",
+    "logo": "https://i.imgur.com/896132Z.png",
+    "latency": 3139,
+    "checkedAt": "2026-11-02T12:25:09.451Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": ":24 (1080p)",
+    "category": "新闻",
+    "url": "http://88.212.15.50/live/test_trojka_25p/playlist.m3u8",
+    "quality": "1080",
+    "logo": "https://i.imgur.com/tTCuczU.png",
+    "latency": 3143,
+    "checkedAt": "2026-11-02T12:25:19.911Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "Hamaika Telebista (1080p)",
+    "category": "文化",
+    "url": "https://cdn3.wowza.com/1/RERMR282dnU5eE5Z/OHY0dVFs/hls/live/playlist.m3u8",
+    "quality": "1080",
+    "logo": "https://i.imgur.com/HR3G3Ie.png",
+    "latency": 3150,
+    "checkedAt": "2026-11-02T12:26:53.548Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "Arabica TV (720p)",
+    "category": "音乐",
+    "url": "http://istream.binarywaves.com:8081/hls/arabica/playlist.m3u8",
+    "quality": "720",
+    "logo": "https://i.imgur.com/sTOoDy1.png",
+    "latency": 3189,
+    "checkedAt": "2026-11-02T12:26:04.668Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "360° News (1080p)",
+    "category": "新闻",
+    "url": "https://live-vgtrksmotrim.cdnvideo.ru/vgtrksmotrim/smotrim-live-03-srt.smil/playlist.m3u8",
+    "quality": "1080",
+    "logo": "https://i.imgur.com/YXDeX8q.png",
+    "latency": 3195,
+    "checkedAt": "2026-11-02T12:25:19.738Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "Mr Bean Animated ES (1080p)",
+    "category": "卡通动漫",
+    "url": "https://amg00627-amg00627c30-rakuten-es-3990.playouts.now.amagi.tv/playlist/amg00627-banijayfast-mrbeanescc-rakutenes/playlist.m3u8",
+    "quality": "1080",
+    "logo": "https://static.wikia.nocookie.net/logopedia/images/2/25/Mr._Bean_Animated_Series_stacked_logo.png",
+    "latency": 3237,
+    "checkedAt": "2026-11-02T12:26:21.190Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "4ever Theater (1080p)",
+    "category": "娱乐",
+    "url": "http://stream.mcquack.net/259/index.m3u8",
+    "quality": "1080",
+    "logo": "https://i.imgur.com/kfngtev.png",
+    "latency": 3247,
+    "checkedAt": "2026-11-02T12:25:25.031Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "¡OPA! (720p)",
+    "category": "娱乐",
+    "url": "https://5f1af61612fb5.streamlock.net/genteopa/videogenteopa_720p/playlist.m3u8",
+    "quality": "720",
+    "logo": "https://i.imgur.com/300c1ZH.png",
+    "latency": 3280,
+    "checkedAt": "2026-11-02T12:25:28.311Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "Antenne Steiermark (720p)",
+    "category": "音乐",
+    "url": "https://60efd7a2b4d02.streamlock.net/a_steiermark/ngrp:livestream_all/playlist.m3u8",
+    "quality": "720",
+    "logo": "https://i.imgur.com/qnappvd.jpeg",
+    "latency": 3281,
+    "checkedAt": "2026-11-02T12:26:04.477Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "3CatInfo (1080p)",
+    "category": "新闻",
+    "url": "https://directes-tv-int.3catdirectes.cat/live-origin/canal324-hls/master.m3u8",
+    "quality": "1080",
+    "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/3CatInfo_logo.svg/960px-3CatInfo_logo.svg.png",
+    "latency": 3285,
+    "checkedAt": "2026-11-02T12:25:12.736Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "ATXN3 (1080p)",
+    "category": "文化",
+    "url": "https://cdn-atxn-01.vos360.video/Content/HLS/Live/channel(c55d1594-ad62-7434-aa17-4d71adb80f99)/index.m3u8",
+    "quality": "1080",
+    "logo": "https://i.imgur.com/tSMtDlz.png",
+    "latency": 3310,
+    "checkedAt": "2026-11-02T12:26:41.216Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "BEK Sports West (720p)",
+    "category": "体育",
+    "url": "https://cdn3.wowza.com/5/ZWQ1K2NYTmpFbGsr/BEK-WOWZA-1/smil:BEKPRIMEW.smil/playlist.m3u8",
+    "quality": "720",
+    "logo": "https://i.imgur.com/1l3t5jd.png",
+    "latency": 3320,
+    "checkedAt": "2026-11-02T12:25:48.084Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "HGTV Latin America (1080p)",
+    "category": "生活健康",
+    "url": "http://38.87.224.19:2220/play/a01p/index.m3u8",
+    "quality": "1080",
+    "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/HGTV_US_Logo_2015.svg/960px-HGTV_US_Logo_2015.svg.png",
+    "latency": 3324,
+    "checkedAt": "2026-11-02T12:26:36.530Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "HLCQ-DTV (720p) [Not 24/7]",
+    "category": "国际",
+    "url": "https://ns1.tjmbc.co.kr/live/myStream.sdp/playlist.m3u8",
+    "quality": "720",
+    "logo": "https://i.imgur.com/HCbvAiM.png",
+    "latency": 3412,
+    "checkedAt": "2026-11-02T12:27:02.359Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "Bahrain Sports 1 (720p) [Not 24/7]",
+    "category": "体育",
+    "url": "https://5c7b683162943.streamlock.net/live/ngrp:sportsone_all/playlist.m3u8",
+    "quality": "720",
+    "logo": "https://i.imgur.com/fBpLsbC.png",
+    "latency": 3428,
+    "checkedAt": "2026-11-02T12:25:46.307Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "Mr Bean Animated FR (1080p)",
+    "category": "卡通动漫",
+    "url": "https://amg00627-amg00627c31-rakuten-fr-3991.playouts.now.amagi.tv/playlist/amg00627-banijayfast-mrbeanfrcc-rakutenfr/playlist.m3u8",
+    "quality": "1080",
+    "logo": "https://static.wikia.nocookie.net/logopedia/images/2/25/Mr._Bean_Animated_Series_stacked_logo.png",
+    "latency": 3430,
+    "checkedAt": "2026-11-02T12:26:21.806Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "DMAX (Italy) (1080p)",
+    "category": "生活健康",
+    "url": "https://streaming.aurora.enhanced.live/live/mpc/enl0eG1mLmVncmVzcy5mZDJ2eHI=/out/v1/IT_SIMULCAST/DMAX/CMAF/index.m3u8",
+    "quality": "1080",
+    "logo": "https://i.imgur.com/uGd9fnn.png",
+    "latency": 3470,
+    "checkedAt": "2026-11-02T12:26:30.837Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "Arirang TV (1080p)",
+    "category": "国际",
+    "url": "http://amdlive-ch01.ctnd.com.edgesuite.net/arirang_1ch/smil:arirang_1ch.smil/playlist.m3u8",
+    "quality": "1080",
+    "logo": "https://i.imgur.com/Asu5pE9.png",
+    "latency": 3481,
+    "checkedAt": "2026-11-02T12:26:56.973Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "A&E (720p)",
+    "category": "娱乐",
+    "url": "http://23.239.31.26:8989/aande/index.m3u8",
+    "quality": "720",
+    "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/A%26E_Network_logo.svg/960px-A%26E_Network_logo.svg.png",
+    "latency": 3495,
+    "checkedAt": "2026-11-02T12:25:29.041Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "Fashion Finds (720p)",
+    "category": "生活健康",
+    "url": "https://qvc-amd-live.akamaized.net/hls/live/2034113/lsqvc5us/master.m3u8",
+    "quality": "720",
+    "logo": "https://i.imgur.com/GvDRZgq.png",
+    "latency": 3523,
+    "checkedAt": "2026-11-02T12:26:31.886Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "Cartoonito HD (720p)",
+    "category": "卡通动漫",
+    "url": "https://boing.akamaized.net/6380673432112/eu-central-1/6284318116001/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJob3N0Ijoib3dwbnN1LmVncmVzcy5haGc3NmwiLCJhY2NvdW50X2lkIjoiNjI4NDMxODExNjAwMSIsImVobiI6ImJvaW5nLmFrYW1haXplZC5uZXQiLCJpc3MiOiJibGl2ZS1wbGF5YmFjay1zb3VyY2UtYXBpIiwic3ViIjoicGF0aG1hcHRva2VuIiwiYXVkIjpbIjYyODQzMTgxMTYwMDEiXSwianRpIjoiNjM4MDY3MzQzMjExMiJ9.WACYETOZxZYmZHRpxwRrATxVZQBdSoeaWdfhtLKx1kI/playlist-hls.m3u8",
+    "quality": "720",
+    "logo": "https://i.imgur.com/6vYWCD0.png",
+    "latency": 3532,
+    "checkedAt": "2026-11-02T12:26:12.412Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "NHTV (720p)",
+    "category": "国际",
+    "url": "http://nonghyup.flive.skcdn.com/nonghyup/_definst_/nhlive/playlist.m3u8",
+    "quality": "720",
+    "logo": "https://i.imgur.com/DfECkgB.png",
+    "latency": 3567,
+    "checkedAt": "2026-11-02T12:27:08.767Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "Abante TV (1080p)",
+    "category": "新闻",
+    "url": "https://amg19223-amg19223c12-amgplt0352.playout.now3.amagi.tv/playlist/amg19223-amg19223c12-amgplt0352/playlist.m3u8",
+    "quality": "1080",
+    "logo": "https://upload.wikimedia.org/wikipedia/commons/d/d9/Abante_masthead.svg",
+    "latency": 3614,
+    "checkedAt": "2026-11-02T12:25:22.033Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "Ciracu TV (720p) [Not 24/7]",
+    "category": "文化",
+    "url": "https://cloud37.ecuatel.com/ciracutv/live/manifest.m3u8",
+    "quality": "720",
+    "logo": "https://i.imgur.com/mkf2TJ6.png",
+    "latency": 3634,
+    "checkedAt": "2026-11-02T12:26:47.018Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "CCTV-12 (720p)",
+    "category": "生活健康",
+    "url": "http://74.91.26.218:82/live/cctv12hd.m3u8",
+    "quality": "720",
+    "logo": "https://i.imgur.com/3yTuiOM.png",
+    "latency": 3658,
+    "checkedAt": "2026-11-02T12:26:28.103Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "ATG Live (720p)",
+    "category": "体育",
+    "url": "https://kanal75xto-llhls.akamaized.net/live/Data/atg-kanal-15-02a-rr/HLS-Legacy-HL/atg-kanal-15-02a-rr.m3u8",
+    "quality": "1080",
+    "logo": "https://i.imgur.com/bPWFXkL.png",
+    "latency": 3680,
+    "checkedAt": "2026-11-02T12:25:44.707Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "4U TV (720p)",
+    "category": "娱乐",
+    "url": "https://hls.4utv.live/hls/stream.m3u8",
+    "quality": "720",
+    "logo": "https://i.imgur.com/PexhKwp.png",
+    "latency": 3689,
+    "checkedAt": "2026-11-02T12:25:25.722Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "ADN TV+ (720p)",
+    "category": "卡通动漫",
+    "url": "https://d3b73b34o7cvkq.cloudfront.net/v1/master/3722c60a815c199d9c0ef36c5b73da68a62b09d1/cc-gz2sgqzp076kf/adn.m3u8",
+    "quality": "720",
+    "logo": "https://i.imgur.com/HQZQyWt.png",
+    "latency": 3702,
+    "checkedAt": "2026-11-02T12:26:08.880Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "KTV (South Korea) (1080p)",
+    "category": "国际",
+    "url": "https://hlive.ktv.go.kr/live/klive_h.stream/playlist.m3u8",
+    "quality": "1080",
+    "logo": "https://i.ibb.co/WkrLDJW/Screenshot-20230714-135036-removebg-preview.png",
+    "latency": 3741,
+    "checkedAt": "2026-11-02T12:27:05.200Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "4ever Music (1080p)",
+    "category": "音乐",
+    "url": "http://stream.mcquack.net/257/index.m3u8",
+    "quality": "1080",
+    "logo": "https://i.imgur.com/UJ5oaeU.png",
+    "latency": 3781,
+    "checkedAt": "2026-11-02T12:25:55.862Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "ADO TV (720p)",
+    "category": "体育",
+    "url": "https://strhls.streamakaci.tv/ortb/ortb2-multi/playlist.m3u8",
+    "quality": "720",
+    "logo": "https://i.imgur.com/pxFamLr.png",
+    "latency": 3792,
+    "checkedAt": "2026-11-02T12:25:42.879Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "CEACOM TV (1080p) [Not 24/7]",
+    "category": "生活健康",
+    "url": "https://eu1.servers10.com:8081/ceacom/index.m3u8",
+    "quality": "1080",
+    "logo": "https://i.imgur.com/hutdRfk.png",
+    "latency": 3796,
+    "checkedAt": "2026-11-02T12:26:29.139Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "Bahrain Sports 2 (720p) [Not 24/7]",
+    "category": "体育",
+    "url": "https://5c7b683162943.streamlock.net/live/ngrp:bahrainsportstwo_all/playlist.m3u8",
+    "quality": "720",
+    "logo": "https://i.imgur.com/ZkuZmIo.png",
+    "latency": 3835,
+    "checkedAt": "2026-11-02T12:25:46.862Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "HGTV (New Zealand) (1080p)",
+    "category": "生活健康",
+    "url": "https://mediapackage-sky-hgtv-source.fullscreen.nz/index.m3u8",
+    "quality": "1080",
+    "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/HGTV_US_Logo_2015.svg/960px-HGTV_US_Logo_2015.svg.png",
+    "latency": 3851,
+    "checkedAt": "2026-11-02T12:26:36.746Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "ABN Andhra Jyoti (720p)",
+    "category": "新闻",
+    "url": "https://mumbai-edge.smartplaytv.in/ABNAJ/index.m3u8",
+    "quality": "720",
+    "logo": "https://dtil.tmsimg.com/assets/s142517_ld_h15_aa.png?lock=720x540",
+    "latency": 3897,
+    "checkedAt": "2026-11-02T12:25:25.253Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "TBS TV (720p)",
+    "category": "国际",
+    "url": "https://cdntv.tbs.seoul.kr/tbs/tbs_tv_web.smil/playlist.m3u8",
+    "quality": "1080",
+    "logo": "https://i.imgur.com/iOnWS6V.png",
+    "latency": 3922,
+    "checkedAt": "2026-11-02T12:27:11.699Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "CCTV-7 (720p)",
+    "category": "国内",
+    "url": "http://74.91.26.218:82/live/cctv7hd.m3u8",
+    "quality": "720",
+    "logo": "https://i.imgur.com/CKcPMQC.png",
+    "latency": 3978,
+    "checkedAt": "2026-11-02T12:25:01.932Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "+MaisUm (720p)",
+    "category": "音乐",
+    "url": "https://stream.ichibansys.com:3230/hybrid/play.m3u8",
+    "quality": "720",
+    "logo": "https://i.ibb.co/ZRDvqJcf/Logo-Mais-Um-original-sem-fundo.png",
+    "latency": 3985,
+    "checkedAt": "2026-11-02T12:25:59.580Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "Astrahan.Ru Sport (720p)",
+    "category": "体育",
+    "url": "https://streaming.astrakhan.ru/astrakhanrusporthd/playlist.m3u8",
+    "quality": "1080",
+    "logo": "https://i.imgur.com/BKaEtqL.png",
+    "latency": 4074,
+    "checkedAt": "2026-11-02T12:25:44.973Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "American Ninja Warrior (1080p)",
+    "category": "体育",
+    "url": "https://d4whmvwm0rdvi.cloudfront.net/10007/99951318/hls/master.m3u8?ads.xumo_channelId=99951318&ads.asnw=169843&ads.afid=405342864&ads.sfid=19647852&ads.csid=xumo_web_NBCUAmericanNinjaWarrior_ssai_cro&ads._fw_is_lat=0&ads._fw_us_privacy=&ads._fw_coppa=0&ads._fw_did=a5090924-15b1-4b7f-b6cd-2f06e2ba51e1&ads._fw_vcid2=512116:a5090924-15b1-4b7f-b6cd-2f06e2ba51e1&ads._fw_app_bundle=web.xumo.com&ads._fw_app_store_url=&ads._fw_content_category=&ads._fw_content_genre=&ads._fw_content_language=en&ads._fw_content_rating=&ads._fw_deviceMake=GitHubAction&ads._fw_device_model=PythonScript&ads._fw_deviceType=3-Connected_TV&ads.appVersion=1.0.0&ads.appName=XumoPlay&ads.xumo_contentId=4063&ads.xumo_contentName=NBCUAmericanNinjaWarrior&ads.xumo_providerId=4063&ads.xumo_providerName=NBCUAmericanNinjaWarrior&ads.channelId=99951318",
+    "quality": "1080",
+    "logo": "https://raw.githubusercontent.com/RoqueDJ/iptv-svg/main/1792421696158.png",
+    "latency": 4087,
+    "checkedAt": "2026-11-02T12:25:44.764Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "Arirang Radio (720p)",
+    "category": "国际",
+    "url": "http://amdlive-ch01.ctnd.com.edgesuite.net/arirang_3ch/smil:arirang_3ch.smil/playlist.m3u8",
+    "quality": "1080",
+    "logo": "https://i.imgur.com/dtfiG9k.png",
+    "latency": 4091,
+    "checkedAt": "2026-11-02T12:26:57.489Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "Aghani Aghani TV (1080p)",
+    "category": "音乐",
+    "url": "https://cdn.streamlane.tv/hls/aghanitv/index.m3u8",
+    "quality": "1084",
+    "logo": "https://i.imgur.com/o6HSfNg.png",
+    "latency": 4096,
+    "checkedAt": "2026-11-02T12:26:01.196Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "7 Gold (1080p)",
+    "category": "娱乐",
+    "url": "https://streamcdnr6-dddfac816632463dac50b21109dc1bb3.msvdn.net/live/S58803518/OOZape6Nxp4H/playlist.m3u8",
+    "quality": "1080",
+    "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/7gold.jpg/960px-7gold.jpg",
+    "latency": 4104,
+    "checkedAt": "2026-11-02T12:25:26.970Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "HLAO-DTV (720p) [Not 24/7]",
+    "category": "国际",
+    "url": "http://211.33.246.4:32954/cj_live/myStream.sdp/playlist.m3u8",
+    "quality": "720",
+    "logo": "https://i.imgur.com/uR0gScb.png",
+    "latency": 4112,
+    "checkedAt": "2026-11-02T12:27:01.331Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "Lotte Home Shopping (720p)",
+    "category": "国际",
+    "url": "https://pchlslivesw.lotteimall.com/live/livestream/lotteimalllive_mp4.m3u8",
+    "quality": "720",
+    "logo": "https://i.imgur.com/dJeNehc.png",
+    "latency": 4172,
+    "checkedAt": "2026-11-02T12:27:06.095Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "El 33 Originals (1080p) [Not 24/7]",
+    "category": "文化",
+    "url": "https://directes-tv-int.3catdirectes.cat/live-content/c33-super3-hls/master.m3u8",
+    "quality": "1080",
+    "logo": "https://i.imgur.com/frKCBTN.png",
+    "latency": 4176,
+    "checkedAt": "2026-11-02T12:26:50.786Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "GS My Shop (1080p)",
+    "category": "国际",
+    "url": "https://gstv-myshop.gsshop.com/myshop_hd/myshop_hd.stream/playlist.m3u8",
+    "quality": "720",
+    "logo": "https://i.imgur.com/ETPQwui.png",
+    "latency": 4258,
+    "checkedAt": "2026-11-02T12:26:58.947Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "B4U Music (1080p)",
+    "category": "音乐",
+    "url": "https://amg01408-amg01408c5-amgplt0747.playout.now3.amagi.tv/b4um001/playlist.m3u8",
+    "quality": "1080",
+    "logo": "https://i.imgur.com/hytapio.png",
+    "latency": 4301,
+    "checkedAt": "2026-11-02T12:26:07.380Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "Belarus-5 (1080p) [Not 24/7]",
+    "category": "体育",
+    "url": "https://ngtrk.dc.beltelecom.by/ngtrk/smil:belarus5.smil/playlist.m3u8",
+    "quality": "1080",
+    "logo": "https://i.imgur.com/NJsRFud.png",
+    "latency": 4380,
+    "checkedAt": "2026-11-02T12:25:49.353Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "Canal 17 RTVD (1080p)",
+    "category": "文化",
+    "url": "https://cdn.protvradiostream.com/rtvd17/ngrp:rtvd17_all/playlist.m3u8",
+    "quality": "1080",
+    "logo": "https://i.ibb.co/2YvKhjW4/Quisqueya-17-AZUL.png",
+    "latency": 4405,
+    "checkedAt": "2026-11-02T12:26:44.418Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "BX Culture (720p)",
+    "category": "文化",
+    "url": "https://reflect-stream-bronxnet.cablecast.tv/live-7/live/stream-3/live.m3u8",
+    "quality": "720",
+    "logo": "https://i.imgur.com/PF71rdZ.png",
+    "latency": 4433,
+    "checkedAt": "2026-11-02T12:26:43.916Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "Balle Balle (1080p)",
+    "category": "音乐",
+    "url": "https://mcncdndigital.com/worldpunjabitv/index.m3u8",
+    "quality": "1080",
+    "logo": "https://jiotvimages.cdn.jio.com/dare_images/images/Balle_Balle_TV.png",
+    "latency": 4503,
+    "checkedAt": "2026-11-02T12:26:08.194Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "China Travel (1080p)",
+    "category": "文化",
+    "url": "https://fastlive.cctvplus.com/out/v1/ca6f9297b7314a63959435028af287fc/index.m3u8",
+    "quality": "1080",
+    "logo": "https://i.imgur.com/vSgY3CD.png",
+    "latency": 4512,
+    "checkedAt": "2026-11-02T12:26:45.728Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "OUN (1080p)",
+    "category": "国际",
+    "url": "https://live.knou.ac.kr/knou1/live1/playlist.m3u8",
+    "quality": "1080",
+    "logo": "https://i.imgur.com/7s6JtcU.png",
+    "latency": 4533,
+    "checkedAt": "2026-11-02T12:27:10.628Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "ANT1 Cyprus (1080p)",
+    "category": "娱乐",
+    "url": "http://l2.cloudskep.com/ant1cm2/abr/playlist.m3u8",
+    "quality": "1080",
+    "logo": "https://i.imgur.com/2KAObBt.png",
+    "latency": 4538,
+    "checkedAt": "2026-11-02T12:25:38.724Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "24 Horas Catalunya (720p)",
+    "category": "新闻",
+    "url": "https://ztnr.rtve.es/ztnr/4952053.m3u8",
+    "quality": "720",
+    "logo": "https://i.ibb.co/21sXZ3GT/24h.png",
+    "latency": 4587,
+    "checkedAt": "2026-11-02T12:25:16.966Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "Disney Channel Latin America Center (1080p)",
+    "category": "卡通动漫",
+    "url": "http://181.78.8.199:8000/play/a0dn/index.m3u8",
+    "quality": "1080",
+    "logo": "https://upload.wikimedia.org/wikipedia/commons/f/ff/2024_Disney_Channel_text_logo.svg",
+    "latency": 4599,
+    "checkedAt": "2026-11-02T12:26:15.627Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "BX Arts (720p)",
+    "category": "文化",
+    "url": "https://reflect-stream-bronxnet.cablecast.tv/live-19/live/stream-2/live.m3u8",
+    "quality": "720",
+    "logo": "https://i.imgur.com/PF71rdZ.png",
+    "latency": 4604,
+    "checkedAt": "2026-11-02T12:26:43.406Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "AlbKanale Music TV HD (1080p)",
+    "category": "音乐",
+    "url": "https://albportal.net/albkanalemusic.m3u8",
+    "quality": "1080",
+    "logo": "https://i.imgur.com/JdKxscs.png",
+    "latency": 4648,
+    "checkedAt": "2026-11-02T12:26:02.095Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "EET TV (1080p) [Not 24/7]",
+    "category": "文化",
+    "url": "https://eu.streamjo.com/eetlive/eettv.m3u8",
+    "quality": "1080",
+    "logo": "https://i.imgur.com/rntSEDZ.png",
+    "latency": 4670,
+    "checkedAt": "2026-11-02T12:26:50.398Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "AyM Sports (1080p)",
+    "category": "体育",
+    "url": "http://168.196.127.137:6001/play/a06v/index.m3u8",
+    "quality": "1080",
+    "logo": "https://i.imgur.com/yu3Bpbd.png",
+    "latency": 4705,
+    "checkedAt": "2026-11-02T12:25:47.147Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "24 Horas (720p)",
+    "category": "新闻",
+    "url": "https://ztnr.rtve.es/ztnr/1694255.m3u8",
+    "quality": "720",
+    "logo": "https://i.ibb.co/21sXZ3GT/24h.png",
+    "latency": 4800,
+    "checkedAt": "2026-11-02T12:25:16.897Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "A Haber (1080p)",
+    "category": "新闻",
+    "url": "https://rnttwmjcin.turknet.ercdn.net/lcpmvefbyo/ahaber/ahaber.m3u8",
+    "quality": "1080",
+    "logo": "https://upload.wikimedia.org/wikipedia/commons/7/7c/Ahaber_Logo.png",
+    "latency": 4818,
+    "checkedAt": "2026-11-02T12:25:21.784Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "LAMIL35 TV (720p)",
+    "category": "卡通动漫",
+    "url": "https://vtm2.msinteractiva.com/lamil35/lamil35/playlist.m3u8",
+    "quality": "720",
+    "logo": "https://i.pinimg.com/736x/2d/fa/25/2dfa25f5d2e4d5c19886a3a263706317.jpg",
+    "latency": 4853,
+    "checkedAt": "2026-11-02T12:26:22.082Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "CinePride (720p)",
+    "category": "生活健康",
+    "url": "https://stream-us-east-1.getpublica.com/playlist.m3u8?network_id=2223",
+    "quality": "720",
+    "logo": "https://i.imgur.com/Y4Wgq8I.png",
+    "latency": 4873,
+    "checkedAt": "2026-11-02T12:26:31.499Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "Fox Soul (1080p)",
+    "category": "文化",
+    "url": "https://foxsoul-vizio.amagi.tv/playlist.m3u8",
+    "quality": "1080",
+    "logo": "https://i.imgur.com/YIamDGn.png",
+    "latency": 4892,
+    "checkedAt": "2026-11-02T12:26:53.142Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "QVC (Japan) (1080p)",
+    "category": "国际",
+    "url": "https://d1flvb4iqlercm.cloudfront.net/live/live_1080p_2nd.m3u8",
+    "quality": "1080",
+    "logo": "https://i.imgur.com/6TWUVrh.png",
+    "latency": 4959,
+    "checkedAt": "2026-11-02T12:26:57.219Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "Amrita TV (720p)",
+    "category": "娱乐",
+    "url": "https://ddash74r36xqp.cloudfront.net/master.m3u8",
+    "quality": "720",
+    "logo": "https://i.imgur.com/WdSjlPl.png",
+    "latency": 4976,
+    "checkedAt": "2026-11-02T12:25:37.038Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "Aaj Tak HD (1080p)",
+    "category": "新闻",
+    "url": "https://feeds.intoday.in/aajtak/api/aajtakhd/master.m3u8",
+    "quality": "1080",
+    "logo": "https://xstreamcp-assets-msp.streamready.in/assets/LIVETV/LIVECHANNEL/LIVETV_LIVETVCHANNEL_AAJ_TAK/images/LOGO_HD/image.png",
+    "latency": 5003,
+    "checkedAt": "2026-11-02T12:25:23.185Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "Claro Sports (1080p)",
+    "category": "体育",
+    "url": "http://168.196.127.137:6001/play/a08r/index.m3u8",
+    "quality": "1080",
+    "logo": "https://i.imgur.com/n0kd17r.png",
+    "latency": 5013,
+    "checkedAt": "2026-11-02T12:25:52.632Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "9X Jalwa (1080p)",
+    "category": "音乐",
+    "url": "https://wiselp.wiseplayout.com/9X_Jalwa/master.m3u8",
+    "quality": "1080",
+    "logo": "https://xstreamcp-assets-msp.streamready.in/assets/LIVETV/LIVECHANNEL/LIVETV_LIVETVCHANNEL_9X_JALWA/images/LOGO_HD/image.png",
+    "latency": 5031,
+    "checkedAt": "2026-11-02T12:25:57.447Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "Gugbang TV (1080p) [Not 24/7]",
+    "category": "国际",
+    "url": "http://mediaworks.dema.mil.kr:1935/live_edge/cudo.sdp/playlist.m3u8",
+    "quality": "1080",
+    "logo": "https://i.imgur.com/f1tz5fg.png",
+    "latency": 5032,
+    "checkedAt": "2026-11-02T12:27:01.326Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "ACC Digital Network (1080p)",
+    "category": "体育",
+    "url": "https://raycom-accdn-firetv.amagi.tv/playlist.m3u8",
+    "quality": "1080",
+    "logo": "https://i.imgur.com/V6Kaqha.png",
+    "latency": 5070,
+    "checkedAt": "2026-11-02T12:25:43.836Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "ABC TV Plus (720p)",
+    "category": "娱乐",
+    "url": "https://c.mjh.nz/abc-tv-plus.m3u8",
+    "quality": "720",
+    "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/0/0f/ABC_TV_Plus_logo_2021.svg/500px-ABC_TV_Plus_logo_2021.svg.png",
+    "latency": 5176,
+    "checkedAt": "2026-11-02T12:25:32.364Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "Aaryaa TV (1080p)",
+    "category": "音乐",
+    "url": "https://stream.ottlive.co.in/aryatvtamil/index.m3u8",
+    "quality": "1080",
+    "logo": "https://jiotvimages.cdn.jio.com/dare_images/images/aryatvtamil.png",
+    "latency": 5209,
+    "checkedAt": "2026-11-02T12:26:01.479Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "HLAM-DTV (720p) [Not 24/7]",
+    "category": "国际",
+    "url": "http://vod.mpmbc.co.kr:1935/live/encoder-tv/playlist.m3u8",
+    "quality": "720",
+    "logo": "https://i.imgur.com/5oraHc0.png",
+    "latency": 5325,
+    "checkedAt": "2026-11-02T12:27:02.298Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "Lotte OneTV (720p)",
+    "category": "国际",
+    "url": "https://onetvhlslive.lotteimall.com/lotteonetvlive/lotteonetvlive.mp4.m3u8",
+    "quality": "720",
+    "logo": "https://i.imgur.com/bXe7tYE.png",
+    "latency": 5367,
+    "checkedAt": "2026-11-02T12:27:07.665Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "ACI Sport TV SD (1080p)",
+    "category": "体育",
+    "url": "https://webstream.multistream.it/memfs/e2cb3629-c1a2-495b-b43a-9eb386f04ed8.m3u8",
+    "quality": "720",
+    "logo": "https://i.imgur.com/U8cHMOt.png",
+    "latency": 5492,
+    "checkedAt": "2026-11-02T12:25:44.567Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "Pet Club TV (1080p)",
+    "category": "国内",
+    "url": "https://petclub-samsungaus.amagi.tv/playlist.m3u8",
+    "quality": "1080",
+    "logo": "https://i.imgur.com/ykPNNwQ.png",
+    "latency": 5510,
+    "checkedAt": "2026-11-02T12:24:57.963Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "Aagaaz Times (1080p)",
+    "category": "新闻",
+    "url": "https://live1.ottlive.co.in/aagaaztimes/index.m3u8",
+    "quality": "1080",
+    "logo": "https://jiotvimages.cdn.jio.com/dare_images/images/aagaaztimes.png",
+    "latency": 5553,
+    "checkedAt": "2026-11-02T12:25:22.866Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "24 TV (720p)",
+    "category": "新闻",
+    "url": "https://turkmedya-live.ercdn.net/tv24/tv24.m3u8",
+    "quality": "720",
+    "logo": "https://i.imgur.com/8FO41es.png",
+    "latency": 5609,
+    "checkedAt": "2026-11-02T12:25:18.182Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "Global Fashion Channel (1080p)",
+    "category": "生活健康",
+    "url": "https://pubgfc.teleosmedia.com/linear/globalfashionchannel/globalfashionchannel/playlist.m3u8",
+    "quality": "1080",
+    "logo": "https://i.imgur.com/s4eGYEP.jpg",
+    "latency": 5653,
+    "checkedAt": "2026-11-02T12:26:37.152Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "ANC Television (720p)",
+    "category": "娱乐",
+    "url": "https://live.amelbatv.co:81/anctvlive/index.m3u8",
+    "quality": "720",
+    "logo": "https://i.imgur.com/xjTU14t.jpg",
+    "latency": 5748,
+    "checkedAt": "2026-11-02T12:25:38.372Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "DAZN 3 Portugal (720p)",
+    "category": "体育",
+    "url": "http://23.237.104.106:8080/DAZN_3/index.m3u8",
+    "quality": "720",
+    "logo": "https://i.imgur.com/2rXsq2m.png",
+    "latency": 5790,
+    "checkedAt": "2026-11-02T12:25:55.595Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "Aguacate TV (1080p)",
+    "category": "娱乐",
+    "url": "https://stream.aguacatetv.com:3949/hybrid/play.m3u8",
+    "quality": "1080",
+    "logo": "https://i.ibb.co/wpWBsgf/IMG-20230705-154622.jpg",
+    "latency": 5823,
+    "checkedAt": "2026-11-02T12:25:34.864Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "Disney Jr. Latin America South (1080p)",
+    "category": "卡通动漫",
+    "url": "http://45.185.163.75:8000/play/a016/index.m3u8",
+    "quality": "1080",
+    "logo": "https://upload.wikimedia.org/wikipedia/commons/e/e3/2024_Disney_Jr._Logo.svg",
+    "latency": 5938,
+    "checkedAt": "2026-11-02T12:26:20.196Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "Disney Jr. Latin America (1080p)",
+    "category": "卡通动漫",
+    "url": "http://190.14.10.19:16000/play/a02d/index.m3u8",
+    "quality": "1080",
+    "logo": "https://upload.wikimedia.org/wikipedia/commons/e/e3/2024_Disney_Jr._Logo.svg",
+    "latency": 5964,
+    "checkedAt": "2026-11-02T12:26:18.376Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "AE Radio TV (720p) [Not 24/7]",
+    "category": "音乐",
+    "url": "https://tls-cl.cdnz.cl/aeradio/live/playlist.m3u8",
+    "quality": "720",
+    "logo": "https://i.imgur.com/425dj2i.jpeg",
+    "latency": 5983,
+    "checkedAt": "2026-11-02T12:26:03.079Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "Baraza TV (1080p)",
+    "category": "音乐",
+    "url": "https://eco.streams.ovh:8081/barazatv/tracks-v1a1/mono.m3u8",
+    "quality": "1080",
+    "logo": "https://i.imgur.com/TZ1unwF.png",
+    "latency": 6057,
+    "checkedAt": "2026-11-02T12:26:10.534Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "Golden Jade (1080p)",
+    "category": "国内",
+    "url": "http://103.172.187.30:12000/stream/mytv/null-12/master.m3u8",
+    "quality": "1080",
+    "logo": "https://i.imgur.com/lPYxsUr.png",
+    "latency": 6078,
+    "checkedAt": "2026-11-02T12:24:58.530Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "30A Luxe Life Discovered (720p)",
+    "category": "生活健康",
+    "url": "https://30a-tv.com/feeds/vidaa/luxelife.m3u8",
+    "quality": "720",
+    "logo": "https://m.media-amazon.com/images/I/51FJ5A0mEyL.jpg",
+    "latency": 6177,
+    "checkedAt": "2026-11-02T12:26:27.367Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "JapanimTV (1080p)",
+    "category": "卡通动漫",
+    "url": "https://foxkidstv.be:3369/stream/play.m3u8",
+    "quality": "1080",
+    "logo": "https://static-cdn.jtvnw.net/jtv_user_pictures/6b97e19f-4243-4d48-b794-ff8cf54d795f-profile_image-300x300.png",
+    "latency": 6198,
+    "checkedAt": "2026-11-02T12:26:22.862Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "A2i Music (720p) [Not 24/7]",
+    "category": "音乐",
+    "url": "https://stream.sen-gt.com/A2iMusic/myStream/playlist.m3u8",
+    "quality": "720",
+    "logo": "https://i.imgur.com/Fykhzxh.jpg",
+    "latency": 6302,
+    "checkedAt": "2026-11-02T12:26:02.164Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "A&E Latin America (1080p)",
+    "category": "娱乐",
+    "url": "http://138.121.15.230:9002/A&E/index.m3u8",
+    "quality": "1080",
+    "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/A%26E_Network_logo.svg/960px-A%26E_Network_logo.svg.png",
+    "latency": 6340,
+    "checkedAt": "2026-11-02T12:25:32.062Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "Hyundai Home Shopping + Shop (720p)",
+    "category": "国际",
+    "url": "https://dtvstreaming.hyundaihmall.com/newcjp3/_definst_/newcjpstream.smil/playlist.m3u8",
+    "quality": "720",
+    "logo": "https://i.imgur.com/DoNOuZE.png",
+    "latency": 6451,
+    "checkedAt": "2026-11-02T12:27:07.777Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "FashionTV Secrets (1080p)",
+    "category": "生活健康",
+    "url": "https://ssai.aniview.com/api/v1/hls/stream.m3u8?AVS_SSAIID=67c0c39764ad6f7dab07aa0b&AV_APPNAME=[ADS.APP_NAME]&AV_APPPKGNAME=[ADS.APP_BUNDLE]&AV_APPSTOREURL=[ADS.APP_STORE_URL]&AV_CCPA=[ADS.US_PRIVACY]&AV_CLIENT_SECTION=ftv_secrets&AV_CONSENT=[ADS.GDPR_CONSENT]&AV_CONTENT_CAT=IAB7&AV_CONTENT_CHANNEL=&AV_CONTENT_CONTEXT=&AV_CONTENT_EPISODE=&AV_CONTENT_GENRE=fashion+and+lifestyle&AV_CONTENT_ID=[ADS.VIDAA_ADS_CONTENTID]&AV_CONTENT_KEYWORDS=&AV_CONTENT_LANGUAGE=en&AV_CONTENT_LENGTH=&AV_CONTENT_NETWORK=&AV_CONTENT_PROVIDER=FTV&AV_CONTENT_RATING=R&AV_CONTENT_SEASON=&AV_CONTENT_SERIES=&AV_CONTENT_TITLE=&AV_CONTENT_URL=&AV_DNT=[ADS.DNT]&AV_GDPR=[ADS.GDPR]&AV_HEIGHT=[ADS.H]&AV_IDFA=[ADS.IFA]&AV_IFA_TYPE=[ADS.IFA_TYPE]&AV_LANGUAGE=[ADS.DEVICE_LANGUAGE]&AV_OSVERS=[ADS.DEVICE_OSV]&AV_RTB_DEVICE_TYPE=[ADS.DEVICE_TYPE]&AV_VAUTH=[ADS.VAUTH]&AV_WIDTH=[ADS.W]&Content_Id=[ADS.ADS_CONTENTID]&ads.vidaa_ads_param=1191723366&cb=[CACHEBUSTER]&content_channel_name=ftv+-fashiontv+Secrets&content_livestream=1",
+    "quality": "1080",
+    "logo": "https://i.ibb.co/fVGJyCC8/w512.png",
+    "latency": 6482,
+    "checkedAt": "2026-11-02T12:26:37.456Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "Asian Drama (1080p)",
+    "category": "国内",
+    "url": "http://103.172.187.30:12000/stream/mytv/null-11/master.m3u8",
+    "quality": "1080",
+    "logo": "https://i.imgur.com/wqtN7mH.png",
+    "latency": 6487,
+    "checkedAt": "2026-11-02T12:24:58.939Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "Dreiko TV (720p) [Not 24/7]",
+    "category": "卡通动漫",
+    "url": "https://cloudvideo.servers10.com:8081/8020/index.m3u8",
+    "quality": "720",
+    "logo": "https://i.imgur.com/k8U0e0b.png",
+    "latency": 6667,
+    "checkedAt": "2026-11-02T12:26:21.824Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "Baraza TV Deep House (720p)",
+    "category": "音乐",
+    "url": "https://rtmp.streams.ovh:1936/barazarelax/barazazararelax/barazarelax/playlist.m3u8",
+    "quality": "1080",
+    "logo": "https://i.imgur.com/TZ1unwF.png",
+    "latency": 6671,
+    "checkedAt": "2026-11-02T12:26:11.207Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "Catamarca TV (720p)",
+    "category": "文化",
+    "url": "https://stream.arcast.com.ar/canal7catamarca/ngrp:canal7catamarca_all/playlist.m3u8?DVR=",
+    "quality": "720",
+    "logo": "https://i.imgur.com/CEuPoqG.png",
+    "latency": 6870,
+    "checkedAt": "2026-11-02T12:26:47.829Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "22Scope News (1080p)",
+    "category": "新闻",
+    "url": "https://thelegitpro.in/HDlive/22scope/index.fmp4.m3u8",
+    "quality": "720",
+    "logo": "https://jiotvimages.cdn.jio.com/dare_images/images/22Scope_News.png",
+    "latency": 6877,
+    "checkedAt": "2026-11-02T12:25:18.575Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "Cricket Gold (1080p)",
+    "category": "体育",
+    "url": "https://streams2.sofast.tv/ptnr-yupptv/title-cricketgold/v1/master/611d79b11b77e2f571934fd80ca1413453772ac7/b2048bb8-1686-4432-aa50-647245383e0c/manifest.m3u8",
+    "quality": "1080",
+    "logo": "https://resources.cricket-australia.pulselive.com/cricket-australia/photo/2025/07/25/836eddae-4329-4542-ad17-dcd37e9d951a/Cricket-Gold-1920x1080_noBG.png",
+    "latency": 6929,
+    "checkedAt": "2026-11-02T12:25:56.282Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "4 SiDES TV (1080p)",
+    "category": "新闻",
+    "url": "https://stream.ottlive.co.in/4sidestv/index.m3u8",
+    "quality": "1080",
+    "logo": "https://jiotvimages.cdn.jio.com/dare_images/images/4sites.png",
+    "latency": 6935,
+    "checkedAt": "2026-11-02T12:25:16.768Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "24 Kanal (720p)",
+    "category": "新闻",
+    "url": "https://cdn15.live-tv.cloud/ua_infinitas_tv/news24-abr/playlist.m3u8",
+    "quality": "720",
+    "logo": "https://pbs.twimg.com/profile_images/1498285886714298374/EMSJzC-0_400x400.jpg",
+    "latency": 7014,
+    "checkedAt": "2026-11-02T12:25:19.406Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "Gongyoung Home Shopping (720p)",
+    "category": "国际",
+    "url": "https://etv.publichs.com/live5.stream/playlist.m3u8",
+    "quality": "720",
+    "logo": "https://i.imgur.com/YL3rpd7.png",
+    "latency": 7032,
+    "checkedAt": "2026-11-02T12:27:00.590Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "Ciftci TV (720p) [Not 24/7]",
+    "category": "文化",
+    "url": "https://live.artidijitalmedya.com/artidijital_ciftcitv/ciftcitv/playlist.m3u8",
+    "quality": "720",
+    "logo": "https://i.imgur.com/CLzP4vL.png",
+    "latency": 7053,
+    "checkedAt": "2026-11-02T12:26:49.300Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "A Spor SD (1080p)",
+    "category": "体育",
+    "url": "https://rnttwmjcin.turknet.ercdn.net/lcpmvefbyo/aspor/aspor.m3u8",
+    "quality": "1080",
+    "logo": "https://i.imgur.com/ZhkZzLf.png",
+    "latency": 7125,
+    "checkedAt": "2026-11-02T12:25:45.849Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "Mei Ah Movie Channel (1080p)",
+    "category": "国内",
+    "url": "http://103.172.187.30:12000/stream/mytv/null-9/master.m3u8",
+    "quality": "1080",
+    "logo": "https://i.imgur.com/laGiFM1.png",
+    "latency": 7169,
+    "checkedAt": "2026-11-02T12:24:59.622Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "Activa TV (720p)",
+    "category": "音乐",
+    "url": "https://streamtv.mediasector.es/hls/activatv/index.m3u8",
+    "quality": "720",
+    "logo": "https://i.imgur.com/VCUZKiw.png",
+    "latency": 7267,
+    "checkedAt": "2026-11-02T12:26:04.002Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "Alright! TV (1080p)",
+    "category": "娱乐",
+    "url": "https://d3c7vdfq3tyeyw.cloudfront.net/v1/master/071c0467fcd02420cdf0d8a1ca3524b96c27a151/rusk_media/v1/channel/ruskmedia/germane.m3u8",
+    "quality": "1080",
+    "logo": "https://jiotvimages.cdn.jio.com/dare_images/images/alrght.png",
+    "latency": 7398,
+    "checkedAt": "2026-11-02T12:25:38.766Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "Audiokiss (1080p)",
+    "category": "音乐",
+    "url": "https://master.tucableip.com/audiokisstv/index.m3u8",
+    "quality": "1080",
+    "logo": "https://www.audiokiss.com/audiokiss/wp-content/uploads/sites/4/2021/02/Audio_kiss800-768x405.png",
+    "latency": 7403,
+    "checkedAt": "2026-11-02T12:26:09.460Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "30A Music (720p)",
+    "category": "音乐",
+    "url": "https://30a-tv.com/music.m3u8",
+    "quality": "720",
+    "logo": "https://i.imgur.com/gNWg9tl.png",
+    "latency": 7569,
+    "checkedAt": "2026-11-02T12:26:01.500Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "EBS HD (1080p)",
+    "category": "文化",
+    "url": "https://rpn.bozztv.com/ebstv/ebstv/index.m3u8",
+    "quality": "1080",
+    "logo": "https://i.imgur.com/zqbK2IB.png",
+    "latency": 7770,
+    "checkedAt": "2026-11-02T12:26:53.492Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "Bem Mais TV (1080p)",
+    "category": "文化",
+    "url": "https://video09.logicahost.com.br/bemmaistv01/bemmaistv01/playlist.m3u8",
+    "quality": "1080",
+    "logo": "https://bemmaistv.com.br/wp-content/uploads/2025/08/0LASAmOtt4-150x150.jpg",
+    "latency": 8095,
+    "checkedAt": "2026-11-02T12:26:46.610Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "Shop Channel (1080p) [Not 24/7]",
+    "category": "国际",
+    "url": "https://stream3.shopch.jp/HLS/master.m3u8",
+    "quality": "1080",
+    "logo": "https://www.shopch.jp/com/images/common/logo_2021.png",
+    "latency": 8273,
+    "checkedAt": "2026-11-02T12:27:01.415Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "A24 (1080p)",
+    "category": "新闻",
+    "url": "http://138.59.227.20:8000/play/a05u/index.m3u8",
+    "quality": "1080",
+    "logo": "https://i.imgur.com/LnXQkIU.png",
+    "latency": 8649,
+    "checkedAt": "2026-11-02T12:25:25.546Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "MAX Anime (1080p)",
+    "category": "卡通动漫",
+    "url": "https://cdnlive.klicgo.net/maxanime/live/playlist.m3u8",
+    "quality": "1080",
+    "logo": "https://i.imgur.com/Oj3hEBh.jpg",
+    "latency": 8908,
+    "checkedAt": "2026-11-02T12:26:26.626Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "Abai TV (720p)",
+    "category": "文化",
+    "url": "https://abaitv-stream.qazcdn.com/abaitv/abaitv/playlist.m3u8",
+    "quality": "1080",
+    "logo": "https://i.imgur.com/Nw2R7Dq.png",
+    "latency": 9109,
+    "checkedAt": "2026-11-02T12:26:43.648Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "Encuentro (720p)",
+    "category": "文化",
+    "url": "http://138.59.227.20:8000/play/a05s/index.m3u8",
+    "quality": "720",
+    "logo": "https://i.imgur.com/uBBZR1X.png",
+    "latency": 10541,
+    "checkedAt": "2026-11-02T12:26:57.794Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "DD Bharati (720p)",
+    "category": "文化",
+    "url": "https://cdn.pishow.tv/ott/live/10/master.m3u8",
+    "quality": "576",
+    "logo": "https://i.imgur.com/4tfUIEo.png",
+    "latency": 3841,
+    "checkedAt": "2026-11-02T12:26:47.757Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "99TV (720p)",
+    "category": "新闻",
+    "url": "https://cdn.pishow.tv/ott/live/1211/master.m3u8",
+    "quality": "576",
+    "logo": "https://i.imgur.com/dZA4gel.png",
+    "latency": 4315,
+    "checkedAt": "2026-11-02T12:25:18.796Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "Belarus-5 HD (1080p)",
+    "category": "体育",
+    "url": "http://178.124.179.122:8080/BT5/index.m3u8",
+    "quality": "576",
+    "logo": "https://i.imgur.com/NJsRFud.png",
+    "latency": 4370,
+    "checkedAt": "2026-11-02T12:25:50.074Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "10 Bold (1080p)",
+    "category": "生活健康",
+    "url": "https://dce3793146fef017.mediapackage.us-west-2.amazonaws.com/out/v1/55cdf73af7894775ba6de8f57482b66a/CMAF_HLS/index.m3u8",
+    "quality": "480",
+    "logo": "https://i.imgur.com/2xglh33.png",
+    "latency": 5826,
+    "checkedAt": "2026-11-02T12:26:26.748Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "Guaymate TV (720p) [Not 24/7]",
+    "category": "文化",
+    "url": "https://live20.bozztv.com/akamaissh101/ssh101/guaymatetv/playlist.m3u8",
+    "quality": "480",
+    "logo": "https://i.imgur.com/PBgQi9a.png",
+    "latency": 6376,
+    "checkedAt": "2026-11-02T12:26:55.676Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "10 TV (720p)",
+    "category": "新闻",
+    "url": "https://mumbai-edge.smartplaytv.in/10TV/index.m3u8",
+    "quality": "396",
+    "logo": "https://xstreamcp-assets-msp.streamready.in/assets/LIVETV/LIVECHANNEL/LIVETV_LIVETVCHANNEL_10TV/images/LOGO_HD/image.png",
+    "latency": 7737,
+    "checkedAt": "2026-11-02T12:25:18.718Z",
+    "check": "playlist-and-segment"
+  },
+  {
+    "name": "eSports Max 电竞频道",
+    "category": "游戏直播",
+    "quality": "1080",
+    "codec": "h264",
+    "url": "https://cdnlive.klicgo.net/esportsmax/live/playlist_dvr.m3u8",
+    "checkedAt": "2026-11-02T12:33:08.879Z",
+    "check": "ffprobe-h264-aac-1920x1080"
+  }
+]

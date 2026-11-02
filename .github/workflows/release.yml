@@ -1,0 +1,66 @@
+name: Build desktop release
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['desktop/**', 'scripts/**', 'package*.json', 'electron-builder.json', '.github/workflows/release.yml']
+permissions:
+  contents: read
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows-latest
+            platform: win32
+            artifact: windows-x64
+          - os: macos-15-intel
+            platform: darwin
+            artifact: mac-intel-x64
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: npm install --no-audit --no-fund
+      - run: node --check desktop/main.cjs
+      - run: node --check desktop/renderer.js
+      - run: node scripts/build-desktop.mjs ${{ matrix.platform }}
+      - if: runner.os == 'Windows'
+        run: npx electron-builder --win portable --prepackaged="release/敖丙视界-win32-x64" --publish never
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.artifact }}
+          path: installer/*
+          if-no-files-found: error
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          path: release-assets
+          merge-multiple: true
+      - name: Publish verified build artifacts
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const crypto = require('crypto');
+            const files = fs.readdirSync('release-assets').filter(n => /\.(exe|zip)$/.test(n));
+            if (files.length !== 2) throw new Error('Expected Windows and Intel Mac packages');
+            fs.writeFileSync('release-assets/SHA256SUMS.txt', files.map(n => crypto.createHash('sha256').update(fs.readFileSync('release-assets/'+n)).digest('hex')+'  '+n).join('\n')+'\n');
+            const tag = 'v0.2.0';
+            const body = '敖丙视界 0.2.0 测试版。开发者：Rios敖丙；微信：liao542008。\n\nWindows 10/11 x64；Intel Mac x86_64，macOS 13+。Mac 只做构建和临时签名校验，未经过用户 Intel Mac 实机播放验证，未获苹果公证。\n\n内置200路频道候选；连接检测不保证持续网速或长期可用。舞蹈、广场舞、养生操为官方专题入口。详见 README 与 docs。';
+            let release;
+            try { release = (await github.rest.repos.getReleaseByTag({...context.repo,tag})).data; }
+            catch (e) { if (e.status!==404) throw e; release=(await github.rest.repos.createRelease({...context.repo,tag_name:tag,target_commitish:context.sha,name:'敖丙视界 0.2.0 · Windows / Mac Intel 测试版',body,prerelease:true})).data; }
+            for (const name of [...files,'SHA256SUMS.txt']) {
+              if (release.assets.some(a=>a.name===name)) throw new Error('Asset already exists; preserve existing release: '+name);
+              await github.rest.repos.uploadReleaseAsset({...context.repo,release_id:release.id,name,data:fs.readFileSync('release-assets/'+name)});
+            }

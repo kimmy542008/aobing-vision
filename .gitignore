@@ -1,0 +1,9 @@
+node_modules/
+release/
+installer/
+staging/
+*.log
+*.keystore
+*.p12
+*.pfx
+.env*

@@ -1,0 +1,62 @@
+[
+  {
+    "category": "国内",
+    "name": "Hunan TV (2160p)",
+    "ok": true,
+    "streams": [
+      {
+        "codec_name": "hevc",
+        "width": 3840,
+        "height": 2160
+      },
+      {
+        "codec_name": "aac"
+      }
+    ]
+  },
+  {
+    "category": "国际",
+    "name": "Home & Shopping (720p)",
+    "ok": false
+  },
+  {
+    "category": "新闻",
+    "name": "ABC News (720p)",
+    "ok": false
+  },
+  {
+    "category": "体育",
+    "name": "DAZN 5 (720p)",
+    "ok": true,
+    "streams": [
+      {
+        "codec_name": "aac"
+      },
+      {
+        "codec_name": "h264",
+        "width": 1280,
+        "height": 720
+      }
+    ]
+  },
+  {
+    "category": "音乐",
+    "name": "¡Viva Latino! (1080p)",
+    "ok": true,
+    "streams": [
+      {
+        "codec_name": "aac"
+      },
+      {
+        "codec_name": "h264",
+        "width": 1920,
+        "height": 1080
+      }
+    ]
+  },
+  {
+    "category": "卡通动漫",
+    "name": "Cartoonito Asia (720p)",
+    "ok": false
+  }
+]

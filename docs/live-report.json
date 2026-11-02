@@ -1,0 +1,26 @@
+{
+  "time": "2026-11-02T12:27:12.173Z",
+  "source": "https://github.com/iptv-org/iptv",
+  "candidates": 5288,
+  "tested": 425,
+  "passed": 202,
+  "categories": {
+    "国内": 24,
+    "卡通动漫": 16,
+    "国际": 27,
+    "文化": 26,
+    "音乐": 26,
+    "娱乐": 21,
+    "体育": 25,
+    "生活健康": 18,
+    "新闻": 19
+  },
+  "removedAfterDecodeSample": [
+    "Home & Shopping (720p)",
+    "ABC News (720p)",
+    "Cartoonito Asia (720p)"
+  ],
+  "included": 200,
+  "hdDeclared": 194,
+  "extraDecoded": "eSports Max: H264/AAC 1920x1080"
+}
