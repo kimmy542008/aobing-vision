@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
   push:
     branches: [main]
-    paths: ['desktop/**', 'scripts/**', 'package*.json', 'electron-builder.json', '.github/workflows/release.yml']
+    paths: ['desktop/**', 'scripts/build-desktop.mjs', 'package*.json', 'electron-builder.json', '.github/workflows/release.yml']
 permissions:
   contents: read
 jobs:
