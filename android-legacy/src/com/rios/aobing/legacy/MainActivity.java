@@ -17,7 +17,7 @@ import java.util.concurrent.*;
 
 /** Standalone API19 edition; no AndroidX, Media3, WebView or native ABI dependencies. */
 public class MainActivity extends Activity {
-    static final String VERSION="0.4.5";
+    static final String VERSION="0.4.6";
     final ExecutorService executor=Executors.newSingleThreadExecutor();
     final ArrayList<Entry> channels=new ArrayList<Entry>();
     final ArrayList<Entry> shown=new ArrayList<Entry>();
@@ -206,9 +206,22 @@ public class MainActivity extends Activity {
     void filterLive(){ArrayList<Entry> filtered=new ArrayList<Entry>();for(Entry e:channels)if(group.equals("全部")||e.group.equals(group))filtered.add(e);rows(filtered,"直播 / "+group);}
     void groups(){
         if(!mode.equals("live")){Toast.makeText(this,"先切换到直播再选择分类",Toast.LENGTH_SHORT).show();return;}
-        LinkedHashSet<String> set=new LinkedHashSet<String>();set.add("全部");for(Entry e:channels)set.add(e.group);
+        LinkedHashSet<String> available=new LinkedHashSet<String>();
+        for(Entry e:channels)available.add(e.group);
+        LinkedHashSet<String> set=new LinkedHashSet<String>();set.add("全部");
+        for(String name:new String[]{"央视","卫视","海外","娱乐","体育","NBA","新闻","电影","卡通动漫","音乐","文化","生活健康","游戏直播","地方台","其他"})
+            if(available.remove(name))set.add(name);
+        set.addAll(available);
+        if(!set.contains("NBA"))set.add("NBA 官方入口");
         final String[] names=set.toArray(new String[set.size()]);
-        new AlertDialog.Builder(this).setTitle("直播分类").setItems(names,new DialogInterface.OnClickListener(){public void onClick(DialogInterface d,int i){group=names[i];filterLive();}}).show();
+        new AlertDialog.Builder(this).setTitle("直播分类").setItems(names,new DialogInterface.OnClickListener(){public void onClick(DialogInterface d,int i){
+            if(names[i].equals("NBA 官方入口")){
+                try{startActivity(new Intent(Intent.ACTION_VIEW,Uri.parse("https://www.nba.com/watch")));}
+                catch(ActivityNotFoundException e){note("此设备没有可打开 NBA 官网的浏览器");}
+                return;
+            }
+            group=names[i];filterLive();
+        }}).show();
     }
     String query(String api,String fields){return api+(api.contains("?")?"&":"?")+fields;}
     void loadMovies(){

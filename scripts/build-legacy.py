@@ -38,17 +38,17 @@ with tempfile.TemporaryDirectory(prefix='aobing-api19-') as td:
     key=pathlib.Path(os.environ.get('AOBING_LEGACY_KEYSTORE',str(pathlib.Path.home()/'.aobing/legacy-debug.keystore')))
     key.parent.mkdir(parents=True,exist_ok=True)
     if not key.exists():run(binary(java,'keytool'),'-genkeypair','-keystore',key,'-storepass','android','-keypass','android','-alias','aobing','-keyalg','RSA','-keysize','2048','-validity','10000','-dname','CN=Rios Aobing Legacy Test')
-    apk=out/'aobing-api19-v0.4.5.apk'
+    apk=out/'aobing-api19-v0.4.6.apk'
     # Some Android tools cannot read Chinese Windows paths: sign in ASCII temp first.
     run(binary(bt,'apksigner'),'sign','--ks',key,'--ks-pass','pass:android','--key-pass','pass:android','--ks-key-alias','aobing','--min-sdk-version','19','--v1-signing-enabled','true','--v2-signing-enabled','true','--out',stage/'signed.apk',stage/'aligned.apk')
     run(binary(bt,'apksigner'),'verify','--verbose','--min-sdk-version','19',stage/'signed.apk')
     run(binary(bt,'aapt'),'dump','badging',stage/'signed.apk')
     shutil.copyfile(stage/'signed.apk',apk)
-report={'version':'0.4.5','minSdk':19,'targetSdk':27,'compileSdk':19,'tlsProvider':'Conscrypt 2.5.2','systemPlayer':True,'testedOnChigoBox':False,'sha256':hashlib.sha256(apk.read_bytes()).hexdigest(),'size':apk.stat().st_size}
+report={'version':'0.4.6','minSdk':19,'targetSdk':27,'compileSdk':19,'tlsProvider':'Conscrypt 2.5.2','systemPlayer':True,'testedOnChigoBox':False,'sha256':hashlib.sha256(apk.read_bytes()).hexdigest(),'size':apk.stat().st_size}
 (out/'compatibility.json').write_text(json.dumps(report,indent=2),encoding='utf8')
-with zipfile.ZipFile(out/'aobing-api19-v0.4.5-source.zip','w',zipfile.ZIP_DEFLATED) as z:
+with zipfile.ZipFile(out/'aobing-api19-v0.4.6-source.zip','w',zipfile.ZIP_DEFLATED) as z:
     for p in src.rglob('*'):
         if p.is_file():z.write(p,'android-legacy/'+str(p.relative_to(src)))
     z.write(__file__,'scripts/build-legacy.py')
-(out/'SHA256SUMS.txt').write_text(''.join(hashlib.sha256(p.read_bytes()).hexdigest()+'  '+p.name+'\n' for p in sorted(out.iterdir()) if p.is_file() and ('0.4.5' in p.name or p.name=='compatibility.json')),encoding='utf8')
+(out/'SHA256SUMS.txt').write_text(''.join(hashlib.sha256(p.read_bytes()).hexdigest()+'  '+p.name+'\n' for p in sorted(out.iterdir()) if p.is_file() and ('0.4.6' in p.name or p.name=='compatibility.json')),encoding='utf8')
 print(json.dumps(report))

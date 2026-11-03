@@ -1,7 +1,7 @@
 [
   {
     "name": "湖南卫视 (2160p)",
-    "category": "国内",
+    "category": "卫视",
     "url": "http://hlsal-ldvt.qing.mgtv.com/nn_live/nn_x64/dWlwPTEyNy4wLjAuMSZ1aWQ9cWluZy1jbXMmbm5fdGltZXpvbmU9OCZjZG5leF9pZD1hbF9obHNfbGR2dCZ1dWlkPTliODY4NmU5ZTM2YzYwMmMmZT02OTE0NjA0JnY9MSZpZD1ITldTWkdTVCZzPTcwN2RiYTc2YzJjNmJmMTQ4MmUyZGYzOWU2NWM3YWFi/HNWSZGST.m3u8",
     "quality": "2160",
     "logo": "https://parco-zh.github.io/demo/HNWS.png",
@@ -12,7 +12,7 @@
   },
   {
     "name": "河北卫视 (2160p)",
-    "category": "国内",
+    "category": "卫视",
     "url": "https://event.pull.hebtv.com/live/live101.m3u8",
     "quality": "2160",
     "logo": "https://i.imgur.com/Z5Ppzbi.png",
@@ -22,7 +22,7 @@
   },
   {
     "name": "通化电视台 (1080p)",
-    "category": "国内",
+    "category": "地方台",
     "url": "http://lsfb.avap.jilintv.cn/zqvk7vpj/channel/43ea5771aa44421591f9dfd2b71f1b9b/index.m3u8",
     "quality": "1080",
     "logo": "https://www.tvchinese.net/uploads/tv/thtv1.jpg",
@@ -52,7 +52,7 @@
   },
   {
     "name": "Weathernews (720p)",
-    "category": "国际",
+    "category": "海外",
     "url": "https://rch01e-alive-hls.akamaized.net/38fb45b25cdb05a1/out/v1/4e907bfabc684a1dae10df8431a84d21/index.m3u8",
     "quality": "720",
     "logo": "https://i.imgur.com/A8uRSTS.png",
@@ -83,7 +83,7 @@
   },
   {
     "name": "CCTV-Weapon & Technology (1080p)",
-    "category": "国内",
+    "category": "央视",
     "url": "http://38.75.136.137:98/gslb/dsdqpub/gfjs.m3u8?auth=testpub",
     "quality": "1080",
     "logo": "https://i.imgur.com/QlF96eS.png",
@@ -93,7 +93,7 @@
   },
   {
     "name": "CCTV-Storm Football (1080p)",
-    "category": "国内",
+    "category": "央视",
     "url": "http://38.75.136.137:98/gslb/dsdqpub/fyzq.m3u8?auth=testpub",
     "quality": "1080",
     "logo": "https://i.imgur.com/Fy6HkX0.png",
@@ -103,7 +103,7 @@
   },
   {
     "name": "CCTV-Storm Theater (1080p)",
-    "category": "国内",
+    "category": "央视",
     "url": "http://38.75.136.137:98/gslb/dsdqpub/fyjc.m3u8?auth=testpub",
     "quality": "1080",
     "logo": "https://i.imgur.com/rEttkKm.png",
@@ -113,7 +113,7 @@
   },
   {
     "name": "CCTV-16 HD (1080p)",
-    "category": "国内",
+    "category": "央视",
     "url": "http://74.91.26.218:82/live/cctv16hd.m3u8",
     "quality": "1080",
     "logo": "https://i.imgur.com/ZzV6JQp.png",
@@ -154,7 +154,7 @@
   },
   {
     "name": "CCTV-10 (720p)",
-    "category": "国内",
+    "category": "央视",
     "url": "http://74.91.26.218:82/live/cctv10hd.m3u8",
     "quality": "720",
     "logo": "https://i.imgur.com/sSSO7UD.png",
@@ -164,7 +164,7 @@
   },
   {
     "name": "CCTV-Golf & Tennis (1080p)",
-    "category": "国内",
+    "category": "央视",
     "url": "http://38.75.136.137:98/gslb/dsdqpub/gefwq.m3u8?auth=testpub",
     "quality": "1080",
     "logo": "https://i.imgur.com/iqJJTmH.png",
@@ -194,7 +194,7 @@
   },
   {
     "name": "CCTV-8K HD (1080p)",
-    "category": "国内",
+    "category": "央视",
     "url": "http://192.151.150.154/live/cctv8k.m3u8",
     "quality": "1080",
     "logo": "https://i.imgur.com/fxVPMJF.png",
@@ -224,7 +224,7 @@
   },
   {
     "name": "GSTV (720p)",
-    "category": "国际",
+    "category": "海外",
     "url": "https://japaneast.av.mk.io/mediakindcdn-mediakind/ca01a143-f823-4432-b670-c22ff9643ce4/index.qfm/manifest(format=m3u8-cmaf)",
     "quality": "720",
     "logo": "https://i.imgur.com/ECnVG5I.png",
@@ -234,7 +234,7 @@
   },
   {
     "name": "CCTV-Culture of Quality SD (1080p)",
-    "category": "国内",
+    "category": "央视",
     "url": "http://38.75.136.137:98/gslb/dsdqpub/ysjp.m3u8?auth=testpub",
     "quality": "1080",
     "logo": "https://i.imgur.com/Paig8gG.png",
@@ -244,7 +244,7 @@
   },
   {
     "name": "Nei Monggol TV (960p)",
-    "category": "国内",
+    "category": "地方台",
     "url": "https://cdn4.skygo.mn/live/disk1/NeigMGL/HLSv3-FTA/NeigMGL.m3u8",
     "quality": "960",
     "logo": "https://i.imgur.com/WeugJBE.png",
@@ -254,7 +254,7 @@
   },
   {
     "name": "CCTV-3 (720p)",
-    "category": "国内",
+    "category": "央视",
     "url": "http://74.91.26.218:82/live/cctv3hd.m3u8",
     "quality": "720",
     "logo": "https://i.imgur.com/iFlkIuw.png",
@@ -264,7 +264,7 @@
   },
   {
     "name": "Shinsegae TV Shopping (720p)",
-    "category": "国际",
+    "category": "海外",
     "url": "https://liveout.catenoid.net/live-02-shinsegaetvshopping/shinsegaetvshopping_720p/playlist.m3u8",
     "quality": "720",
     "logo": "https://i.imgur.com/Hq3yjqA.png",
@@ -294,7 +294,7 @@
   },
   {
     "name": "CCTV-Billiards (1080p)",
-    "category": "国内",
+    "category": "央视",
     "url": "http://38.75.136.137:98/gslb/dsdqpub/ystq.m3u8?auth=testpub",
     "quality": "1080",
     "logo": "https://i.imgur.com/WK3keM9.png",
@@ -304,7 +304,7 @@
   },
   {
     "name": "CCTV-Nostalgia Theater (1080p)",
-    "category": "国内",
+    "category": "央视",
     "url": "http://38.75.136.137:98/gslb/dsdqpub/hjjc.m3u8?auth=testpub",
     "quality": "1080",
     "logo": "https://i.imgur.com/TVs9PBc.png",
@@ -344,7 +344,7 @@
   },
   {
     "name": "TV Chosun (720p)",
-    "category": "国际",
+    "category": "海外",
     "url": "http://onair.cdn.tvchosun.com/origin1/_definst_/tvchosun_s1/playlist.m3u8",
     "quality": "720",
     "logo": "https://i.imgur.com/62EwaCG.png",
@@ -364,7 +364,7 @@
   },
   {
     "name": "CCTV-Women's Fashion SD (1080p)",
-    "category": "生活健康",
+    "category": "央视",
     "url": "http://38.75.136.137:98/gslb/dsdqpub/nxss.m3u8?auth=testpub",
     "quality": "1080",
     "logo": "https://i.imgur.com/FVbP0aP.png",
@@ -374,7 +374,7 @@
   },
   {
     "name": "TV Chosun 2 (720p)",
-    "category": "国际",
+    "category": "海外",
     "url": "http://onair2.cdn.tvchosun.com/origin2/_definst_/tvchosun_s3/playlist.m3u8",
     "quality": "720",
     "logo": "https://i.imgur.com/Ev5JoBJ.png",
@@ -544,7 +544,7 @@
   },
   {
     "name": "VoA TV China (1080p)",
-    "category": "国内",
+    "category": "地方台",
     "url": "https://voa-ingest.akamaized.net/hls/live/2033878/tvmc08/playlist.m3u8",
     "quality": "1080",
     "logo": "https://i.imgur.com/XCTZkoq.png",
@@ -564,7 +564,7 @@
   },
   {
     "name": "CCTV-The First Theater (1080p)",
-    "category": "国内",
+    "category": "央视",
     "url": "http://38.75.136.137:98/gslb/dsdqpub/dyjc.m3u8?auth=testpub",
     "quality": "1080",
     "logo": "https://i.imgur.com/eFxD3hq.png",
@@ -574,7 +574,7 @@
   },
   {
     "name": "CCTV-Health (1080p)",
-    "category": "生活健康",
+    "category": "央视",
     "url": "http://38.75.136.137:98/gslb/dsdqpub/wsjk.m3u8?auth=testpub",
     "quality": "1080",
     "logo": "https://i.imgur.com/AzpRtCz.png",
@@ -604,7 +604,7 @@
   },
   {
     "name": "GS Shop (1080p)",
-    "category": "国际",
+    "category": "海外",
     "url": "https://gstv-gsshop.gsshop.com/gsshop_hd/gsshop_hd.stream/playlist.m3u8",
     "quality": "720",
     "logo": "https://i.imgur.com/F7QDbEy.png",
@@ -644,7 +644,7 @@
   },
   {
     "name": "CCTV-World Geography SD (1080p)",
-    "category": "国内",
+    "category": "央视",
     "url": "http://38.75.136.137:98/gslb/dsdqpub/sjdl.m3u8?auth=testpub",
     "quality": "1080",
     "logo": "https://i.imgur.com/V2ncOXi.png",
@@ -654,7 +654,7 @@
   },
   {
     "name": "ABN (720p)",
-    "category": "国际",
+    "category": "海外",
     "url": "https://vod2.abn.co.kr/IPHONE/abn.m3u8",
     "quality": "720",
     "logo": "https://www.abn.co.kr/resources/images/logo.png",
@@ -664,7 +664,7 @@
   },
   {
     "name": "HLAT-DTV (1080p) [Not 24/7]",
-    "category": "国际",
+    "category": "海外",
     "url": "https://5c3639aa99149.streamlock.net/live_TV/tv/playlist.m3u8",
     "quality": "1080",
     "logo": "https://i.imgur.com/3VSuYsn.png",
@@ -694,7 +694,7 @@
   },
   {
     "name": "Shopping NT (720p)",
-    "category": "国际",
+    "category": "海外",
     "url": "https://live.shoppingntmall.com/live/10011.m3u8",
     "quality": "720",
     "logo": "https://i.imgur.com/BgbJp5X.png",
@@ -744,7 +744,7 @@
   },
   {
     "name": "TV BRICS Chinese (1080p)",
-    "category": "国内",
+    "category": "地方台",
     "url": "https://chibrics.mediacdn.ru/cdn/brics/chinese/playlist.m3u8",
     "quality": "1080",
     "logo": "https://i.imgur.com/896132Z.png",
@@ -874,7 +874,7 @@
   },
   {
     "name": "HLCQ-DTV (720p) [Not 24/7]",
-    "category": "国际",
+    "category": "海外",
     "url": "https://ns1.tjmbc.co.kr/live/myStream.sdp/playlist.m3u8",
     "quality": "720",
     "logo": "https://i.imgur.com/HCbvAiM.png",
@@ -914,7 +914,7 @@
   },
   {
     "name": "Arirang TV (1080p)",
-    "category": "国际",
+    "category": "海外",
     "url": "http://amdlive-ch01.ctnd.com.edgesuite.net/arirang_1ch/smil:arirang_1ch.smil/playlist.m3u8",
     "quality": "1080",
     "logo": "https://i.imgur.com/Asu5pE9.png",
@@ -954,7 +954,7 @@
   },
   {
     "name": "NHTV (720p)",
-    "category": "国际",
+    "category": "海外",
     "url": "http://nonghyup.flive.skcdn.com/nonghyup/_definst_/nhlive/playlist.m3u8",
     "quality": "720",
     "logo": "https://i.imgur.com/DfECkgB.png",
@@ -984,7 +984,7 @@
   },
   {
     "name": "CCTV-12 (720p)",
-    "category": "生活健康",
+    "category": "央视",
     "url": "http://74.91.26.218:82/live/cctv12hd.m3u8",
     "quality": "720",
     "logo": "https://i.imgur.com/3yTuiOM.png",
@@ -1024,7 +1024,7 @@
   },
   {
     "name": "KTV (South Korea) (1080p)",
-    "category": "国际",
+    "category": "海外",
     "url": "https://hlive.ktv.go.kr/live/klive_h.stream/playlist.m3u8",
     "quality": "1080",
     "logo": "https://i.ibb.co/WkrLDJW/Screenshot-20230714-135036-removebg-preview.png",
@@ -1094,7 +1094,7 @@
   },
   {
     "name": "TBS TV (720p)",
-    "category": "国际",
+    "category": "海外",
     "url": "https://cdntv.tbs.seoul.kr/tbs/tbs_tv_web.smil/playlist.m3u8",
     "quality": "1080",
     "logo": "https://i.imgur.com/iOnWS6V.png",
@@ -1104,7 +1104,7 @@
   },
   {
     "name": "CCTV-7 (720p)",
-    "category": "国内",
+    "category": "央视",
     "url": "http://74.91.26.218:82/live/cctv7hd.m3u8",
     "quality": "720",
     "logo": "https://i.imgur.com/CKcPMQC.png",
@@ -1144,7 +1144,7 @@
   },
   {
     "name": "Arirang Radio (720p)",
-    "category": "国际",
+    "category": "海外",
     "url": "http://amdlive-ch01.ctnd.com.edgesuite.net/arirang_3ch/smil:arirang_3ch.smil/playlist.m3u8",
     "quality": "1080",
     "logo": "https://i.imgur.com/dtfiG9k.png",
@@ -1174,7 +1174,7 @@
   },
   {
     "name": "HLAO-DTV (720p) [Not 24/7]",
-    "category": "国际",
+    "category": "海外",
     "url": "http://211.33.246.4:32954/cj_live/myStream.sdp/playlist.m3u8",
     "quality": "720",
     "logo": "https://i.imgur.com/uR0gScb.png",
@@ -1184,7 +1184,7 @@
   },
   {
     "name": "Lotte Home Shopping (720p)",
-    "category": "国际",
+    "category": "海外",
     "url": "https://pchlslivesw.lotteimall.com/live/livestream/lotteimalllive_mp4.m3u8",
     "quality": "720",
     "logo": "https://i.imgur.com/dJeNehc.png",
@@ -1204,7 +1204,7 @@
   },
   {
     "name": "GS My Shop (1080p)",
-    "category": "国际",
+    "category": "海外",
     "url": "https://gstv-myshop.gsshop.com/myshop_hd/myshop_hd.stream/playlist.m3u8",
     "quality": "720",
     "logo": "https://i.imgur.com/ETPQwui.png",
@@ -1274,7 +1274,7 @@
   },
   {
     "name": "OUN (1080p)",
-    "category": "国际",
+    "category": "海外",
     "url": "https://live.knou.ac.kr/knou1/live1/playlist.m3u8",
     "quality": "1080",
     "logo": "https://i.imgur.com/7s6JtcU.png",
@@ -1404,7 +1404,7 @@
   },
   {
     "name": "QVC (Japan) (1080p)",
-    "category": "国际",
+    "category": "海外",
     "url": "https://d1flvb4iqlercm.cloudfront.net/live/live_1080p_2nd.m3u8",
     "quality": "1080",
     "logo": "https://i.imgur.com/6TWUVrh.png",
@@ -1454,7 +1454,7 @@
   },
   {
     "name": "Gugbang TV (1080p) [Not 24/7]",
-    "category": "国际",
+    "category": "海外",
     "url": "http://mediaworks.dema.mil.kr:1935/live_edge/cudo.sdp/playlist.m3u8",
     "quality": "1080",
     "logo": "https://i.imgur.com/f1tz5fg.png",
@@ -1494,7 +1494,7 @@
   },
   {
     "name": "HLAM-DTV (720p) [Not 24/7]",
-    "category": "国际",
+    "category": "海外",
     "url": "http://vod.mpmbc.co.kr:1935/live/encoder-tv/playlist.m3u8",
     "quality": "720",
     "logo": "https://i.imgur.com/5oraHc0.png",
@@ -1504,7 +1504,7 @@
   },
   {
     "name": "Lotte OneTV (720p)",
-    "category": "国际",
+    "category": "海外",
     "url": "https://onetvhlslive.lotteimall.com/lotteonetvlive/lotteonetvlive.mp4.m3u8",
     "quality": "720",
     "logo": "https://i.imgur.com/bXe7tYE.png",
@@ -1524,7 +1524,7 @@
   },
   {
     "name": "Pet Club TV (1080p)",
-    "category": "国内",
+    "category": "地方台",
     "url": "https://petclub-samsungaus.amagi.tv/playlist.m3u8",
     "quality": "1080",
     "logo": "https://i.imgur.com/ykPNNwQ.png",
@@ -1634,7 +1634,7 @@
   },
   {
     "name": "Golden Jade (1080p)",
-    "category": "国内",
+    "category": "地方台",
     "url": "http://103.172.187.30:12000/stream/mytv/null-12/master.m3u8",
     "quality": "1080",
     "logo": "https://i.imgur.com/lPYxsUr.png",
@@ -1684,7 +1684,7 @@
   },
   {
     "name": "Hyundai Home Shopping + Shop (720p)",
-    "category": "国际",
+    "category": "海外",
     "url": "https://dtvstreaming.hyundaihmall.com/newcjp3/_definst_/newcjpstream.smil/playlist.m3u8",
     "quality": "720",
     "logo": "https://i.imgur.com/DoNOuZE.png",
@@ -1704,7 +1704,7 @@
   },
   {
     "name": "Asian Drama (1080p)",
-    "category": "国内",
+    "category": "地方台",
     "url": "http://103.172.187.30:12000/stream/mytv/null-11/master.m3u8",
     "quality": "1080",
     "logo": "https://i.imgur.com/wqtN7mH.png",
@@ -1784,7 +1784,7 @@
   },
   {
     "name": "Gongyoung Home Shopping (720p)",
-    "category": "国际",
+    "category": "海外",
     "url": "https://etv.publichs.com/live5.stream/playlist.m3u8",
     "quality": "720",
     "logo": "https://i.imgur.com/YL3rpd7.png",
@@ -1814,7 +1814,7 @@
   },
   {
     "name": "Mei Ah Movie Channel (1080p)",
-    "category": "国内",
+    "category": "地方台",
     "url": "http://103.172.187.30:12000/stream/mytv/null-9/master.m3u8",
     "quality": "1080",
     "logo": "https://i.imgur.com/laGiFM1.png",
@@ -1884,7 +1884,7 @@
   },
   {
     "name": "Shop Channel (1080p) [Not 24/7]",
-    "category": "国际",
+    "category": "海外",
     "url": "https://stream3.shopch.jp/HLS/master.m3u8",
     "quality": "1080",
     "logo": "https://www.shopch.jp/com/images/common/logo_2021.png",

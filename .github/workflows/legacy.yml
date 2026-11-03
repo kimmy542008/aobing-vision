@@ -39,7 +39,7 @@ jobs:
         with:
           script: |
             const fs=require('fs');
-            const tag='android-api19-v0.4.5';
+            const tag='android-api19-v0.4.6';
             for await (const page of github.paginate.iterator(github.rest.repos.listReleases, {...context.repo, per_page: 50})) {
               for (const old of page.data) {
                 const cleaned = (old.body || '').replace(/[；， ·]*(?:联系)?微信[：:]?\s*[A-Za-z][\w.-]{5,}/g, '');
@@ -50,5 +50,5 @@ jobs:
             }
             const body='志高CHIGO A10旗舰版API19基础播放器兼容测试版。设备检测报告API19而版本字符串显示9.0，原API21包不兼容。\n\n此版使用Android4.4 API19接口编译，系统播放器、直播快照、点播列表、剧集、源配置、遥控器操作。不是原Media3版全部功能的移植；具体编解码能力取决于固件，尚未经过用户盒子实测。\n\n包名com.rios.aobing.legacy，与原版并存。内置源快照不保证持续有效。GPL源码、包信息和SHA256随附。测试签名与本地构建可能不同。\n\n开发者Rios敖丙。';
             let release;
-            try{release=(await github.rest.repos.getReleaseByTag({...context.repo,tag})).data}catch(e){if(e.status!==404)throw e;release=(await github.rest.repos.createRelease({...context.repo,tag_name:tag,target_commitish:context.sha,name:'敖丙视界 API19 老盒子兼容测试版 0.4.5',body,prerelease:true})).data}
+            try{release=(await github.rest.repos.getReleaseByTag({...context.repo,tag})).data}catch(e){if(e.status!==404)throw e;release=(await github.rest.repos.createRelease({...context.repo,tag_name:tag,target_commitish:context.sha,name:'敖丙视界 API19 老盒子兼容测试版 0.4.6',body,prerelease:true})).data}
             for(const name of fs.readdirSync('release-assets')){if(release.assets.some(a=>a.name===name))throw new Error('Preserve existing asset: '+name);await github.rest.repos.uploadReleaseAsset({...context.repo,release_id:release.id,name,data:fs.readFileSync('release-assets/'+name)})}

@@ -16,8 +16,8 @@
          targetSdk 28
 -        versionCode 258
 -        versionName "2.5.8"
-+        versionCode 261
-+        versionName "0.4.6"
++        versionCode 262
++        versionName "0.4.7"
          javaCompileOptions {
              annotationProcessorOptions {
                  arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
@@ -75,7 +75,7 @@
  
      private void onVersion(View view) {
 -        Updater.get().force().release().start(this);
-+        new android.app.AlertDialog.Builder(this).setTitle("敖丙视界 0.4.6").setMessage("开发者：Rios敖丙\n基于 FongMi/TV 蜂蜜衍生分支 2.5.8，遵循 GPL-3.0。保留原项目及第三方版权。\n直播、点播订阅可在设置中修改。").setPositiveButton("确定", null).show();
++        new android.app.AlertDialog.Builder(this).setTitle("敖丙视界 0.4.7").setMessage("开发者：Rios敖丙\n基于 FongMi/TV 蜂蜜衍生分支 2.5.8，遵循 GPL-3.0。保留原项目及第三方版权。\n直播、点播订阅可在设置中修改。").setPositiveButton("确定", null).show();
      }
  
      private boolean onVersionDev(View view) {
