@@ -10,8 +10,8 @@ Windows 与 Intel Mac 影视直播播放器：电影电视剧分类、片名搜�
 
 | 平台 | 版本 | 状态 |
 |---|---|---|
-| Windows 10/11 x64 | 0.2.3 | 便携 EXE；本机曾实际播放抽样点播 1080p、直播 720p；非每个频道验证 |
-| Intel Mac x86_64 | 0.2.3 | macOS 13+；测试版，未经过用户 Intel Mac 实机播放验证；没有 Apple Developer ID 签名或公证 |
+| Windows 10/11 x64 | 0.2.4 | 便携 EXE；本机曾实际播放抽样点播 1080p、直播 720p；非每个频道验证 |
+| Intel Mac x86_64 | 0.2.4 | macOS 13+；测试版，未经过用户 Intel Mac 实机播放验证；没有 Apple Developer ID 签名或公证 |
 | Android TV / Android 9.0 | 0.4.8 | ARM32、ARM64、双ARM架构独立APK，v1/v2签名；待用户机顶盒验证，见 [安卓说明](android/README.md) |
 | 志高 A10 / API19 老盒子 | 0.4.7 | [API19兼容版下载](https://github.com/kimmy542008/aobing-vision/releases/tag/android-api19-v0.4.7)，使用系统播放器；Android4.4模拟器安装启动通过，用户盒子待验证，见 [兼容版说明](android-legacy/README.md) |
 
