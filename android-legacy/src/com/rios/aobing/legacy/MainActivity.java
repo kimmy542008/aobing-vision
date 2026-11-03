@@ -17,7 +17,7 @@ import java.util.concurrent.*;
 
 /** Standalone API19 edition; no AndroidX, Media3, WebView or native ABI dependencies. */
 public class MainActivity extends Activity {
-    static final String VERSION="0.4.4";
+    static final String VERSION="0.4.5";
     final ExecutorService executor=Executors.newSingleThreadExecutor();
     final ArrayList<Entry> channels=new ArrayList<Entry>();
     final ArrayList<Entry> shown=new ArrayList<Entry>();
@@ -26,6 +26,7 @@ public class MainActivity extends Activity {
     SharedPreferences prefs;
     TextView status;
     GridView list;
+    ListView playingEpisodes;
     VideoView video;
     StreamProxy proxy;
     String mode="live", group="全部", movieQuery="", currentName="", currentUrl="";
@@ -249,7 +250,26 @@ public class MainActivity extends Activity {
         new AlertDialog.Builder(this).setTitle("搜索").setView(input).setPositiveButton("搜索",new DialogInterface.OnClickListener(){public void onClick(DialogInterface d,int w){
             String word=input.getText().toString().trim();if(mode.equals("live")){ArrayList<Entry> result=new ArrayList<Entry>();for(Entry e:channels)if(e.name.toLowerCase(Locale.US).contains(word.toLowerCase(Locale.US)))result.add(e);rows(result,"频道搜索");}
             else{movieQuery=word;moviePage=1;loadMovies();}
+        }}).setNeutralButton("语音输入",new DialogInterface.OnClickListener(){public void onClick(DialogInterface d,int w){
+            Intent voice=new Intent(android.speech.RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+            voice.putExtra(android.speech.RecognizerIntent.EXTRA_LANGUAGE_MODEL,android.speech.RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+            voice.putExtra(android.speech.RecognizerIntent.EXTRA_LANGUAGE,"zh-CN");
+            try{startActivityForResult(voice,91);}
+            catch(ActivityNotFoundException e){Toast.makeText(MainActivity.this,"设备没有语音识别服务，可使用键盘搜索",Toast.LENGTH_LONG).show();search();}
         }}).setNegativeButton("取消",null).show();
+    }
+    @Override protected void onActivityResult(int request,int result,Intent data){
+        super.onActivityResult(request,result,data);
+        if(request!=91||result!=RESULT_OK||data==null)return;
+        ArrayList<String> matches=data.getStringArrayListExtra(android.speech.RecognizerIntent.EXTRA_RESULTS);
+        if(matches==null||matches.isEmpty())return;
+        String word=matches.get(0).trim();
+        if(word.isEmpty())return;
+        if(mode.equals("live")){
+            ArrayList<Entry> filtered=new ArrayList<Entry>();
+            for(Entry e:channels)if(e.name.toLowerCase(Locale.US).contains(word.toLowerCase(Locale.US)))filtered.add(e);
+            rows(filtered,"频道搜索");
+        }else{movieQuery=word;moviePage=1;loadMovies();}
     }
     void direct(){
         final EditText input=new EditText(this);input.setSingleLine(true);input.setHint("https://…/video.m3u8 或 .mp4");input.setText(setting("direct",""));
@@ -270,7 +290,7 @@ public class MainActivity extends Activity {
             prefs.edit().putString("live",a).putString("vod",b).apply();dialog.dismiss();group="全部";if(mode.equals("live"))loadLive();else{mode="movie";moviePage=1;loadMovies();}
         }});
     }
-    void about(){new AlertDialog.Builder(this).setTitle("敖丙视界兼容版 "+VERSION).setMessage("开发者：Rios敖丙\n联系微信：liao542008\n\n当前 API："+Build.VERSION.SDK_INT+"\n架构："+Build.CPU_ABI+"\n\n适配 API19+，使用系统播放器。高码率、HEVC及部分直播格式能否播放，取决于盒子硬件和固件。直播列表为候选快照，源站可能变动。\n\n本兼容版采用 GPL-3.0 许可，源列表沿用原有来源署名；其他版本第三方许可不变。").setPositiveButton("知道了",null).show();}
+    void about(){new AlertDialog.Builder(this).setTitle("敖丙视界兼容版 "+VERSION).setMessage("开发者：Rios敖丙\n\n当前 API："+Build.VERSION.SDK_INT+"\n架构："+Build.CPU_ABI+"\n\n适配 API19+，使用系统播放器。高码率、HEVC及部分直播格式能否播放，取决于盒子硬件和固件。直播列表为候选快照，源站可能变动。\n\n本兼容版采用 GPL-3.0 许可，源列表沿用原有来源署名；其他版本第三方许可不变。").setPositiveButton("知道了",null).show();}
     void play(final Entry entry){
         try{
             if(!entry.url.startsWith("http://")&&!entry.url.startsWith("https://"))throw new IOException("此地址不是可直接播放的 HTTP 视频");
@@ -282,7 +302,32 @@ public class MainActivity extends Activity {
             video=new VideoView(this);FrameLayout.LayoutParams vp=new FrameLayout.LayoutParams(-1,-1,Gravity.CENTER);screen.addView(video,vp);
             status=text("正在连接："+entry.name+"\n返回：频道列表；菜单：播放操作",19);status.setBackgroundColor(0x99000000);
             FrameLayout.LayoutParams sp=new FrameLayout.LayoutParams(-1,-2,Gravity.BOTTOM);screen.addView(status,sp);
-            setContentView(screen);playing=true;
+            playingEpisodes=null;
+            if(mode.equals("episodes")&&!shown.isEmpty()){
+                LinearLayout layout=new LinearLayout(this);
+                layout.addView(screen,new LinearLayout.LayoutParams(0,-1,1));
+                LinearLayout side=column();side.addView(text("选集",22));
+                final ArrayList<Entry> choices=new ArrayList<Entry>(shown);
+                ListView episodeList=new ListView(this);
+                playingEpisodes=episodeList;
+                ArrayList<String> labels=new ArrayList<String>();
+                int selected=0;
+                for(int i=0;i<choices.size();i++){
+                    Entry choice=choices.get(i);
+                    boolean active=choice.url.equals(entry.url)&&choice.name.equals(entry.name);
+                    if(active)selected=i;
+                    labels.add((active?"▶ ":"")+choice.name);
+                }
+                episodeList.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,labels));
+                episodeList.setOnItemClickListener(new AdapterView.OnItemClickListener(){public void onItemClick(AdapterView<?> parent,View view,int position,long id){
+                    if(video!=null)video.stopPlayback();
+                    play(choices.get(position));
+                }});
+                side.addView(episodeList,new LinearLayout.LayoutParams(-1,0,1));
+                layout.addView(side,new LinearLayout.LayoutParams(dp(245),-1));
+                setContentView(layout);episodeList.setSelection(selected);
+            }else setContentView(screen);
+            playing=true;
             final VideoView attempt = video;
             final Runnable timeout = new Runnable(){public void run(){
                 if (video == attempt) {
@@ -313,6 +358,13 @@ public class MainActivity extends Activity {
     @Override public boolean onKeyDown(int key,KeyEvent event){
         if(playing){
             if(key==KeyEvent.KEYCODE_MENU){playbackMenu();return true;}
+            if(playingEpisodes!=null&&key==KeyEvent.KEYCODE_DPAD_RIGHT&&!playingEpisodes.hasFocus()){
+                playingEpisodes.requestFocus();return true;
+            }
+            if(playingEpisodes!=null&&playingEpisodes.hasFocus()){
+                if(key==KeyEvent.KEYCODE_DPAD_LEFT){video.requestFocus();return true;}
+                return super.onKeyDown(key,event);
+            }
             if(key==KeyEvent.KEYCODE_DPAD_CENTER||key==KeyEvent.KEYCODE_ENTER||key==KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE){toggle();return true;}
             if(key==KeyEvent.KEYCODE_DPAD_LEFT){seek(-15000);return true;}if(key==KeyEvent.KEYCODE_DPAD_RIGHT){seek(15000);return true;}
             if(key==KeyEvent.KEYCODE_DPAD_UP){changeChannel(-1);return true;}if(key==KeyEvent.KEYCODE_DPAD_DOWN){changeChannel(1);return true;}

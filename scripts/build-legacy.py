@@ -15,7 +15,11 @@ with tempfile.TemporaryDirectory(prefix='aobing-api19-') as td:
     stage=pathlib.Path(td);classes=stage/'classes';classes.mkdir()
     buildsrc=stage/'source';shutil.copytree(src,buildsrc)
     aar=stage/'conscrypt.aar'
-    urllib.request.urlretrieve('https://repo.maven.apache.org/maven2/org/conscrypt/conscrypt-android/2.5.2/conscrypt-android-2.5.2.aar',aar)
+    cached_aar=os.environ.get('AO_BING_CONSCRYPT_AAR')
+    if cached_aar:
+        shutil.copyfile(cached_aar,aar)
+    else:
+        urllib.request.urlretrieve('https://repo.maven.apache.org/maven2/org/conscrypt/conscrypt-android/2.5.2/conscrypt-android-2.5.2.aar',aar)
     if hashlib.sha256(aar.read_bytes()).hexdigest()!='42d18979caf53f5ef68548c76d4c98b41adb910a32ad9448133f9c5b20bd65a3':
         raise RuntimeError('Conscrypt checksum mismatch')
     with zipfile.ZipFile(aar) as dep:
@@ -34,17 +38,17 @@ with tempfile.TemporaryDirectory(prefix='aobing-api19-') as td:
     key=pathlib.Path(os.environ.get('AOBING_LEGACY_KEYSTORE',str(pathlib.Path.home()/'.aobing/legacy-debug.keystore')))
     key.parent.mkdir(parents=True,exist_ok=True)
     if not key.exists():run(binary(java,'keytool'),'-genkeypair','-keystore',key,'-storepass','android','-keypass','android','-alias','aobing','-keyalg','RSA','-keysize','2048','-validity','10000','-dname','CN=Rios Aobing Legacy Test')
-    apk=out/'aobing-api19-v0.4.4.apk'
+    apk=out/'aobing-api19-v0.4.5.apk'
     # Some Android tools cannot read Chinese Windows paths: sign in ASCII temp first.
     run(binary(bt,'apksigner'),'sign','--ks',key,'--ks-pass','pass:android','--key-pass','pass:android','--ks-key-alias','aobing','--min-sdk-version','19','--v1-signing-enabled','true','--v2-signing-enabled','true','--out',stage/'signed.apk',stage/'aligned.apk')
     run(binary(bt,'apksigner'),'verify','--verbose','--min-sdk-version','19',stage/'signed.apk')
     run(binary(bt,'aapt'),'dump','badging',stage/'signed.apk')
     shutil.copyfile(stage/'signed.apk',apk)
-report={'version':'0.4.4','minSdk':19,'targetSdk':27,'compileSdk':19,'tlsProvider':'Conscrypt 2.5.2','systemPlayer':True,'testedOnChigoBox':False,'sha256':hashlib.sha256(apk.read_bytes()).hexdigest(),'size':apk.stat().st_size}
+report={'version':'0.4.5','minSdk':19,'targetSdk':27,'compileSdk':19,'tlsProvider':'Conscrypt 2.5.2','systemPlayer':True,'testedOnChigoBox':False,'sha256':hashlib.sha256(apk.read_bytes()).hexdigest(),'size':apk.stat().st_size}
 (out/'compatibility.json').write_text(json.dumps(report,indent=2),encoding='utf8')
-with zipfile.ZipFile(out/'aobing-api19-v0.4.4-source.zip','w',zipfile.ZIP_DEFLATED) as z:
+with zipfile.ZipFile(out/'aobing-api19-v0.4.5-source.zip','w',zipfile.ZIP_DEFLATED) as z:
     for p in src.rglob('*'):
         if p.is_file():z.write(p,'android-legacy/'+str(p.relative_to(src)))
     z.write(__file__,'scripts/build-legacy.py')
-(out/'SHA256SUMS.txt').write_text(''.join(hashlib.sha256(p.read_bytes()).hexdigest()+'  '+p.name+'\n' for p in sorted(out.iterdir()) if p.is_file() and ('0.4.4' in p.name or p.name=='compatibility.json')),encoding='utf8')
+(out/'SHA256SUMS.txt').write_text(''.join(hashlib.sha256(p.read_bytes()).hexdigest()+'  '+p.name+'\n' for p in sorted(out.iterdir()) if p.is_file() and ('0.4.5' in p.name or p.name=='compatibility.json')),encoding='utf8')
 print(json.dumps(report))

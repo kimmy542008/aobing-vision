@@ -16,8 +16,8 @@
          targetSdk 28
 -        versionCode 258
 -        versionName "2.5.8"
-+        versionCode 260
-+        versionName "0.4.0"
++        versionCode 261
++        versionName "0.4.6"
          javaCompileOptions {
              annotationProcessorOptions {
                  arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
@@ -75,7 +75,7 @@
  
      private void onVersion(View view) {
 -        Updater.get().force().release().start(this);
-+        new android.app.AlertDialog.Builder(this).setTitle("敖丙视界 0.4.0").setMessage("开发者：Rios敖丙\n微信：liao542008\n基于 FongMi/TV 蜂蜜衍生分支 2.5.8，遵循 GPL-3.0。保留原项目及第三方版权。\n直播、点播订阅可在设置中修改。").setPositiveButton("确定", null).show();
++        new android.app.AlertDialog.Builder(this).setTitle("敖丙视界 0.4.6").setMessage("开发者：Rios敖丙\n基于 FongMi/TV 蜂蜜衍生分支 2.5.8，遵循 GPL-3.0。保留原项目及第三方版权。\n直播、点播订阅可在设置中修改。").setPositiveButton("确定", null).show();
      }
  
      private boolean onVersionDev(View view) {
@@ -341,3 +341,30 @@
  
      defaultConfig {
          minSdk 21
+
+--- a/app/src/leanback/java/com/fongmi/android/tv/ui/activity/VideoActivity.java
++++ b/app/src/leanback/java/com/fongmi/android/tv/ui/activity/VideoActivity.java
+@@ -928,4 +928,22 @@
+     private void onEpisodes() {
+-        EpisodeDialog.create().episodes(getFlag().getEpisodes()).show(this);
++        java.util.List<Episode> items = getFlag().getEpisodes();
++        java.util.List<String> labels = new java.util.ArrayList<>();
++        for (Episode item : items) labels.add((item.isActivated() ? "▶ " : "") + item.getName());
++        android.widget.ListView list = new android.widget.ListView(this);
++        list.setAdapter(new android.widget.ArrayAdapter<>(this, android.R.layout.simple_list_item_1, labels));
++        android.app.AlertDialog dialog = new android.app.AlertDialog.Builder(this).setTitle("选集").setView(list).create();
++        list.setOnItemClickListener((parent, view, position, id) -> {
++            Episode item = items.get(position);
++            if (!item.isActivated()) setEpisodeActivated(item);
++            dialog.dismiss();
++        });
++        dialog.show();
++        android.view.Window window = dialog.getWindow();
++        if (window != null) {
++            window.setGravity(android.view.Gravity.RIGHT | android.view.Gravity.CENTER_VERTICAL);
++            window.setLayout(getResources().getDisplayMetrics().widthPixels / 3, getResources().getDisplayMetrics().heightPixels);
++            window.clearFlags(android.view.WindowManager.LayoutParams.FLAG_DIM_BEHIND);
++        }
++        list.setSelection(Math.max(0, getEpisodePosition()));
+         hideControl();
+     }

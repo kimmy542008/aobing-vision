@@ -1,1 +1,1 @@
-{"name":"aobing-vision-build","version":"0.2.0","private":true,"author":"Rios敖丙","type":"module","devDependencies":{"@electron/packager":"20.3.0","electron":"45.0.0","electron-builder":"26.15.3"}}
+{"name":"aobing-vision-build","version":"0.2.1","private":true,"author":"Rios敖丙","type":"module","devDependencies":{"@electron/packager":"20.3.0","electron":"45.0.0","electron-builder":"26.15.3"}}
