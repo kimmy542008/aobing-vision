@@ -17,7 +17,7 @@ import java.util.concurrent.*;
 
 /** Standalone API19 edition; no AndroidX, Media3, WebView or native ABI dependencies. */
 public class MainActivity extends Activity {
-    static final String VERSION="0.4.6";
+    static final String VERSION="0.4.7";
     final ExecutorService executor=Executors.newSingleThreadExecutor();
     final ArrayList<Entry> channels=new ArrayList<Entry>();
     final ArrayList<Entry> shown=new ArrayList<Entry>();
@@ -86,6 +86,17 @@ public class MainActivity extends Activity {
         tools.addView(button("配置",new View.OnClickListener(){public void onClick(View v){config();}}));
         tools.addView(button("关于",new View.OnClickListener(){public void onClick(View v){about();}}));
         HorizontalScrollView horizontal=new HorizontalScrollView(this);horizontal.addView(tools);root.addView(horizontal);
+        FrameLayout hero=new FrameLayout(this);
+        ImageView landscape=new ImageView(this);
+        landscape.setImageResource(getResources().getIdentifier("ice_hero","drawable",getPackageName()));
+        landscape.setScaleType(ImageView.ScaleType.CENTER_CROP);
+        hero.addView(landscape,new FrameLayout.LayoutParams(-1,-1));
+        LinearLayout heroText=new LinearLayout(this);heroText.setOrientation(LinearLayout.VERTICAL);
+        heroText.setPadding(dp(18),0,0,0);
+        heroText.addView(text("电影与剧集",29));
+        heroText.addView(button("浏览片单",new View.OnClickListener(){public void onClick(View v){mode="movie";moviePage=1;loadMovies();}}));
+        hero.addView(heroText,new FrameLayout.LayoutParams(dp(280),-2,Gravity.LEFT|Gravity.CENTER_VERTICAL));
+        root.addView(hero,new LinearLayout.LayoutParams(-1,dp(140)));
         status=text("方向键选择，确定播放；播放时菜单键查看操作",17);root.addView(status);
         list=new GridView(this);list.setNumColumns(3);list.setStretchMode(GridView.STRETCH_COLUMN_WIDTH);
         list.setHorizontalSpacing(dp(10));list.setVerticalSpacing(dp(10));list.setDrawSelectorOnTop(true);

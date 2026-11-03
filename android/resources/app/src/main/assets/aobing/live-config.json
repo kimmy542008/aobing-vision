@@ -1,14 +1,14 @@
 {
   "lives": [
     {
+      "name": "全国与海外频道",
+      "url": "assets://aobing/live-global.m3u"
+    },
+    {
       "name": "央视精选 · 内置快照",
       "url": "assets://aobing/live-snapshot.m3u",
       "timeZone": "Asia/Shanghai",
       "boot": false
-    },
-    {
-      "name": "全球高清频道",
-      "url": "assets://aobing/live-global.m3u"
     },
     {
       "name": "公开频道备选 · 内置快照",

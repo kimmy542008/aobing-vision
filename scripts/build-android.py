@@ -18,15 +18,15 @@ if not sdk:raise RuntimeError('Set ANDROID_HOME to Android SDK with API34/build-
 gradle=os.environ.get('GRADLE_COMMAND','gradle')
 subprocess.run([gradle,':app:assembleLeanbackJavaUniversalDebug',':app:assembleLeanbackJavaArmeabi_v7aDebug',':app:assembleLeanbackJavaArm64_v8aDebug','--console=plain','--max-workers=4'],cwd=src,check=True)
 out=repo/'installer/android';out.mkdir(parents=True,exist_ok=True)
-report={'version':'0.4.7','minSdk':21,'targetSdk':28,'testedDeviceAndroid9':False,'upstream':revision,'assets':[]}
+report={'version':'0.4.8','minSdk':21,'targetSdk':28,'testedDeviceAndroid9':False,'upstream':revision,'assets':[]}
 signer=pathlib.Path(sdk)/'build-tools/34.0.0'/('apksigner.bat' if os.name=='nt' else 'apksigner')
 for flavor,label in [('Universal','Universal'),('Armeabi_v7a','ARM32'),('Arm64_v8a','ARM64')]:
     files=list((src/'app/build/outputs/apk'/('leanbackJava'+flavor)/'debug').glob('*.apk'));assert len(files)==1
-    dest=out/('AobingTV-Android9-'+label+'-v0.4.7.apk');shutil.copyfile(files[0],dest)
+    dest=out/('AobingTV-Android9-'+label+'-v0.4.8.apk');shutil.copyfile(files[0],dest)
     subprocess.run([str(signer),'verify','--min-sdk-version','21',str(dest)],check=True)
     report['assets'].append({'name':dest.name,'size':dest.stat().st_size,'sha256':hashlib.sha256(dest.read_bytes()).hexdigest()})
 (out/'Android-compatibility-report.json').write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf8')
-sourcezip=out/'AobingTV-Android9-v0.4.7-GPL-Source.zip'
+sourcezip=out/'AobingTV-Android9-v0.4.8-GPL-Source.zip'
 with zipfile.ZipFile(sourcezip,'w',zipfile.ZIP_DEFLATED,compresslevel=3) as z:
     for p in src.rglob('*'):
         rel=p.relative_to(src)

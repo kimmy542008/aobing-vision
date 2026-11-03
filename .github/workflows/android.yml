@@ -46,8 +46,8 @@ jobs:
             const names=fs.readdirSync('release-assets');
             if(names.filter(n=>n.endsWith('.apk')).length!==3) throw new Error('Expected three standalone APKs');
             fs.writeFileSync('release-assets/SHA256SUMS.txt',names.map(n=>crypto.createHash('sha256').update(fs.readFileSync('release-assets/'+n)).digest('hex')+'  '+n).join('\n')+'\n');
-            const tag='android-v0.4.7';
+            const tag='android-v0.4.8';
             const body='Android 9.0兼容测试包，最低API21/目标API28，提供ARM32、ARM64、双ARM架构单APK；v1/v2签名。\n\n优先安装Universal包。旧版解析错误根因尚未确定，尚未经过用户Android9机顶盒实测，不能保证针对未知硬件的修复结果。不同构建的调试签名可能不同，覆盖安装冲突时请先备份配置。\n\n全球高清频道列表已加入；GPL对应源码和校验信息在附件。用户确认华为电视32位APK可用，不再制作鸿蒙HAP。开发者：Rios敖丙。';
             let release;
-            try{release=(await github.rest.repos.getReleaseByTag({...context.repo,tag})).data}catch(e){if(e.status!==404)throw e;release=(await github.rest.repos.createRelease({...context.repo,tag_name:tag,target_commitish:context.sha,name:'敖丙视界 Android 9.0 兼容测试版 0.4.7',body,prerelease:true})).data}
+            try{release=(await github.rest.repos.getReleaseByTag({...context.repo,tag})).data}catch(e){if(e.status!==404)throw e;release=(await github.rest.repos.createRelease({...context.repo,tag_name:tag,target_commitish:context.sha,name:'敖丙视界 Android 9.0 兼容测试版 0.4.8',body,prerelease:true})).data}
             for(const name of [...names,'SHA256SUMS.txt']){if(release.assets.some(a=>a.name===name))throw new Error('Preserve existing asset: '+name);await github.rest.repos.uploadReleaseAsset({...context.repo,release_id:release.id,name,data:fs.readFileSync('release-assets/'+name)})}
