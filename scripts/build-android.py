@@ -25,15 +25,23 @@ variants = [
 tasks = [':app:assemble'+name[0].upper()+name[1:]+'Debug' for name,_ in variants]
 subprocess.run([gradle,*tasks,'--console=plain','--max-workers=4'],cwd=src,check=True)
 out=repo/'installer/android';out.mkdir(parents=True,exist_ok=True)
-report={'version':'0.4.9','minSdk':21,'targetSdk':28,'testedDeviceAndroid9':False,'upstream':revision,'assets':[]}
+report={'version':'0.4.10','minSdk':21,'targetSdk':28,'testedDeviceAndroid9':False,'upstream':revision,'assets':[]}
 signer=pathlib.Path(sdk)/'build-tools/34.0.0'/('apksigner.bat' if os.name=='nt' else 'apksigner')
+aapt=signer.parent/('aapt.exe' if os.name=='nt' else 'aapt')
 for flavor,label in variants:
     files=list((src/'app/build/outputs/apk'/flavor/'debug').glob('*.apk'));assert len(files)==1
-    dest=out/('AobingTV-'+label+'-v0.4.9.apk');shutil.copyfile(files[0],dest)
+    dest=out/('AobingTV-'+label+'-v0.4.10.apk');shutil.copyfile(files[0],dest)
     subprocess.run([str(signer),'verify','--min-sdk-version','21',str(dest)],check=True)
-    report['assets'].append({'name':dest.name,'size':dest.stat().st_size,'sha256':hashlib.sha256(dest.read_bytes()).hexdigest()})
+    app_id='com.rios.aobing.tv.mobile' if flavor.startswith('mobile') else 'com.rios.aobing.tv'
+    badging=subprocess.check_output([str(aapt),'dump','badging',str(dest)],encoding='utf-8')
+    if f"name='{app_id}'" not in badging or f"versionName='{report['version']}'" not in badging:
+        raise RuntimeError(f'Unexpected package metadata for {dest.name}')
+    manifest=subprocess.check_output([str(aapt),'dump','xmltree',str(dest),'AndroidManifest.xml'],encoding='utf-8')
+    if f'{app_id}.quickjs.provider' not in manifest:
+        raise RuntimeError(f'Provider authority is not unique for {dest.name}')
+    report['assets'].append({'name':dest.name,'applicationId':app_id,'size':dest.stat().st_size,'sha256':hashlib.sha256(dest.read_bytes()).hexdigest()})
 (out/'Android-compatibility-report.json').write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf8')
-sourcezip=out/'AobingTV-Android9-v0.4.9-GPL-Source.zip'
+sourcezip=out/'AobingTV-Android9-v0.4.10-GPL-Source.zip'
 with zipfile.ZipFile(sourcezip,'w',zipfile.ZIP_DEFLATED,compresslevel=3) as z:
     for p in src.rglob('*'):
         rel=p.relative_to(src)
