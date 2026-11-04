@@ -17,7 +17,7 @@ import java.util.concurrent.*;
 
 /** Standalone API19 edition; no AndroidX, Media3, WebView or native ABI dependencies. */
 public class MainActivity extends Activity {
-    static final String VERSION="0.4.7";
+    static final String VERSION="0.4.8";
     final ExecutorService executor=Executors.newSingleThreadExecutor();
     final ArrayList<Entry> channels=new ArrayList<Entry>();
     final ArrayList<Entry> shown=new ArrayList<Entry>();
@@ -379,6 +379,34 @@ public class MainActivity extends Activity {
     void toggle(){if(video!=null){if(video.isPlaying()){video.pause();note(currentName+" · 已暂停");}else{video.start();note(currentName);}}}
     void seek(int delta){if(video!=null&&video.getDuration()>0)video.seekTo(Math.max(0,Math.min(video.getDuration(),video.getCurrentPosition()+delta)));}
     void changeChannel(int delta){if(currentChannel<0||channels.isEmpty())return;int index=(currentChannel+delta+channels.size())%channels.size();if(video!=null)video.stopPlayback();play(channels.get(index));}
+    void chooseLiveChannel(){
+        final LinkedHashMap<String,ArrayList<Entry>> groups=new LinkedHashMap<String,ArrayList<Entry>>();
+        for(Entry entry:channels){
+            if(!groups.containsKey(entry.group))groups.put(entry.group,new ArrayList<Entry>());
+            groups.get(entry.group).add(entry);
+        }
+        final String[] names=groups.keySet().toArray(new String[groups.size()]);
+        new AlertDialog.Builder(this).setTitle("直播分类").setItems(names,new DialogInterface.OnClickListener(){public void onClick(DialogInterface dialog,int groupIndex){
+            final ArrayList<Entry> choices=groups.get(names[groupIndex]);
+            String[] labels=new String[choices.size()];
+            for(int i=0;i<labels.length;i++)labels[i]=(choices.get(i).url.equals(currentUrl)?"▶ ":"")+choices.get(i).name;
+            new AlertDialog.Builder(MainActivity.this).setTitle(names[groupIndex])
+                .setItems(labels,new DialogInterface.OnClickListener(){public void onClick(DialogInterface picker,int index){
+                    if(choices.get(index).url.equals(currentUrl))return;
+                    if(video!=null)video.stopPlayback();
+                    play(choices.get(index));
+                }}).setNeutralButton("返回分类",new DialogInterface.OnClickListener(){public void onClick(DialogInterface picker,int which){chooseLiveChannel();}})
+                .setNegativeButton("取消",null).show();
+        }}).setNegativeButton("取消",null).show();
+    }
+    @Override public boolean dispatchKeyEvent(KeyEvent event){
+        int key=event.getKeyCode();
+        if(playing&&currentChannel>=0&&(key==KeyEvent.KEYCODE_DPAD_CENTER||key==KeyEvent.KEYCODE_ENTER||key==KeyEvent.KEYCODE_NUMPAD_ENTER)){
+            if(event.getAction()==KeyEvent.ACTION_UP&&!event.isCanceled())chooseLiveChannel();
+            return true;
+        }
+        return super.dispatchKeyEvent(event);
+    }
     @Override public boolean onKeyDown(int key,KeyEvent event){
         if(playing){
             if(key==KeyEvent.KEYCODE_MENU){playbackMenu();return true;}
