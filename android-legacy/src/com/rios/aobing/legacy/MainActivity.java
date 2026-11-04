@@ -17,7 +17,7 @@ import java.util.concurrent.*;
 
 /** Standalone API19 edition; no AndroidX, Media3, WebView or native ABI dependencies. */
 public class MainActivity extends Activity {
-    static final String VERSION="0.4.9";
+    static final String VERSION="0.4.10";
     final ExecutorService executor=Executors.newSingleThreadExecutor();
     final ArrayList<Entry> channels=new ArrayList<Entry>();
     final ArrayList<Entry> shown=new ArrayList<Entry>();
@@ -26,7 +26,6 @@ public class MainActivity extends Activity {
     SharedPreferences prefs;
     TextView status;
     GridView list;
-    ListView playingEpisodes;
     VideoView video;
     StreamProxy proxy;
     String mode="live", group="全部", movieQuery="", currentName="", currentUrl="";
@@ -339,31 +338,7 @@ public class MainActivity extends Activity {
             video=new VideoView(this);FrameLayout.LayoutParams vp=new FrameLayout.LayoutParams(-1,-1,Gravity.CENTER);screen.addView(video,vp);
             status=text("正在连接："+entry.name+"\n返回：频道列表；菜单：播放操作",19);status.setBackgroundColor(0x99000000);
             FrameLayout.LayoutParams sp=new FrameLayout.LayoutParams(-1,-2,Gravity.BOTTOM);screen.addView(status,sp);
-            playingEpisodes=null;
-            if(mode.equals("episodes")&&!shown.isEmpty()){
-                LinearLayout layout=new LinearLayout(this);
-                layout.addView(screen,new LinearLayout.LayoutParams(0,-1,1));
-                LinearLayout side=column();side.addView(text("选集",22));
-                final ArrayList<Entry> choices=new ArrayList<Entry>(shown);
-                ListView episodeList=new ListView(this);
-                playingEpisodes=episodeList;
-                ArrayList<String> labels=new ArrayList<String>();
-                int selected=0;
-                for(int i=0;i<choices.size();i++){
-                    Entry choice=choices.get(i);
-                    boolean active=choice.url.equals(entry.url)&&choice.name.equals(entry.name);
-                    if(active)selected=i;
-                    labels.add((active?"▶ ":"")+choice.name);
-                }
-                episodeList.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,labels));
-                episodeList.setOnItemClickListener(new AdapterView.OnItemClickListener(){public void onItemClick(AdapterView<?> parent,View view,int position,long id){
-                    if(video!=null)video.stopPlayback();
-                    play(choices.get(position));
-                }});
-                side.addView(episodeList,new LinearLayout.LayoutParams(-1,0,1));
-                layout.addView(side,new LinearLayout.LayoutParams(dp(245),-1));
-                setContentView(layout);episodeList.setSelection(selected);
-            }else setContentView(screen);
+            setContentView(screen);
             playing=true;
             final VideoView attempt = video;
             final Runnable timeout = new Runnable(){public void run(){
@@ -373,7 +348,7 @@ public class MainActivity extends Activity {
                 }
             }};
             attempt.postDelayed(timeout, 25000);
-            video.setOnPreparedListener(new MediaPlayer.OnPreparedListener(){public void onPrepared(MediaPlayer mp){attempt.removeCallbacks(timeout);if(video==attempt){note(entry.name+"  ·  确定暂停/继续；菜单查看更多");attempt.start();}}});
+            video.setOnPreparedListener(new MediaPlayer.OnPreparedListener(){public void onPrepared(MediaPlayer mp){attempt.removeCallbacks(timeout);if(video==attempt){note(entry.name+"  ·  确定暂停/继续；剧集按下键选集");attempt.start();}}});
             video.setOnErrorListener(new MediaPlayer.OnErrorListener(){public boolean onError(MediaPlayer mp,int what,int extra){attempt.removeCallbacks(timeout);if(video==attempt)note("播放失败（"+what+" / "+extra+"），可按菜单重试或用其他播放器打开");return true;}});
             video.setOnCompletionListener(new MediaPlayer.OnCompletionListener(){public void onCompletion(MediaPlayer mp){note("播放结束 · 返回选择其他内容");}});
             video.setVideoURI(Uri.parse(local));video.requestFocus();video.start();
@@ -392,6 +367,33 @@ public class MainActivity extends Activity {
     void toggle(){if(video!=null){if(video.isPlaying()){video.pause();note(currentName+" · 已暂停");}else{video.start();note(currentName);}}}
     void seek(int delta){if(video!=null&&video.getDuration()>0)video.seekTo(Math.max(0,Math.min(video.getDuration(),video.getCurrentPosition()+delta)));}
     void changeChannel(int delta){if(currentChannel<0||channels.isEmpty())return;int index=(currentChannel+delta+channels.size())%channels.size();if(video!=null)video.stopPlayback();play(channels.get(index));}
+    void chooseEpisode(){
+        final ArrayList<Entry> choices=new ArrayList<Entry>(shown);
+        if(choices.isEmpty())return;
+        String[] labels=new String[choices.size()];
+        int selected=0;
+        for(int i=0;i<choices.size();i++){
+            Entry choice=choices.get(i);
+            boolean active=choice.url.equals(currentUrl);
+            if(active)selected=i;
+            labels[i]=(active?"▶ ":"")+choice.name;
+        }
+        AlertDialog picker=new AlertDialog.Builder(this).setTitle("选集")
+            .setSingleChoiceItems(labels,selected,new DialogInterface.OnClickListener(){public void onClick(DialogInterface dialog,int index){
+                dialog.dismiss();
+                Entry choice=choices.get(index);
+                if(choice.url.equals(currentUrl))return;
+                if(video!=null)video.stopPlayback();
+                play(choice);
+            }}).setNegativeButton("关闭",null).create();
+        picker.show();
+        Window window=picker.getWindow();
+        if(window!=null){
+            window.setGravity(Gravity.BOTTOM);
+            window.setLayout(-1,getResources().getDisplayMetrics().heightPixels*2/5);
+            window.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+        }
+    }
     void chooseLiveChannel(){
         final LinkedHashMap<String,ArrayList<Entry>> groups=new LinkedHashMap<String,ArrayList<Entry>>();
         for(Entry entry:channels){
@@ -423,13 +425,7 @@ public class MainActivity extends Activity {
     @Override public boolean onKeyDown(int key,KeyEvent event){
         if(playing){
             if(key==KeyEvent.KEYCODE_MENU){playbackMenu();return true;}
-            if(playingEpisodes!=null&&key==KeyEvent.KEYCODE_DPAD_RIGHT&&!playingEpisodes.hasFocus()){
-                playingEpisodes.requestFocus();return true;
-            }
-            if(playingEpisodes!=null&&playingEpisodes.hasFocus()){
-                if(key==KeyEvent.KEYCODE_DPAD_LEFT){video.requestFocus();return true;}
-                return super.onKeyDown(key,event);
-            }
+            if(key==KeyEvent.KEYCODE_DPAD_DOWN&&mode.equals("episodes")){if(event.getRepeatCount()==0)chooseEpisode();return true;}
             if(key==KeyEvent.KEYCODE_DPAD_CENTER||key==KeyEvent.KEYCODE_ENTER||key==KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE){toggle();return true;}
             if(key==KeyEvent.KEYCODE_DPAD_LEFT){seek(-15000);return true;}if(key==KeyEvent.KEYCODE_DPAD_RIGHT){seek(15000);return true;}
             if(key==KeyEvent.KEYCODE_DPAD_UP){changeChannel(-1);return true;}if(key==KeyEvent.KEYCODE_DPAD_DOWN){changeChannel(1);return true;}
