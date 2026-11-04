@@ -55,11 +55,11 @@ jobs:
             const files = fs.readdirSync('release-assets').filter(n => /\.(exe|zip)$/.test(n));
             if (files.length !== 2) throw new Error('Expected Windows and Intel Mac packages');
             fs.writeFileSync('release-assets/SHA256SUMS.txt', files.map(n => crypto.createHash('sha256').update(fs.readFileSync('release-assets/'+n)).digest('hex')+'  '+n).join('\n')+'\n');
-            const tag = 'v0.2.4';
-            const body = '敖丙视界 0.2.4 测试版。开发者：Rios敖丙。\n\nWindows 10/11 x64；Intel Mac x86_64，macOS 13+。Mac 只做构建和临时签名校验，未经过用户 Intel Mac 实机播放验证，未获苹果公证。\n\n内置200路频道候选；连接检测不保证持续网速或长期可用。舞蹈、广场舞、养生操为官方专题入口。详见 README 与 docs。';
+            const tag = 'v0.2.5';
+            const body = '敖丙视界 0.2.5 测试版。开发者：Rios敖丙。\n\nWindows 10/11 x64；Intel Mac x86_64，macOS 13+。Mac 只做构建和临时签名校验，未经过用户 Intel Mac 实机播放验证，未获苹果公证。\n\n内置200路频道候选；连接检测不保证持续网速或长期可用。舞蹈、广场舞、养生操为官方专题入口。详见 README 与 docs。';
             let release;
             try { release = (await github.rest.repos.getReleaseByTag({...context.repo,tag})).data; }
-            catch (e) { if (e.status!==404) throw e; release=(await github.rest.repos.createRelease({...context.repo,tag_name:tag,target_commitish:context.sha,name:'敖丙视界 0.2.4 · Windows / Mac Intel 测试版',body,prerelease:true})).data; }
+            catch (e) { if (e.status!==404) throw e; release=(await github.rest.repos.createRelease({...context.repo,tag_name:tag,target_commitish:context.sha,name:'敖丙视界 0.2.5 · Windows / Mac Intel 测试版',body,prerelease:true})).data; }
             for (const name of [...files,'SHA256SUMS.txt']) {
               if (release.assets.some(a=>a.name===name)) throw new Error('Asset already exists; preserve existing release: '+name);
               await github.rest.repos.uploadReleaseAsset({...context.repo,release_id:release.id,name,data:fs.readFileSync('release-assets/'+name)});

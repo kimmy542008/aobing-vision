@@ -1,7 +1,7 @@
 {
   "name": "aobing-vision",
   "productName": "敖丙视界",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "影视与电视直播聚合播放器",
   "author": "Rios敖丙",
   "main": "main.cjs",

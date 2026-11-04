@@ -36,7 +36,7 @@ function mediaPreview(card, item) {
   return update;
 }
 function liveCard(item) {
-  const playChannel = () => play(item.name,item.url);
+  const playChannel = () => playLiveLines(item);
   const card = button('',playChannel);
   card.className = 'channel visual-channel';
   const art = document.createElement('div');
@@ -81,6 +81,7 @@ function mediaNodes(items) {
   return [...container.children];
 }
 load = async function () {
+  sourceBar.hidden = state.page !== 'live';
   hero.hidden = ['favorites','history'].includes(state.page);
   const grid = $('#grid');
   grid.classList.toggle('home-shelves',state.page === 'discover' && !state.search && !state.type);
@@ -110,10 +111,12 @@ load = async function () {
       status(grid.children.length ? '' : '暂无可展示的节目，请检查源配置');
       return;
     }
+    if(key==='comic')$('#categories').append(button('红果漫剧 · 应用商店',()=>call('topic','红果漫剧').catch(error=>status(error.message))));
     const types = categoryList(key);
     if (!types.length) {
       $('#paging').hidden = true;
       status('当前片源没有提供「'+sections[key][0]+'」分类');
+
       return;
     }
     if (!types.some(type => String(type.type_id) === state.type)) state.type = String(types[0].type_id);

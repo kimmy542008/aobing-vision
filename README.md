@@ -10,8 +10,8 @@ Windows 与 Intel Mac 影视直播播放器：电影电视剧分类、片名搜�
 
 | 平台 | 版本 | 状态 |
 |---|---|---|
-| Windows 10/11 x64 | 0.2.4 | 便携 EXE；本机曾实际播放抽样点播 1080p、直播 720p；非每个频道验证 |
-| Intel Mac x86_64 | 0.2.4 | macOS 13+；测试版，未经过用户 Intel Mac 实机播放验证；没有 Apple Developer ID 签名或公证 |
+| Windows 10/11 x64 | 0.2.5 | 便携 EXE；本机曾实际播放抽样点播 1080p、直播 720p；非每个频道验证 |
+| Intel Mac x86_64 | 0.2.5 | macOS 13+；测试版，未经过用户 Intel Mac 实机播放验证；没有 Apple Developer ID 签名或公证 |
 | Android TV / Android 9.0 | 0.4.10 | ARM32、ARM64、双ARM架构独立APK，v1/v2签名；待用户机顶盒验证，见 [安卓说明](android/README.md) |
 | Android 手机 / 平板 | 0.4.10 | [触屏版 APK](https://github.com/kimmy542008/aobing-vision/releases/download/android-v0.4.10/AobingTV-Mobile-Universal-v0.4.10.apk)，ARM32/ARM64，支持系统软键盘，可与电视版并存 |
 | 志高 A10 / API19 老盒子 | 0.4.8 | [API19兼容版下载](https://github.com/kimmy542008/aobing-vision/releases/tag/android-api19-v0.4.8)，使用系统播放器；Android4.4模拟器安装启动通过，用户盒子待验证，见 [兼容版说明](android-legacy/README.md) |
@@ -54,3 +54,4 @@ Mac 构建脚本仅对本应用执行 ad-hoc 签名，不会关闭 Gatekeeper �
 原创桌面代码采用 MIT；Android 蜂蜜衍生版本采用 GPL-3.0，见 `android/LICENSE-GPL-3.0.md`，完整对应源码随安卓Release附带。第三方版权及许可分别保留。Electron/Chromium 许可证随官方运行时附带，hls.js 使用 Apache-2.0，见 `desktop/vendor/HLS-LICENSE`。频道索引来自 [IPTV-org](https://github.com/iptv-org/iptv)，项目不托管节目视频。用户提供的图标在显示与打包时等比缩放。
 
 应用在本机保存收藏、历史和源配置；片名搜索和播放请求会发送到用户所选的第三方源。
+桌面 0.2.5 可在直播页切换默认、中国、香港、台湾和体育清单。同一清单中能识别出的同频道备用线路，可在播放器右上方手动选择。「漫剧」提供红果漫剧 App Store 入口。

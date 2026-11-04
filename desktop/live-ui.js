@@ -2,7 +2,42 @@ let liveRows=[],liveGroup='全部',liveQuery='';const previousLoad=load,previous
 const topics=['游戏','舞蹈','广场舞','养生操'];
 const groupOrder=['央视','卫视','海外','娱乐','体育','NBA','新闻','电影','卡通动漫','音乐','文化','生活健康','游戏直播','地方台','其他'];
 const channelGroup=v=>v.category||v.group||'其他';
-load=async function(){if(state.page!=='live'){return previousLoad()}const ticket=++serial;$('#grid').replaceChildren();$('#heading').textContent='全球直播';$('#paging').hidden=true;$('#categories').replaceChildren();status('正在读取内置频道…');try{const rows=await call('live');if(ticket!==serial)return;liveRows=rows;drawLive()}catch(e){if(ticket===serial)status('直播列表加载失败：'+e.message)}};
+let liveSubscription='';
+const sourceBar=$('#live-sources');
+for(const name of ['','中国','香港','台湾','体育']){
+  const source=button(name||'默认 / 自定义',()=>{
+    liveSubscription=name;liveGroup='全部';liveQuery='';load();
+  });
+  source.dataset.subscription=name;
+  sourceBar.append(source);
+}
+function stationKey(item){
+  return item.name.trim().replace(/\s*\[[^\]]*\]/g,'')
+    .replace(/\s*\(\d+[pi]\)/gi,'').replace(/\s+(?:HD|SD|UHD)\b/gi,'')
+    .replace(/\s+/g,' ').trim().toLowerCase();
+}
+function playLiveLines(item){
+  const seen=new Set([item.url]);
+  const key=stationKey(item);
+  const id=(item.id||'').split('@')[0];
+  const choices=[item,...liveRows.filter(row=>{
+    const other=(row.id||'').split('@')[0];
+    const matches=id&&other ? id===other : stationKey(row)===key;
+    return matches&&!seen.has(row.url)&&seen.add(row.url);
+  })];
+  const select=$('#live-line');
+  select.replaceChildren();
+  choices.forEach((line,index)=>select.add(new Option('线路 '+(index+1)+' · '+line.name,String(index))));
+  const open=index=>{
+    const line=choices[index];
+    if(!line)return;
+    play(item.name,line.url);
+    $('#live-lines').hidden=choices.length<2;
+  };
+  select.onchange=()=>open(Number(select.value));
+  open(0);
+}
+load=async function(){sourceBar.hidden=state.page!=='live';if(sourceBar.hidden)return previousLoad();for(const b of sourceBar.children)b.classList.toggle('active',b.dataset.subscription===liveSubscription);const ticket=++serial;$('#grid').replaceChildren();$('#heading').textContent='全球直播';$('#paging').hidden=true;$('#categories').replaceChildren();status('正在读取内置频道…');try{const rows=await call('live',liveSubscription);if(ticket!==serial)return;liveRows=rows;drawLive()}catch(e){if(ticket===serial)status('直播列表加载失败：'+e.message)}};
 function drawLive(){const c=$('#categories');c.replaceChildren();const groups=new Set(liveRows.map(channelGroup));const ordered=groupOrder.filter(g=>groups.delete(g)||g==='NBA');for(const g of ['全部',...ordered,...groups,...topics]){const b=button(g,()=>{liveGroup=g;drawLive()});if(g===liveGroup)b.className='active';c.append(b)}$('#grid').replaceChildren();if(topics.includes(liveGroup)||(liveGroup==='NBA'&&!liveRows.some(v=>channelGroup(v)==='NBA'))){const p=document.createElement('p');p.className='topic-note';p.textContent=liveGroup+'专题：打开官方平台的视频/直播入口。此入口不是内置电视直播线路。';$('#grid').append(p,button('打开'+liveGroup+'官方入口',()=>call('topic',liveGroup)));status('专题入口 · 内容由官方平台提供');return}const rows=liveRows.filter(v=>(liveGroup==='全部'||(v.category||v.group||'其他')===liveGroup)&&(!liveQuery||v.name.toLowerCase().includes(liveQuery.toLowerCase())));for(const v of rows)$('#grid').append(liveCard(v).card);if(rows.length)$('#grid').firstElementChild.dispatchEvent(new Event('focus'));status('共 '+rows.length+' 路 · 高清优先排序 · 检测为本机当时的播放列表与片段连接耗时，不代表持续网速')}
 $('#search').onsubmit=e=>{if(state.page!=='live')return previousSearch(e);e.preventDefault();liveQuery=$('#query').value.trim();drawLive()};
 
