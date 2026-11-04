@@ -111,7 +111,6 @@ load = async function () {
       status(grid.children.length ? '' : '暂无可展示的节目，请检查源配置');
       return;
     }
-    if(key==='comic')$('#categories').append(button('红果漫剧 · 应用商店',()=>call('topic','红果漫剧').catch(error=>status(error.message))));
     const types = categoryList(key);
     if (!types.length) {
       $('#paging').hidden = true;
