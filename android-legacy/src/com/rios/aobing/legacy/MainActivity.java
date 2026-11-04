@@ -17,7 +17,7 @@ import java.util.concurrent.*;
 
 /** Standalone API19 edition; no AndroidX, Media3, WebView or native ABI dependencies. */
 public class MainActivity extends Activity {
-    static final String VERSION="0.4.8";
+    static final String VERSION="0.4.9";
     final ExecutorService executor=Executors.newSingleThreadExecutor();
     final ArrayList<Entry> channels=new ArrayList<Entry>();
     final ArrayList<Entry> shown=new ArrayList<Entry>();
@@ -30,6 +30,7 @@ public class MainActivity extends Activity {
     VideoView video;
     StreamProxy proxy;
     String mode="live", group="全部", movieQuery="", currentName="", currentUrl="";
+    String liveSubscription="";
     String defaultApi="";
     int moviePage=1, moviePages=1, requestId=0, currentChannel=-1;
     boolean playing=false;
@@ -81,6 +82,7 @@ public class MainActivity extends Activity {
         tools.addView(button("直播",new View.OnClickListener(){public void onClick(View v){mode="live";loadLive();}}));
         tools.addView(button("电影/剧集",new View.OnClickListener(){public void onClick(View v){mode="movie";moviePage=1;loadMovies();}}));
         tools.addView(button("分类",new View.OnClickListener(){public void onClick(View v){groups();}}));
+        tools.addView(button("直播源",new View.OnClickListener(){public void onClick(View v){chooseLiveSubscription();}}));
         tools.addView(button("搜索",new View.OnClickListener(){public void onClick(View v){search();}}));
         tools.addView(button("播放地址",new View.OnClickListener(){public void onClick(View v){direct();}}));
         tools.addView(button("配置",new View.OnClickListener(){public void onClick(View v){config();}}));
@@ -203,9 +205,10 @@ public class MainActivity extends Activity {
     }
     void loadLive(){
         final int ticket=++requestId;mode="live";note("正在读取直播列表…");
+        final String subscription=liveSubscription;
         executor.execute(new Runnable(){public void run(){try{
             ArrayList<Entry> values=new ArrayList<Entry>();
-            String custom=setting("live","").trim();
+            String custom=subscription.isEmpty()?setting("live","").trim():subscription;
             if(custom.isEmpty()){
                 for(String name:new String[]{"live-snapshot.m3u","live-global.m3u","live-candidates.m3u"})values.addAll(parseLive(asset(name)));
             }else values=parseLive(Net.text(custom));
@@ -213,6 +216,16 @@ public class MainActivity extends Activity {
             for(Entry e:values)if(urls.add(e.url))result.add(e);
             runOnUiThread(new Runnable(){public void run(){if(ticket!=requestId||isFinishing())return;channels.clear();channels.addAll(result);filterLive();}});
         }catch(final Exception e){error(ticket,e);}}});
+    }
+    void chooseLiveSubscription(){
+        final String[] names={"默认 / 自定义","中国频道","香港频道","台湾频道","体育频道"};
+        final String base="https://iptv-org.github.io/iptv/";
+        final String[] urls={"",base+"countries/cn.m3u",base+"countries/hk.m3u",base+"countries/tw.m3u",base+"categories/sports.m3u"};
+        new AlertDialog.Builder(this).setTitle("切换直播源").setItems(names,new DialogInterface.OnClickListener(){public void onClick(DialogInterface dialog,int index){
+            liveSubscription=urls[index];
+            group="全部";
+            loadLive();
+        }}).setNegativeButton("取消",null).show();
     }
     void filterLive(){ArrayList<Entry> filtered=new ArrayList<Entry>();for(Entry e:channels)if(group.equals("全部")||e.group.equals(group))filtered.add(e);rows(filtered,"直播 / "+group);}
     void groups(){

@@ -21,6 +21,18 @@
       "url": "https://iptv-org.github.io/iptv/countries/cn.m3u",
       "timeZone": "Asia/Shanghai",
       "boot": false
+    },
+    {
+      "name": "IPTV-org · 香港",
+      "url": "https://iptv-org.github.io/iptv/countries/hk.m3u"
+    },
+    {
+      "name": "IPTV-org · 台湾",
+      "url": "https://iptv-org.github.io/iptv/countries/tw.m3u"
+    },
+    {
+      "name": "IPTV-org · 体育",
+      "url": "https://iptv-org.github.io/iptv/categories/sports.m3u"
     }
   ]
 }

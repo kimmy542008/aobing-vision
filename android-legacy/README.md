@@ -1,4 +1,4 @@
-# 敖丙视界 API19 兼容版 0.4.8
+# 敖丙视界 API19 兼容版 0.4.9
 
 开发者：Rios敖丙。
 
@@ -17,3 +17,4 @@
 构建：Python3、JDK17、Android SDK platform19、build-tools34.0.0。设置JAVA_HOME和ANDROID_HOME，执行 `python scripts/build-legacy.py`。产物在 `installer/legacy`。首次在用户目录 `.aobing/legacy-debug.keystore` 生成本地测试签名；密钥不会包含在源码包或上传GitHub。不同构建者的测试签名可能不同。CI产物与本地包不能保证可覆盖安装，切换前应备份配置。
 
 源码采用GPL-3.0，见LICENSE。原有频道数据来源见assets/SOURCES.md；图标来自用户品牌素材；所有第三方署名保留。
+首页「直播源」可在默认或自定义、中国、香港、台湾及体育清单之间切换。
