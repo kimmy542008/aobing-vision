@@ -389,7 +389,7 @@
 +++ b/app/src/leanback/java/com/fongmi/android/tv/ui/activity/LiveActivity.java
 @@ -945,5 +945,12 @@
      public boolean dispatchKeyEvent(KeyEvent event) {
-+        if (KeyUtil.isEnterKey(event) && !isVisible(mBinding.recycler) && !isVisible(mBinding.control.getRoot())) {
++        if (com.fongmi.android.tv.utils.KeyUtil.isEnterKey(event) && !isVisible(mBinding.recycler) && !isVisible(mBinding.control.getRoot())) {
 +            if (event.getAction() == KeyEvent.ACTION_UP && !event.isCanceled()) {
 +                onKeyCenter();
 +                mBinding.group.requestFocus();
