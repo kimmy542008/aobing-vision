@@ -14,7 +14,7 @@ Windows 与 Intel Mac 影视直播播放器：电影电视剧分类、片名搜�
 | Intel Mac x86_64 | 0.2.7 | macOS 13+；测试版，未经过用户 Intel Mac 实机播放验证；没有 Apple Developer ID 签名或公证 |
 | Android TV / Android 9.0 | 0.4.12 | ARM32、ARM64、双ARM架构独立APK，v1/v2签名；待用户机顶盒验证，见 [安卓说明](android/README.md) |
 | Android 手机 / 平板 | 0.4.12 | [触屏版 APK](https://github.com/kimmy542008/aobing-vision/releases/download/android-v0.4.12/AobingTV-Mobile-Universal-v0.4.12.apk)，ARM32/ARM64，支持系统软键盘，可与电视版并存 |
-| 志高 A10 / API19 老盒子 | 0.4.10 | [API19兼容版下载](https://github.com/kimmy542008/aobing-vision/releases/tag/android-api19-v0.4.10)，使用系统播放器；Android4.4模拟器安装启动通过，用户盒子待验证，见 [兼容版说明](android-legacy/README.md) |
+| 志高 A10 / API19 老盒子 | 0.4.11 | [API19兼容版下载](https://github.com/kimmy542008/aobing-vision/releases/tag/android-api19-v0.4.11)，使用系统播放器；Android4.4模拟器安装启动通过，用户盒子待验证，见 [兼容版说明](android-legacy/README.md) |
 
 志高A10用户设备检测显示版本字符串9.0、实际SDK/API19，原0.3/0.4包要求API21，不能用于此设备。此类盒子请按API选择兼容版，不能仅依据设置页面的Android版本名称。
 

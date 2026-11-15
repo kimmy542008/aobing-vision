@@ -1,0 +1,9 @@
+<resources>
+    <color name="aobing_navy">#091323</color>
+    <style name="AobingTheme" parent="android:style/Theme.Holo.NoActionBar.Fullscreen">
+        <item name="android:windowBackground">@color/aobing_navy</item>
+        <item name="android:colorBackground">#091323</item>
+        <item name="android:textColorPrimary">#ECF5FF</item>
+        <item name="android:textColorSecondary">#A4C2DF</item>
+    </style>
+</resources>

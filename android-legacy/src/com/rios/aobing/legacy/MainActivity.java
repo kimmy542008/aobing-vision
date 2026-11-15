@@ -17,7 +17,7 @@ import java.util.concurrent.*;
 
 /** Standalone API19 edition; no AndroidX, Media3, WebView or native ABI dependencies. */
 public class MainActivity extends Activity {
-    static final String VERSION="0.4.10";
+    static final String VERSION="0.4.11";
     final ExecutorService executor=Executors.newSingleThreadExecutor();
     final ArrayList<Entry> channels=new ArrayList<Entry>();
     final ArrayList<Entry> shown=new ArrayList<Entry>();
@@ -26,6 +26,10 @@ public class MainActivity extends Activity {
     SharedPreferences prefs;
     TextView status;
     GridView list;
+    ImageView heroArtwork;
+    TextView heroTitle;
+    Entry previewEntry;
+    String mediaCategory="";
     VideoView video;
     StreamProxy proxy;
     String mode="live", group="全部", movieQuery="", currentName="", currentUrl="";
@@ -79,9 +83,17 @@ public class MainActivity extends Activity {
         brand.addView(text("敖丙视界",27));root.addView(brand);
         LinearLayout tools=new LinearLayout(this);
         tools.addView(button("直播",new View.OnClickListener(){public void onClick(View v){mode="live";loadLive();}}));
-        tools.addView(button("电影/剧集",new View.OnClickListener(){public void onClick(View v){mode="movie";moviePage=1;loadMovies();}}));
+        for(final String category:new String[]{"首页","电影","剧集","纪录片","动漫","短剧","漫剧","其它"}){
+            tools.addView(button(category,new View.OnClickListener(){public void onClick(View v){
+                mediaCategory=category.equals("首页")?"":category;mode="movie";moviePage=1;loadMovies();
+            }}));
+        }
         tools.addView(button("分类",new View.OnClickListener(){public void onClick(View v){groups();}}));
         tools.addView(button("直播源",new View.OnClickListener(){public void onClick(View v){chooseLiveSubscription();}}));
+        tools.addView(button("央视官网",new View.OnClickListener(){public void onClick(View v){
+            try{startActivity(new Intent(Intent.ACTION_VIEW,Uri.parse("https://tv.cctv.com/live/")));}
+            catch(ActivityNotFoundException e){note("设备未安装浏览器，央视主频道尚缺已验证的内播线路");}
+        }}));
         tools.addView(button("搜索",new View.OnClickListener(){public void onClick(View v){search();}}));
         tools.addView(button("播放地址",new View.OnClickListener(){public void onClick(View v){direct();}}));
         tools.addView(button("配置",new View.OnClickListener(){public void onClick(View v){config();}}));
@@ -92,14 +104,27 @@ public class MainActivity extends Activity {
         landscape.setImageResource(getResources().getIdentifier("ice_hero","drawable",getPackageName()));
         landscape.setScaleType(ImageView.ScaleType.CENTER_CROP);
         hero.addView(landscape,new FrameLayout.LayoutParams(-1,-1));
+        heroArtwork=new ImageView(this);heroArtwork.setScaleType(ImageView.ScaleType.FIT_CENTER);
+        hero.addView(heroArtwork,new FrameLayout.LayoutParams(dp(240),-1,Gravity.RIGHT));
         LinearLayout heroText=new LinearLayout(this);heroText.setOrientation(LinearLayout.VERTICAL);
         heroText.setPadding(dp(18),0,0,0);
-        heroText.addView(text("电影与剧集",29));
-        heroText.addView(button("浏览片单",new View.OnClickListener(){public void onClick(View v){mode="movie";moviePage=1;loadMovies();}}));
+        heroTitle=text("敖丙视界",29);heroText.addView(heroTitle);
+        heroText.addView(button("观看节目",new View.OnClickListener(){public void onClick(View v){
+            if(previewEntry==null)return;
+            if(mode.equals("movie"))details(previewEntry);else play(previewEntry);
+        }}));
         hero.addView(heroText,new FrameLayout.LayoutParams(dp(280),-2,Gravity.LEFT|Gravity.CENTER_VERTICAL));
         root.addView(hero,new LinearLayout.LayoutParams(-1,dp(140)));
         status=text("方向键选择，确定播放；播放时菜单键查看操作",17);root.addView(status);
         list=new GridView(this);list.setNumColumns(3);list.setStretchMode(GridView.STRETCH_COLUMN_WIDTH);
+        list.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
+            public void onItemSelected(AdapterView<?> parent,View view,int position,long id){
+                if(position>=shown.size())return;
+                previewEntry=shown.get(position);heroTitle.setText(previewEntry.name);
+                heroArtwork.setImageDrawable(null);loadPoster(previewEntry.poster,heroArtwork);
+            }
+            public void onNothingSelected(AdapterView<?> parent){}
+        });
         list.setHorizontalSpacing(dp(10));list.setVerticalSpacing(dp(10));list.setDrawSelectorOnTop(true);
         android.graphics.drawable.GradientDrawable focus=tile(Color.TRANSPARENT,0xff77ddff);
         android.graphics.drawable.StateListDrawable selector=new android.graphics.drawable.StateListDrawable();
@@ -154,6 +179,7 @@ public class MainActivity extends Activity {
     final ThreadPoolExecutor artwork=new ThreadPoolExecutor(2,2,0L,TimeUnit.MILLISECONDS,
         new ArrayBlockingQueue<Runnable>(20),new ThreadPoolExecutor.DiscardOldestPolicy());
     void loadPoster(final String url,final ImageView target){
+        target.setTag(url);
         if(!url.startsWith("https://")&&!url.startsWith("http://"))return;
         android.graphics.Bitmap cached=posters.get(url);
         if(cached!=null){target.setImageBitmap(cached);return;}
@@ -172,7 +198,7 @@ public class MainActivity extends Activity {
                 while(Math.max(options.outWidth,options.outHeight)/options.inSampleSize>256)options.inSampleSize*=2;
                 options.inJustDecodeBounds=false;
                 final android.graphics.Bitmap bitmap=android.graphics.BitmapFactory.decodeByteArray(bytes,0,bytes.length,options);
-                if(bitmap!=null){posters.put(url,bitmap);runOnUiThread(new Runnable(){public void run(){if(!isFinishing())target.setImageBitmap(bitmap);}});}
+                if(bitmap!=null){posters.put(url,bitmap);runOnUiThread(new Runnable(){public void run(){if(!isFinishing()&&url.equals(target.getTag()))target.setImageBitmap(bitmap);}});}
             }catch(Exception ignored){}finally{if(connection!=null)connection.disconnect();}
         }});
     }
@@ -220,7 +246,7 @@ public class MainActivity extends Activity {
         final String[] names={"默认 / 自定义","中国频道","香港频道","台湾频道","体育频道"};
         final String base="https://iptv-org.github.io/iptv/";
         final String[] urls={"",base+"countries/cn.m3u",base+"countries/hk.m3u",base+"countries/tw.m3u",base+"categories/sports.m3u"};
-        new AlertDialog.Builder(this).setTitle("切换直播源").setItems(names,new DialogInterface.OnClickListener(){public void onClick(DialogInterface dialog,int index){
+        new AlertDialog.Builder(new android.view.ContextThemeWrapper(this,android.R.style.Theme_Holo_Dialog)).setTitle("切换直播源").setItems(names,new DialogInterface.OnClickListener(){public void onClick(DialogInterface dialog,int index){
             liveSubscription=urls[index];
             group="全部";
             loadLive();
@@ -237,7 +263,7 @@ public class MainActivity extends Activity {
         set.addAll(available);
         if(!set.contains("NBA"))set.add("NBA 官方入口");
         final String[] names=set.toArray(new String[set.size()]);
-        new AlertDialog.Builder(this).setTitle("直播分类").setItems(names,new DialogInterface.OnClickListener(){public void onClick(DialogInterface d,int i){
+        new AlertDialog.Builder(new android.view.ContextThemeWrapper(this,android.R.style.Theme_Holo_Dialog)).setTitle("直播分类").setItems(names,new DialogInterface.OnClickListener(){public void onClick(DialogInterface d,int i){
             if(names[i].equals("NBA 官方入口")){
                 try{startActivity(new Intent(Intent.ACTION_VIEW,Uri.parse("https://www.nba.com/watch")));}
                 catch(ActivityNotFoundException e){note("此设备没有可打开 NBA 官网的浏览器");}
@@ -251,10 +277,29 @@ public class MainActivity extends Activity {
         final int ticket=++requestId;mode="movie";note("正在读取点播列表…");
         executor.execute(new Runnable(){public void run(){try{
             if(api().trim().isEmpty())throw new IOException("请在配置中填写有权使用的 MacCMS JSON 点播接口");
-            JSONObject json=new JSONObject(Net.text(query(api(),"ac=detail&pg="+moviePage+"&wd="+URLEncoder.encode(movieQuery,"UTF-8"))));
+            String type="";
+            if(!mediaCategory.isEmpty()){
+                JSONObject index=new JSONObject(Net.text(api()));
+                JSONArray types=index.optJSONArray("class");
+                if(types!=null)for(int i=0;i<types.length();i++){
+                    JSONObject item=types.getJSONObject(i);
+                    if(categoryOf(item.optString("type_name")).equals(mediaCategory)){type=item.optString("type_id");break;}
+                }
+                if(type.isEmpty())throw new IOException("当前源未提供"+mediaCategory+"分类");
+            }
+            JSONObject json=new JSONObject(Net.text(query(api(),"ac=detail&pg="+moviePage+"&t="+type+"&wd="+URLEncoder.encode(movieQuery,"UTF-8"))));
             final ArrayList<Entry> result=movieEntries(json);final int pages=Math.max(1,json.optInt("pagecount",1));
             runOnUiThread(new Runnable(){public void run(){if(ticket!=requestId||isFinishing())return;movies.clear();movies.addAll(result);moviePages=pages;rows(movies,"点播 第 "+moviePage+" / "+moviePages+" 页");}});
         }catch(final Exception e){error(ticket,e);}}});
+    }
+    String categoryOf(String name){
+        if(name.matches(".*(漫剧|动态漫画).*"))return "漫剧";
+        if(name.contains("短剧"))return "短剧";
+        if(name.matches(".*(纪录|纪实).*"))return "纪录片";
+        if(name.matches(".*(动漫|动画|番剧).*"))return "动漫";
+        if(name.matches(".*(电影|动作片|喜剧片|爱情片|科幻片|恐怖片|剧情片|战争片).*"))return "电影";
+        if(name.matches(".*(剧集|连续剧|电视剧|剧$).*"))return "剧集";
+        return "其它";
     }
     ArrayList<Entry> movieEntries(JSONObject json)throws Exception{
         JSONArray values=json.optJSONArray("list");if(values==null)throw new IOException("接口没有返回 JSON list 列表");
@@ -283,7 +328,7 @@ public class MainActivity extends Activity {
     void error(final int ticket,final Exception e){runOnUiThread(new Runnable(){public void run(){if(ticket==requestId&&!isFinishing())note("读取失败："+e.getClass().getSimpleName()+" "+e.getMessage()+"；可在配置中切换源");}});}
     void search(){
         final EditText input=new EditText(this);input.setSingleLine(true);input.setHint(mode.equals("live")?"频道名称":"电影或电视剧名称");
-        new AlertDialog.Builder(this).setTitle("搜索").setView(input).setPositiveButton("搜索",new DialogInterface.OnClickListener(){public void onClick(DialogInterface d,int w){
+        new AlertDialog.Builder(new android.view.ContextThemeWrapper(this,android.R.style.Theme_Holo_Dialog)).setTitle("搜索").setView(input).setPositiveButton("搜索",new DialogInterface.OnClickListener(){public void onClick(DialogInterface d,int w){
             String word=input.getText().toString().trim();if(mode.equals("live")){ArrayList<Entry> result=new ArrayList<Entry>();for(Entry e:channels)if(e.name.toLowerCase(Locale.US).contains(word.toLowerCase(Locale.US)))result.add(e);rows(result,"频道搜索");}
             else{movieQuery=word;moviePage=1;loadMovies();}
         }}).setNeutralButton("语音输入",new DialogInterface.OnClickListener(){public void onClick(DialogInterface d,int w){
@@ -309,7 +354,7 @@ public class MainActivity extends Activity {
     }
     void direct(){
         final EditText input=new EditText(this);input.setSingleLine(true);input.setHint("https://…/video.m3u8 或 .mp4");input.setText(setting("direct",""));
-        new AlertDialog.Builder(this).setTitle("播放视频地址").setView(input).setPositiveButton("播放",new DialogInterface.OnClickListener(){public void onClick(DialogInterface d,int w){String url=input.getText().toString().trim();prefs.edit().putString("direct",url).apply();play(new Entry("视频地址",url,"",""));}}).setNegativeButton("取消",null).show();
+        new AlertDialog.Builder(new android.view.ContextThemeWrapper(this,android.R.style.Theme_Holo_Dialog)).setTitle("播放视频地址").setView(input).setPositiveButton("播放",new DialogInterface.OnClickListener(){public void onClick(DialogInterface d,int w){String url=input.getText().toString().trim();prefs.edit().putString("direct",url).apply();play(new Entry("视频地址",url,"",""));}}).setNegativeButton("取消",null).show();
     }
     EditText field(LinearLayout root,String label,String value){root.addView(text(label,17));EditText input=new EditText(this);input.setSingleLine(true);input.setText(value);root.addView(input);return input;}
     boolean address(String value){return value.isEmpty()||value.startsWith("http://")||value.startsWith("https://");}
@@ -319,14 +364,14 @@ public class MainActivity extends Activity {
         final EditText live=field(content,"直播列表 URL（M3U / 频道TXT）",setting("live",""));
         final EditText vod=field(content,"点播 API URL",api());
         ScrollView scroll=new ScrollView(this);scroll.addView(content);
-        final AlertDialog dialog=new AlertDialog.Builder(this).setTitle("视频源配置").setView(scroll).setPositiveButton("保存",null).setNeutralButton("恢复内置",new DialogInterface.OnClickListener(){public void onClick(DialogInterface d,int w){prefs.edit().remove("live").remove("vod").apply();mode="live";group="全部";loadLive();}}).setNegativeButton("取消",null).create();
+        final AlertDialog dialog=new AlertDialog.Builder(new android.view.ContextThemeWrapper(this,android.R.style.Theme_Holo_Dialog)).setTitle("视频源配置").setView(scroll).setPositiveButton("保存",null).setNeutralButton("恢复内置",new DialogInterface.OnClickListener(){public void onClick(DialogInterface d,int w){prefs.edit().remove("live").remove("vod").apply();mode="live";group="全部";loadLive();}}).setNegativeButton("取消",null).create();
         dialog.show();dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener(){public void onClick(View v){
             String a=live.getText().toString().trim(),b=vod.getText().toString().trim();
             if(!address(a)||!address(b)){Toast.makeText(MainActivity.this,"地址需以 http:// 或 https:// 开头",Toast.LENGTH_LONG).show();return;}
             prefs.edit().putString("live",a).putString("vod",b).apply();dialog.dismiss();group="全部";if(mode.equals("live"))loadLive();else{mode="movie";moviePage=1;loadMovies();}
         }});
     }
-    void about(){new AlertDialog.Builder(this).setTitle("敖丙视界兼容版 "+VERSION).setMessage("开发者：Rios敖丙\n\n当前 API："+Build.VERSION.SDK_INT+"\n架构："+Build.CPU_ABI+"\n\n适配 API19+，使用系统播放器。高码率、HEVC及部分直播格式能否播放，取决于盒子硬件和固件。直播列表为候选快照，源站可能变动。\n\n本兼容版采用 GPL-3.0 许可，源列表沿用原有来源署名；其他版本第三方许可不变。").setPositiveButton("知道了",null).show();}
+    void about(){new AlertDialog.Builder(new android.view.ContextThemeWrapper(this,android.R.style.Theme_Holo_Dialog)).setTitle("敖丙视界兼容版 "+VERSION).setMessage("开发者：Rios敖丙\n\n当前 API："+Build.VERSION.SDK_INT+"\n架构："+Build.CPU_ABI+"\n\n适配 API19+，使用系统播放器。高码率、HEVC及部分直播格式能否播放，取决于盒子硬件和固件。直播列表为候选快照，源站可能变动。\n\n本兼容版采用 GPL-3.0 许可，源列表沿用原有来源署名；其他版本第三方许可不变。").setPositiveButton("知道了",null).show();}
     void play(final Entry entry){
         try{
             if(!entry.url.startsWith("http://")&&!entry.url.startsWith("https://"))throw new IOException("此地址不是可直接播放的 HTTP 视频");
@@ -356,7 +401,7 @@ public class MainActivity extends Activity {
     }
     void backFromPlayer(){++requestId;if(video!=null)video.stopPlayback();ArrayList<Entry> saved=beforePlayback;home();if(saved!=null)rows(saved,mode.equals("live")?"直播":"点播 / 剧集");}
     void playbackMenu(){
-        new AlertDialog.Builder(this).setTitle(currentName).setItems(new String[]{"暂停 / 继续","后退15秒","前进15秒","使用其他播放器","返回列表","重新连接"},new DialogInterface.OnClickListener(){public void onClick(DialogInterface d,int which){
+        new AlertDialog.Builder(new android.view.ContextThemeWrapper(this,android.R.style.Theme_Holo_Dialog)).setTitle(currentName).setItems(new String[]{"暂停 / 继续","后退15秒","前进15秒","使用其他播放器","返回列表","重新连接"},new DialogInterface.OnClickListener(){public void onClick(DialogInterface d,int which){
             if(which==0)toggle();else if(which==1)seek(-15000);else if(which==2)seek(15000);else if(which==3){
                 Intent intent=new Intent(Intent.ACTION_VIEW);intent.setDataAndType(Uri.parse(currentUrl),"video/*");
                 if(intent.resolveActivity(getPackageManager())!=null){if(video!=null)video.pause();startActivity(intent);}else Toast.makeText(MainActivity.this,"没有其他可用的视频播放器",Toast.LENGTH_LONG).show();
@@ -378,7 +423,7 @@ public class MainActivity extends Activity {
             if(active)selected=i;
             labels[i]=(active?"▶ ":"")+choice.name;
         }
-        AlertDialog picker=new AlertDialog.Builder(this).setTitle("选集")
+        AlertDialog picker=new AlertDialog.Builder(new android.view.ContextThemeWrapper(this,android.R.style.Theme_Holo_Dialog)).setTitle("选集")
             .setSingleChoiceItems(labels,selected,new DialogInterface.OnClickListener(){public void onClick(DialogInterface dialog,int index){
                 dialog.dismiss();
                 Entry choice=choices.get(index);
@@ -401,11 +446,11 @@ public class MainActivity extends Activity {
             groups.get(entry.group).add(entry);
         }
         final String[] names=groups.keySet().toArray(new String[groups.size()]);
-        new AlertDialog.Builder(this).setTitle("直播分类").setItems(names,new DialogInterface.OnClickListener(){public void onClick(DialogInterface dialog,int groupIndex){
+        new AlertDialog.Builder(new android.view.ContextThemeWrapper(this,android.R.style.Theme_Holo_Dialog)).setTitle("直播分类").setItems(names,new DialogInterface.OnClickListener(){public void onClick(DialogInterface dialog,int groupIndex){
             final ArrayList<Entry> choices=groups.get(names[groupIndex]);
             String[] labels=new String[choices.size()];
             for(int i=0;i<labels.length;i++)labels[i]=(choices.get(i).url.equals(currentUrl)?"▶ ":"")+choices.get(i).name;
-            new AlertDialog.Builder(MainActivity.this).setTitle(names[groupIndex])
+            new AlertDialog.Builder(new android.view.ContextThemeWrapper(MainActivity.this,android.R.style.Theme_Holo_Dialog)).setTitle(names[groupIndex])
                 .setItems(labels,new DialogInterface.OnClickListener(){public void onClick(DialogInterface picker,int index){
                     if(choices.get(index).url.equals(currentUrl))return;
                     if(video!=null)video.stopPlayback();
@@ -432,7 +477,7 @@ public class MainActivity extends Activity {
         }
         return super.onKeyDown(key,event);
     }
-    @Override public void onBackPressed(){if(playing)backFromPlayer();else if(mode.equals("episodes")){mode="movie";rows(movies,"点播 第 "+moviePage+" 页");}else new AlertDialog.Builder(this).setMessage("退出敖丙视界？").setPositiveButton("退出",new DialogInterface.OnClickListener(){public void onClick(DialogInterface d,int w){finish();}}).setNegativeButton("取消",null).show();}
+    @Override public void onBackPressed(){if(playing)backFromPlayer();else if(mode.equals("episodes")){mode="movie";rows(movies,"点播 第 "+moviePage+" 页");}else new AlertDialog.Builder(new android.view.ContextThemeWrapper(this,android.R.style.Theme_Holo_Dialog)).setMessage("退出敖丙视界？").setPositiveButton("退出",new DialogInterface.OnClickListener(){public void onClick(DialogInterface d,int w){finish();}}).setNegativeButton("取消",null).show();}
     @Override protected void onPause(){if(video!=null)video.pause();super.onPause();}
     @Override protected void onDestroy(){++requestId;if(video!=null)video.stopPlayback();if(proxy!=null)proxy.close();executor.shutdownNow();artwork.shutdownNow();super.onDestroy();}
 }
