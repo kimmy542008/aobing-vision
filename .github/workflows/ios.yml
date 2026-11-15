@@ -1,0 +1,21 @@
+name: Validate iPhone and iPad app
+on:
+  push:
+    paths: ['ios/**', '.github/workflows/ios.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  ios:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: brew install xcodegen
+      - run: xcodegen generate
+        working-directory: ios
+      - name: Compile unsigned simulator app
+        run: xcodebuild -project ios/AobingVision.xcodeproj -scheme AobingVision -sdk iphonesimulator -configuration Debug -derivedDataPath ios-build CODE_SIGNING_ALLOWED=NO build
+      - uses: actions/upload-artifact@v4
+        with:
+          name: iPhone-iPad-simulator-app
+          path: ios-build/Build/Products/Debug-iphonesimulator/AobingVision.app

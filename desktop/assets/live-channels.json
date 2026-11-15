@@ -1,5 +1,15 @@
 [
   {
+    "name": "CCTV+ 2 (600p) [Not 24/7]",
+    "category": "央视新闻素材",
+    "url": "https://cd-live-stream.news.cctvplus.com/live/smil:CHANNEL2.smil/playlist.m3u8"
+  },
+  {
+    "name": "CCTV+ 1 (600p) [Not 24/7]",
+    "category": "央视新闻素材",
+    "url": "https://cd-live-stream.news.cctvplus.com/live/smil:CHANNEL1.smil/playlist.m3u8"
+  },
+  {
     "name": "湖南卫视 (2160p)",
     "category": "卫视",
     "url": "http://hlsal-ldvt.qing.mgtv.com/nn_live/nn_x64/dWlwPTEyNy4wLjAuMSZ1aWQ9cWluZy1jbXMmbm5fdGltZXpvbmU9OCZjZG5leF9pZD1hbF9obHNfbGR2dCZ1dWlkPTliODY4NmU5ZTM2YzYwMmMmZT02OTE0NjA0JnY9MSZpZD1ITldTWkdTVCZzPTcwN2RiYTc2YzJjNmJmMTQ4MmUyZGYzOWU2NWM3YWFi/HNWSZGST.m3u8",
@@ -82,46 +92,6 @@
     "check": "playlist-and-segment"
   },
   {
-    "name": "CCTV-Weapon & Technology (1080p)",
-    "category": "央视",
-    "url": "http://38.75.136.137:98/gslb/dsdqpub/gfjs.m3u8?auth=testpub",
-    "quality": "1080",
-    "logo": "https://i.imgur.com/QlF96eS.png",
-    "latency": 1568,
-    "checkedAt": "2026-11-02T12:25:01.333Z",
-    "check": "playlist-and-segment"
-  },
-  {
-    "name": "CCTV-Storm Football (1080p)",
-    "category": "央视",
-    "url": "http://38.75.136.137:98/gslb/dsdqpub/fyzq.m3u8?auth=testpub",
-    "quality": "1080",
-    "logo": "https://i.imgur.com/Fy6HkX0.png",
-    "latency": 1578,
-    "checkedAt": "2026-11-02T12:25:01.200Z",
-    "check": "playlist-and-segment"
-  },
-  {
-    "name": "CCTV-Storm Theater (1080p)",
-    "category": "央视",
-    "url": "http://38.75.136.137:98/gslb/dsdqpub/fyjc.m3u8?auth=testpub",
-    "quality": "1080",
-    "logo": "https://i.imgur.com/rEttkKm.png",
-    "latency": 1602,
-    "checkedAt": "2026-11-02T12:25:01.332Z",
-    "check": "playlist-and-segment"
-  },
-  {
-    "name": "CCTV-16 HD (1080p)",
-    "category": "央视",
-    "url": "http://74.91.26.218:82/live/cctv16hd.m3u8",
-    "quality": "1080",
-    "logo": "https://i.imgur.com/ZzV6JQp.png",
-    "latency": 1639,
-    "checkedAt": "2026-11-02T12:25:00.043Z",
-    "check": "playlist-and-segment"
-  },
-  {
     "name": "Dukh Nivaran (720p) [Not 24/7]",
     "category": "文化",
     "url": "http://cdn12.henico.net:8080/live/dncal/index.m3u8",
@@ -153,26 +123,6 @@
     "check": "playlist-and-segment"
   },
   {
-    "name": "CCTV-10 (720p)",
-    "category": "央视",
-    "url": "http://74.91.26.218:82/live/cctv10hd.m3u8",
-    "quality": "720",
-    "logo": "https://i.imgur.com/sSSO7UD.png",
-    "latency": 1692,
-    "checkedAt": "2026-11-02T12:24:59.730Z",
-    "check": "playlist-and-segment"
-  },
-  {
-    "name": "CCTV-Golf & Tennis (1080p)",
-    "category": "央视",
-    "url": "http://38.75.136.137:98/gslb/dsdqpub/gefwq.m3u8?auth=testpub",
-    "quality": "1080",
-    "logo": "https://i.imgur.com/iqJJTmH.png",
-    "latency": 1759,
-    "checkedAt": "2026-11-02T12:25:00.698Z",
-    "check": "playlist-and-segment"
-  },
-  {
     "name": "Antenne Kaernten (720p)",
     "category": "音乐",
     "url": "https://60efd7a2b4d02.streamlock.net/a_kaernten/ngrp:livestream_all/playlist.m3u8",
@@ -190,16 +140,6 @@
     "logo": "https://i.imgur.com/TpCkbkT.png",
     "latency": 1800,
     "checkedAt": "2026-11-02T12:25:40.677Z",
-    "check": "playlist-and-segment"
-  },
-  {
-    "name": "CCTV-8K HD (1080p)",
-    "category": "央视",
-    "url": "http://192.151.150.154/live/cctv8k.m3u8",
-    "quality": "1080",
-    "logo": "https://i.imgur.com/fxVPMJF.png",
-    "latency": 1802,
-    "checkedAt": "2026-11-02T12:24:59.765Z",
     "check": "playlist-and-segment"
   },
   {
@@ -233,16 +173,6 @@
     "check": "playlist-and-segment"
   },
   {
-    "name": "CCTV-Culture of Quality SD (1080p)",
-    "category": "央视",
-    "url": "http://38.75.136.137:98/gslb/dsdqpub/ysjp.m3u8?auth=testpub",
-    "quality": "1080",
-    "logo": "https://i.imgur.com/Paig8gG.png",
-    "latency": 1920,
-    "checkedAt": "2026-11-02T12:25:00.642Z",
-    "check": "playlist-and-segment"
-  },
-  {
     "name": "Nei Monggol TV (960p)",
     "category": "地方台",
     "url": "https://cdn4.skygo.mn/live/disk1/NeigMGL/HLSv3-FTA/NeigMGL.m3u8",
@@ -250,16 +180,6 @@
     "logo": "https://i.imgur.com/WeugJBE.png",
     "latency": 1958,
     "checkedAt": "2026-11-02T12:25:05.214Z",
-    "check": "playlist-and-segment"
-  },
-  {
-    "name": "CCTV-3 (720p)",
-    "category": "央视",
-    "url": "http://74.91.26.218:82/live/cctv3hd.m3u8",
-    "quality": "720",
-    "logo": "https://i.imgur.com/iFlkIuw.png",
-    "latency": 1979,
-    "checkedAt": "2026-11-02T12:24:59.932Z",
     "check": "playlist-and-segment"
   },
   {
@@ -290,26 +210,6 @@
     "logo": "https://i.imgur.com/GET9Qut.png",
     "latency": 2033,
     "checkedAt": "2026-11-02T12:25:27.286Z",
-    "check": "playlist-and-segment"
-  },
-  {
-    "name": "CCTV-Billiards (1080p)",
-    "category": "央视",
-    "url": "http://38.75.136.137:98/gslb/dsdqpub/ystq.m3u8?auth=testpub",
-    "quality": "1080",
-    "logo": "https://i.imgur.com/WK3keM9.png",
-    "latency": 2069,
-    "checkedAt": "2026-11-02T12:25:00.599Z",
-    "check": "playlist-and-segment"
-  },
-  {
-    "name": "CCTV-Nostalgia Theater (1080p)",
-    "category": "央视",
-    "url": "http://38.75.136.137:98/gslb/dsdqpub/hjjc.m3u8?auth=testpub",
-    "quality": "1080",
-    "logo": "https://i.imgur.com/TVs9PBc.png",
-    "latency": 2145,
-    "checkedAt": "2026-11-02T12:25:01.389Z",
     "check": "playlist-and-segment"
   },
   {
@@ -360,16 +260,6 @@
     "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/%C4%8CT_sport_logo.png/960px-%C4%8CT_sport_logo.png",
     "latency": 2223,
     "checkedAt": "2026-11-02T12:25:52.015Z",
-    "check": "playlist-and-segment"
-  },
-  {
-    "name": "CCTV-Women's Fashion SD (1080p)",
-    "category": "央视",
-    "url": "http://38.75.136.137:98/gslb/dsdqpub/nxss.m3u8?auth=testpub",
-    "quality": "1080",
-    "logo": "https://i.imgur.com/FVbP0aP.png",
-    "latency": 2256,
-    "checkedAt": "2026-11-02T12:26:26.978Z",
     "check": "playlist-and-segment"
   },
   {
@@ -563,26 +453,6 @@
     "check": "playlist-and-segment"
   },
   {
-    "name": "CCTV-The First Theater (1080p)",
-    "category": "央视",
-    "url": "http://38.75.136.137:98/gslb/dsdqpub/dyjc.m3u8?auth=testpub",
-    "quality": "1080",
-    "logo": "https://i.imgur.com/eFxD3hq.png",
-    "latency": 2791,
-    "checkedAt": "2026-11-02T12:25:02.530Z",
-    "check": "playlist-and-segment"
-  },
-  {
-    "name": "CCTV-Health (1080p)",
-    "category": "央视",
-    "url": "http://38.75.136.137:98/gslb/dsdqpub/wsjk.m3u8?auth=testpub",
-    "quality": "1080",
-    "logo": "https://i.imgur.com/AzpRtCz.png",
-    "latency": 2799,
-    "checkedAt": "2026-11-02T12:26:27.395Z",
-    "check": "playlist-and-segment"
-  },
-  {
     "name": "AfroLandTV (1080p)",
     "category": "娱乐",
     "url": "https://alt-al.otteravision.com/alt/al/al.m3u8",
@@ -640,16 +510,6 @@
     "logo": "https://upload.wikimedia.org/wikipedia/commons/e/e3/2024_Disney_Jr._Logo.svg",
     "latency": 2901,
     "checkedAt": "2026-11-02T12:26:15.551Z",
-    "check": "playlist-and-segment"
-  },
-  {
-    "name": "CCTV-World Geography SD (1080p)",
-    "category": "央视",
-    "url": "http://38.75.136.137:98/gslb/dsdqpub/sjdl.m3u8?auth=testpub",
-    "quality": "1080",
-    "logo": "https://i.imgur.com/V2ncOXi.png",
-    "latency": 2904,
-    "checkedAt": "2026-11-02T12:25:02.836Z",
     "check": "playlist-and-segment"
   },
   {
@@ -983,16 +843,6 @@
     "check": "playlist-and-segment"
   },
   {
-    "name": "CCTV-12 (720p)",
-    "category": "央视",
-    "url": "http://74.91.26.218:82/live/cctv12hd.m3u8",
-    "quality": "720",
-    "logo": "https://i.imgur.com/3yTuiOM.png",
-    "latency": 3658,
-    "checkedAt": "2026-11-02T12:26:28.103Z",
-    "check": "playlist-and-segment"
-  },
-  {
     "name": "ATG Live (720p)",
     "category": "体育",
     "url": "https://kanal75xto-llhls.akamaized.net/live/Data/atg-kanal-15-02a-rr/HLS-Legacy-HL/atg-kanal-15-02a-rr.m3u8",
@@ -1100,16 +950,6 @@
     "logo": "https://i.imgur.com/iOnWS6V.png",
     "latency": 3922,
     "checkedAt": "2026-11-02T12:27:11.699Z",
-    "check": "playlist-and-segment"
-  },
-  {
-    "name": "CCTV-7 (720p)",
-    "category": "央视",
-    "url": "http://74.91.26.218:82/live/cctv7hd.m3u8",
-    "quality": "720",
-    "logo": "https://i.imgur.com/CKcPMQC.png",
-    "latency": 3978,
-    "checkedAt": "2026-11-02T12:25:01.932Z",
     "check": "playlist-and-segment"
   },
   {
@@ -2070,125 +1910,6 @@
     "url": "http://223.111.191.105/downflv.brtvcloud.com/kkkkasd/winfr.m3u8",
     "logo": "https://i.imgur.com/t8X4wPZ.png",
     "quality": ""
-  },
-  {
-    "name": "CCTV+ 1 (600p) [Not 24/7]",
-    "category": "央视",
-    "url": "https://cd-live-stream.news.cctvplus.com/live/smil:CHANNEL1.smil/playlist.m3u8",
-    "logo": "https://i.imgur.com/U8d4Is6.png",
-    "quality": "600"
-  },
-  {
-    "name": "CCTV+ 2 (600p) [Not 24/7]",
-    "category": "央视",
-    "url": "https://cd-live-stream.news.cctvplus.com/live/smil:CHANNEL2.smil/playlist.m3u8",
-    "logo": "https://i.imgur.com/qSg862A.png",
-    "quality": "600"
-  },
-  {
-    "name": "CCTV-1 (720p)",
-    "category": "央视",
-    "url": "http://74.91.26.218:82/live/cctv1hd.m3u8",
-    "logo": "https://i.imgur.com/TpA3cUl.png",
-    "quality": "720"
-  },
-  {
-    "name": "CCTV-1 HD (1080p)",
-    "category": "央视",
-    "url": "http://69.30.245.50/live/cctv1.m3u8",
-    "logo": "https://i.imgur.com/TpA3cUl.png",
-    "quality": "1080"
-  },
-  {
-    "name": "CCTV-2 (720p)",
-    "category": "央视",
-    "url": "http://74.91.26.218:82/live/cctv2hd.m3u8",
-    "logo": "https://i.imgur.com/ILamhwU.png",
-    "quality": "720"
-  },
-  {
-    "name": "CCTV-4K HD (1080p)",
-    "category": "央视",
-    "url": "http://198.204.240.250:82/live/cctv4k.m3u8",
-    "logo": "https://i.imgur.com/fxusYlX.png",
-    "quality": "1080"
-  },
-  {
-    "name": "CCTV-5+ (1080p)",
-    "category": "央视",
-    "url": "https://php.jdshipin.com/TVOD/iptv.php?id=cctv5p",
-    "logo": "https://i.imgur.com/OK8mdJV.png",
-    "quality": "1080"
-  },
-  {
-    "name": "CCTV-6 HD (1080p)",
-    "category": "央视",
-    "url": "http://69.30.245.50/live/cctv6.m3u8",
-    "logo": "https://i.imgur.com/rFiaef7.png",
-    "quality": "1080"
-  },
-  {
-    "name": "CCTV-8 (720p)",
-    "category": "央视",
-    "url": "http://74.91.26.218:82/live/cctv8hd.m3u8",
-    "logo": "https://i.imgur.com/GyHaZ8X.png",
-    "quality": "720"
-  },
-  {
-    "name": "CCTV-9 (576i)",
-    "category": "央视",
-    "url": "https://xykt-fix.github.io/Y77.m3u8",
-    "logo": "https://i.imgur.com/3tivvMm.png",
-    "quality": ""
-  },
-  {
-    "name": "CCTV-11 (720p)",
-    "category": "央视",
-    "url": "http://74.91.26.218:82/live/cctv11hd.m3u8",
-    "logo": "https://i.imgur.com/CjOWx7L.png",
-    "quality": "720"
-  },
-  {
-    "name": "CCTV-13 (720p)",
-    "category": "央视",
-    "url": "http://74.91.26.218:82/live/cctv13hd.m3u8",
-    "logo": "https://i.imgur.com/6MTar6J.png",
-    "quality": "720"
-  },
-  {
-    "name": "CCTV-13 HD (1080p)",
-    "category": "央视",
-    "url": "http://go.bkpcp.top/mg/cctv13",
-    "logo": "https://i.imgur.com/6MTar6J.png",
-    "quality": "1080"
-  },
-  {
-    "name": "CCTV-14 HD (1080p)",
-    "category": "央视",
-    "url": "http://74.91.26.218:82/live/cctv14hd.m3u8",
-    "logo": "https://i.imgur.com/c5SXW7i.png",
-    "quality": "1080"
-  },
-  {
-    "name": "CCTV-15 (720p)",
-    "category": "央视",
-    "url": "http://74.91.26.218:82/live/cctv15hd.m3u8",
-    "logo": "https://i.imgur.com/CCV0eRG.png",
-    "quality": "720"
-  },
-  {
-    "name": "CCTV-17 HD (1080p)",
-    "category": "央视",
-    "url": "http://74.91.26.218:82/live/cctv17hd.m3u8",
-    "logo": "https://i.imgur.com/jSQURxS.png",
-    "quality": "1080"
-  },
-  {
-    "name": "CCTV-Storm Music (1080p)",
-    "category": "央视",
-    "url": "http://38.75.136.137:98/gslb/dsdqpub/fyyy.m3u8?auth=testpub",
-    "logo": "https://i.imgur.com/IiiRmrf.png",
-    "quality": "1080"
   },
   {
     "name": "CETV-1 (576p)",
@@ -3602,13 +3323,6 @@
     "category": "地方台",
     "url": "https://stream2.jlntv.cn/baicheng1/sd/live.m3u8",
     "logo": "https://www.tvchinese.net/uploads/tv/baicheng.jpg",
-    "quality": ""
-  },
-  {
-    "name": "CCTV-6 [Geo-blocked]",
-    "category": "央视",
-    "url": "https://live.eac-news.com/CCTV/streams/cctv6.m3u8",
-    "logo": "https://i.imgur.com/rFiaef7.png",
     "quality": ""
   },
   {

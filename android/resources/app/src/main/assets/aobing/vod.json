@@ -5,7 +5,7 @@
       "url": "assets://aobing/live-global.m3u"
     },
     {
-      "name": "央视精选 · 内置快照",
+      "name": "CCTV+ 官方新闻素材",
       "url": "assets://aobing/live-snapshot.m3u",
       "timeZone": "Asia/Shanghai",
       "boot": false
@@ -17,8 +17,8 @@
       "boot": false
     },
     {
-      "name": "IPTV-org · 在线中国频道列表",
-      "url": "https://iptv-org.github.io/iptv/countries/cn.m3u",
+      "name": "在线已清理频道清单",
+      "url": "https://raw.githubusercontent.com/kimmy542008/aobing-vision/main/android/resources/app/src/main/assets/aobing/live-global.m3u",
       "timeZone": "Asia/Shanghai",
       "boot": false
     },

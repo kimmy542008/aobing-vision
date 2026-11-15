@@ -2,7 +2,7 @@ const {app,BrowserWindow,ipcMain,dialog,nativeImage,shell}=require('electron');
 const fs=require('node:fs'),path=require('node:path'),http=require('node:http'),crypto=require('node:crypto');
 const root=__dirname,token=crypto.randomBytes(24).toString('hex');let win,server,base,settings;
 const defaults={api:'https://api.changzhang.tv/api.php/provide/vod/from/changzhangm3u8/',live:''};
-const liveSubscriptions={中国:'https://iptv-org.github.io/iptv/countries/cn.m3u',香港:'https://iptv-org.github.io/iptv/countries/hk.m3u',台湾:'https://iptv-org.github.io/iptv/countries/tw.m3u',体育:'https://iptv-org.github.io/iptv/categories/sports.m3u'};
+const liveSubscriptions={中国:'https://raw.githubusercontent.com/kimmy542008/aobing-vision/main/android/resources/app/src/main/assets/aobing/live-global.m3u',香港:'https://iptv-org.github.io/iptv/countries/hk.m3u',台湾:'https://iptv-org.github.io/iptv/countries/tw.m3u',体育:'https://iptv-org.github.io/iptv/categories/sports.m3u'};
 const blocked=/伦理|三级|两性|写真|福利|成人|情色|擦边/;
 function valid(raw){const u=new URL(raw);if(!['http:','https:'].includes(u.protocol)||u.username||u.password)throw Error('只支持 HTTP(S) 地址');return u.href}
 async function get(url,kind='text'){const r=await fetch(valid(url),{signal:AbortSignal.timeout(18000),headers:{'User-Agent':'Mozilla/5.0'}});if(!r.ok)throw Error('源返回 HTTP '+r.status);return kind==='json'?r.json():r.text()}
