@@ -11,6 +11,8 @@ APP_AUTHOR := Rios敖丙
 APP_VERSION := 0.1.0
 TOPDIR ?= $(CURDIR)
 include $(DEVKITPRO)/libnx/switch_rules
+export PKG_CONFIG_LIBDIR := $(DEVKITPRO)/portlibs/switch/lib/pkgconfig
+export PKG_CONFIG_PATH := $(PKG_CONFIG_LIBDIR)
 
 #---------------------------------------------------------------------------------
 # TARGET is the name of the output

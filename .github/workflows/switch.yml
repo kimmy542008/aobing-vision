@@ -42,5 +42,30 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: Switch-homebrew-prototype-0.1.0
-          path: installer/switch/*.zip
+          path: |
+            installer/switch/*.zip
+            installer/switch/SHA256SUMS.txt
           if-no-files-found: error
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: Switch-homebrew-prototype-0.1.0
+          path: release-assets
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            const fs=require('fs');
+            const tag='switch-v0.1.0';
+            const body='敖丙视界 Switch 自制软件原型 0.1.0。仅适用于已能运行自制软件的初代 Switch，解压 ZIP 到 SD 根目录，通过现有启动器运行 NRO。\n\n提供手柄导航、M3U 直播分类、JSON 点播接口配置与搜索、选集、FFmpeg/SDL 内置播放。采用软件解码，尚无硬件加速；不是电视版全部功能的移植，未经过 Switch 真机播放验证，不保证高清流畅。\n\n具体操作和限制见包内 README，匹配源代码及 SHA256 随附。开发者 Rios敖丙。';
+            let release;
+            try { release=(await github.rest.repos.getReleaseByTag({...context.repo,tag})).data; }
+            catch(e) { if(e.status!==404)throw e; release=(await github.rest.repos.createRelease({...context.repo,tag_name:tag,target_commitish:context.sha,name:'敖丙视界 Switch 自制软件原型 0.1.0',body,prerelease:true})).data; }
+            for(const name of fs.readdirSync('release-assets')) {
+              if(release.assets.some(a=>a.name===name))throw new Error('Preserve existing asset: '+name);
+              await github.rest.repos.uploadReleaseAsset({...context.repo,release_id:release.id,name,data:fs.readFileSync('release-assets/'+name)});
+            }
