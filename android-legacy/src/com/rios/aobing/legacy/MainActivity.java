@@ -17,7 +17,8 @@ import java.util.concurrent.*;
 
 /** Standalone API19 edition; no AndroidX, Media3, WebView or native ABI dependencies. */
 public class MainActivity extends Activity {
-    static final String VERSION="0.4.13";
+    static final String VERSION="0.4.14";
+    JSONObject channelLogos=new JSONObject();
     final ExecutorService executor=Executors.newSingleThreadExecutor();
     final ArrayList<Entry> channels=new ArrayList<Entry>();
     final ArrayList<Entry> shown=new ArrayList<Entry>();
@@ -49,6 +50,7 @@ public class MainActivity extends Activity {
         super.onCreate(state);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         prefs=getSharedPreferences("aobing-legacy",MODE_PRIVATE);
+        try{channelLogos=new JSONObject(asset("channel-logos.json"));}catch(Exception ignored){}
         try {
             InputStream root = getAssets().open("isrgrootx1.pem");
             try { Net.configureTrust(root); } finally { root.close(); }
@@ -225,13 +227,17 @@ public class MainActivity extends Activity {
         note(label+" · "+values.size()+" 项");
         if(!values.isEmpty()){list.setSelection(0);}
     }
-    final android.util.LruCache<String,android.graphics.Bitmap> posters=new android.util.LruCache<String,android.graphics.Bitmap>(40);
+    final android.util.LruCache<String,android.graphics.Bitmap> posters=new android.util.LruCache<String,android.graphics.Bitmap>(8*1024*1024){
+        @Override protected int sizeOf(String key,android.graphics.Bitmap bitmap){return bitmap.getByteCount();}
+    };
     final ThreadPoolExecutor artwork=new ThreadPoolExecutor(2,2,0L,TimeUnit.MILLISECONDS,
         new ArrayBlockingQueue<Runnable>(20),new ThreadPoolExecutor.DiscardOldestPolicy());
     void loadPoster(final String url,final ImageView target){
         target.setTag(url);
+        final int maxSize=target==heroArtwork?768:256;
+        final String cacheKey=url+"@"+maxSize;
         if(!url.startsWith("https://")&&!url.startsWith("http://"))return;
-        android.graphics.Bitmap cached=posters.get(url);
+        android.graphics.Bitmap cached=posters.get(cacheKey);
         if(cached!=null){target.setImageBitmap(cached);return;}
         artwork.execute(new Runnable(){public void run(){
             HttpURLConnection connection=null;
@@ -245,10 +251,10 @@ public class MainActivity extends Activity {
                 android.graphics.BitmapFactory.decodeByteArray(bytes,0,bytes.length,options);
                 if(options.outWidth<=0||options.outHeight<=0)return;
                 options.inSampleSize=1;
-                while(Math.max(options.outWidth,options.outHeight)/options.inSampleSize>256)options.inSampleSize*=2;
+                while(Math.max(options.outWidth,options.outHeight)/options.inSampleSize>maxSize)options.inSampleSize*=2;
                 options.inJustDecodeBounds=false;
                 final android.graphics.Bitmap bitmap=android.graphics.BitmapFactory.decodeByteArray(bytes,0,bytes.length,options);
-                if(bitmap!=null){posters.put(url,bitmap);runOnUiThread(new Runnable(){public void run(){if(!isFinishing()&&url.equals(target.getTag()))target.setImageBitmap(bitmap);}});}
+                if(bitmap!=null){posters.put(cacheKey,bitmap);runOnUiThread(new Runnable(){public void run(){if(!isFinishing()&&url.equals(target.getTag()))target.setImageBitmap(bitmap);}});}
             }catch(Exception ignored){}finally{if(connection!=null)connection.disconnect();}
         }});
     }
@@ -271,7 +277,7 @@ public class MainActivity extends Activity {
                 if(!url.startsWith("http://")&&!url.startsWith("https://")){
                     int comma=line.indexOf(',');if(comma<0)continue;name=line.substring(0,comma);url=line.substring(comma+1).trim();
                 }
-                if(url.startsWith("http://")||url.startsWith("https://")){Entry entry=new Entry(name.isEmpty()?"直播":name,url,"",category);entry.poster=logo;values.add(entry);}
+                if(url.startsWith("http://")||url.startsWith("https://")){Entry entry=new Entry(name.isEmpty()?"直播":name,url,"",category);entry.poster=logo.isEmpty()?channelLogos.optString(name):logo;values.add(entry);}
                 name="";logo="";
             }
         }

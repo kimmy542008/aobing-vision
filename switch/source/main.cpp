@@ -38,7 +38,8 @@ static size_t receive(char* p,size_t a,size_t b,void* data){auto& s=*static_cast
 static std::string get(const std::string& url){
     CURL* c=curl_easy_init();if(!c)throw std::runtime_error("网络初始化失败");std::string result;
     curl_easy_setopt(c,CURLOPT_URL,url.c_str());curl_easy_setopt(c,CURLOPT_FOLLOWLOCATION,1L);
-    curl_easy_setopt(c,CURLOPT_PROTOCOLS_STR,"http,https");curl_easy_setopt(c,CURLOPT_REDIR_PROTOCOLS_STR,"http,https");
+    curl_easy_setopt(c,CURLOPT_PROTOCOLS,(long)(CURLPROTO_HTTP|CURLPROTO_HTTPS));
+    curl_easy_setopt(c,CURLOPT_REDIR_PROTOCOLS,(long)(CURLPROTO_HTTP|CURLPROTO_HTTPS));
     curl_easy_setopt(c,CURLOPT_CAINFO,"romfs:/cacert.pem");curl_easy_setopt(c,CURLOPT_CONNECTTIMEOUT,8L);
     curl_easy_setopt(c,CURLOPT_TIMEOUT,20L);curl_easy_setopt(c,CURLOPT_FAILONERROR,1L);curl_easy_setopt(c,CURLOPT_NOSIGNAL,1L);
     curl_easy_setopt(c,CURLOPT_WRITEFUNCTION,receive);curl_easy_setopt(c,CURLOPT_WRITEDATA,&result);
