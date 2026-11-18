@@ -36,7 +36,7 @@ jobs:
           cd installer/switch
           zip -r Aobing-Vision-Switch-0.1.0.zip switch
           cd ../..
-          git archive --format=zip HEAD -o installer/switch/Aobing-Vision-Switch-0.1.0-source.zip
+          git -c safe.directory="$PWD" archive --format=zip HEAD -o installer/switch/Aobing-Vision-Switch-0.1.0-source.zip
           cd installer/switch
           sha256sum *.zip > SHA256SUMS.txt
       - uses: actions/upload-artifact@v4
