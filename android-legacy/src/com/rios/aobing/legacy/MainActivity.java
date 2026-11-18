@@ -17,7 +17,7 @@ import java.util.concurrent.*;
 
 /** Standalone API19 edition; no AndroidX, Media3, WebView or native ABI dependencies. */
 public class MainActivity extends Activity {
-    static final String VERSION="0.4.12";
+    static final String VERSION="0.4.13";
     final ExecutorService executor=Executors.newSingleThreadExecutor();
     final ArrayList<Entry> channels=new ArrayList<Entry>();
     final ArrayList<Entry> shown=new ArrayList<Entry>();
@@ -26,6 +26,10 @@ public class MainActivity extends Activity {
     SharedPreferences prefs;
     TextView status;
     GridView list;
+    ScrollView shelves;
+    LinearLayout shelfContent;
+    LinearLayout liveFilters;
+    View liveFilterScroll;
     ImageView heroArtwork;
     TextView heroTitle;
     Entry previewEntry;
@@ -50,7 +54,7 @@ public class MainActivity extends Activity {
             try { Net.configureTrust(root); } finally { root.close(); }
         } catch (Exception e) { android.util.Log.w("AobingTLS", "Using system trust anchors", e); }
         try { defaultApi=new JSONObject(asset("vod.json")).getJSONArray("sites").getJSONObject(0).optString("api"); } catch(Exception ignored){}
-        home(); loadLive();
+        home(); mode="movie"; loadMovies();
     }
     int dp(int value){return (int)(value*getResources().getDisplayMetrics().density+0.5f);}
     TextView text(String value,int size){TextView t=new TextView(this);t.setText(value);t.setTextSize(size);t.setTextColor(Color.WHITE);t.setPadding(dp(12),dp(8),dp(12),dp(8));return t;}
@@ -71,7 +75,7 @@ public class MainActivity extends Activity {
         android.graphics.drawable.GradientDrawable d=new android.graphics.drawable.GradientDrawable();
         d.setColor(color);d.setCornerRadius(dp(10));d.setStroke(dp(2),border);return d;
     }
-    LinearLayout column(){LinearLayout root=new LinearLayout(this);root.setOrientation(LinearLayout.VERTICAL);root.setBackgroundColor(0xff102236);return root;}
+    LinearLayout column(){LinearLayout root=new LinearLayout(this);root.setOrientation(LinearLayout.VERTICAL);root.setBackgroundColor(0xff091323);return root;}
     void note(String value){if(status!=null)status.setText(value);}
     void home(){
         playing=false; video=null;
@@ -81,47 +85,52 @@ public class MainActivity extends Activity {
         ImageView mascot=new ImageView(this);mascot.setImageResource(getResources().getIdentifier("icon","drawable",getPackageName()));
         brand.addView(mascot,new LinearLayout.LayoutParams(dp(44),dp(44)));
         brand.addView(text("敖丙视界",27));root.addView(brand);
+        View space=new View(this);brand.addView(space,new LinearLayout.LayoutParams(0,1,1));
+        brand.addView(button("搜索",new View.OnClickListener(){public void onClick(View v){search();}}));
+        brand.addView(button("设置",new View.OnClickListener(){public void onClick(View v){settingsMenu();}}));
         LinearLayout tools=new LinearLayout(this);
-        tools.addView(button("直播",new View.OnClickListener(){public void onClick(View v){mode="live";loadLive();}}));
-        for(final String category:new String[]{"首页","电影","剧集","纪录片","动漫","短剧","漫剧","其它"}){
-            tools.addView(button(category,new View.OnClickListener(){public void onClick(View v){
-                mediaCategory=category.equals("首页")?"":category;mode="movie";moviePage=1;loadMovies();
-            }}));
+        for(final String category:new String[]{"首页","直播","电影","剧集","纪录片","动漫","短剧","漫剧","其它"}){
+            Button tab=button(category,new View.OnClickListener(){public void onClick(View v){
+                if(category.equals("直播")){group="全部";loadLive();return;}
+                mediaCategory=category.equals("首页")?"":category;movieQuery="";moviePage=1;loadMovies();
+            }});
+            tab.setTextSize(15);tab.setMinWidth(0);tab.setMinimumWidth(0);
+            tools.addView(tab,new LinearLayout.LayoutParams(0,dp(40),1));
         }
-        tools.addView(button("分类",new View.OnClickListener(){public void onClick(View v){groups();}}));
-        tools.addView(button("直播源",new View.OnClickListener(){public void onClick(View v){chooseLiveSubscription();}}));
-        tools.addView(button("央视官网",new View.OnClickListener(){public void onClick(View v){
-            try{startActivity(new Intent(Intent.ACTION_VIEW,Uri.parse("https://tv.cctv.com/live/")));}
-            catch(ActivityNotFoundException e){note("设备未安装浏览器，央视主频道尚缺已验证的内播线路");}
-        }}));
-        tools.addView(button("搜索",new View.OnClickListener(){public void onClick(View v){search();}}));
-        tools.addView(button("播放地址",new View.OnClickListener(){public void onClick(View v){direct();}}));
-        tools.addView(button("配置",new View.OnClickListener(){public void onClick(View v){config();}}));
-        tools.addView(button("关于",new View.OnClickListener(){public void onClick(View v){about();}}));
-        HorizontalScrollView horizontal=new HorizontalScrollView(this);horizontal.addView(tools);root.addView(horizontal);
+        root.addView(tools);
         FrameLayout hero=new FrameLayout(this);
         ImageView landscape=new ImageView(this);
         landscape.setImageResource(getResources().getIdentifier("ice_hero","drawable",getPackageName()));
         landscape.setScaleType(ImageView.ScaleType.CENTER_CROP);
         hero.addView(landscape,new FrameLayout.LayoutParams(-1,-1));
-        heroArtwork=new ImageView(this);heroArtwork.setScaleType(ImageView.ScaleType.FIT_CENTER);
-        hero.addView(heroArtwork,new FrameLayout.LayoutParams(dp(240),-1,Gravity.RIGHT));
+        heroArtwork=new ImageView(this);heroArtwork.setScaleType(ImageView.ScaleType.CENTER_CROP);
+        hero.addView(heroArtwork,new FrameLayout.LayoutParams(-1,-1));
+        View shade=new View(this);
+        shade.setBackgroundDrawable(new android.graphics.drawable.GradientDrawable(
+            android.graphics.drawable.GradientDrawable.Orientation.LEFT_RIGHT,new int[]{0xff091323,0xcc091323,0x22091323}));
+        hero.addView(shade,new FrameLayout.LayoutParams(-1,-1));
         LinearLayout heroText=new LinearLayout(this);heroText.setOrientation(LinearLayout.VERTICAL);
         heroText.setPadding(dp(18),0,0,0);
-        heroTitle=text("敖丙视界",29);heroText.addView(heroTitle);
+        heroText.addView(text("精选预览",14));
+        heroTitle=text("敖丙视界",32);heroTitle.setMaxLines(2);heroText.addView(heroTitle);
         heroText.addView(button("观看节目",new View.OnClickListener(){public void onClick(View v){
             if(previewEntry==null)return;
             if(mode.equals("movie"))details(previewEntry);else play(previewEntry);
         }}));
-        hero.addView(heroText,new FrameLayout.LayoutParams(dp(280),-2,Gravity.LEFT|Gravity.CENTER_VERTICAL));
-        root.addView(hero,new LinearLayout.LayoutParams(-1,dp(140)));
-        status=text("方向键选择，确定播放；播放时菜单键查看操作",17);root.addView(status);
-        list=new GridView(this);list.setNumColumns(3);list.setStretchMode(GridView.STRETCH_COLUMN_WIDTH);
+        hero.addView(heroText,new FrameLayout.LayoutParams(dp(420),-2,Gravity.LEFT|Gravity.CENTER_VERTICAL));
+        root.addView(hero,new LinearLayout.LayoutParams(-1,dp(180)));
+        status=text("精选内容 · 方向键选择，确定播放",14);root.addView(status);
+        liveFilters=new LinearLayout(this);
+        for(final String category:new String[]{"全部","央视新闻素材","卫视","地方台","海外","新闻","娱乐","体育"}){
+            liveFilters.addView(button(category,new View.OnClickListener(){public void onClick(View v){group=category;filterLive();}}));
+        }
+        HorizontalScrollView filters=new HorizontalScrollView(this);filters.addView(liveFilters);
+        liveFilterScroll=filters;root.addView(filters);filters.setVisibility(View.GONE);
+        list=new GridView(this);list.setNumColumns(4);list.setStretchMode(GridView.STRETCH_COLUMN_WIDTH);
         list.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
             public void onItemSelected(AdapterView<?> parent,View view,int position,long id){
                 if(position>=shown.size())return;
-                previewEntry=shown.get(position);heroTitle.setText(previewEntry.name);
-                heroArtwork.setImageDrawable(null);loadPoster(previewEntry.poster,heroArtwork);
+                preview(shown.get(position));
             }
             public void onNothingSelected(AdapterView<?> parent){}
         });
@@ -132,7 +141,11 @@ public class MainActivity extends Activity {
         selector.addState(new int[]{android.R.attr.state_pressed},tile(0x3377ddff,0xff77ddff));
         selector.addState(new int[]{},new android.graphics.drawable.ColorDrawable(Color.TRANSPARENT));
         list.setSelector(selector);
-        root.addView(list,new LinearLayout.LayoutParams(-1,0,1));
+        FrameLayout content=new FrameLayout(this);
+        content.addView(list,new FrameLayout.LayoutParams(-1,-1));
+        shelves=new ScrollView(this);shelfContent=column();shelves.addView(shelfContent);
+        shelves.setVisibility(View.GONE);content.addView(shelves,new FrameLayout.LayoutParams(-1,-1));
+        root.addView(content,new LinearLayout.LayoutParams(-1,0,1));
         LinearLayout pages=new LinearLayout(this);
         pages.addView(button("上一页",new View.OnClickListener(){public void onClick(View v){if(mode.equals("movie")&&moviePage>1){moviePage--;loadMovies();}}}));
         pages.addView(button("下一页",new View.OnClickListener(){public void onClick(View v){if(mode.equals("movie")&&moviePage<moviePages){moviePage++;loadMovies();}}}));
@@ -142,8 +155,45 @@ public class MainActivity extends Activity {
             if(mode.equals("movie"))details(e);else play(e);
         }});
     }
+    void preview(Entry entry){
+        previewEntry=entry;heroTitle.setText(entry==null?"暂无内容":entry.name);
+        heroArtwork.setTag("");heroArtwork.setImageDrawable(null);
+        if(entry!=null)loadPoster(entry.poster,heroArtwork);
+    }
+    void settingsMenu(){
+        new AlertDialog.Builder(new android.view.ContextThemeWrapper(this,android.R.style.Theme_Holo_Dialog))
+            .setTitle("设置与工具").setItems(new String[]{"直播分类","切换直播源","配置点播与直播接口","播放地址","央视官网","关于"},new DialogInterface.OnClickListener(){
+                public void onClick(DialogInterface d,int index){
+                    if(index==0)groups();else if(index==1)chooseLiveSubscription();else if(index==2)config();else if(index==3)direct();else if(index==5)about();
+                    else try{startActivity(new Intent(Intent.ACTION_VIEW,Uri.parse("https://tv.cctv.com/live/")));}catch(ActivityNotFoundException e){note("设备没有浏览器");}
+                }
+            }).setNegativeButton("关闭",null).show();
+    }
     void rows(List<Entry> values,String label){
+        liveFilterScroll.setVisibility(mode.equals("live")?View.VISIBLE:View.GONE);
         shown.clear();shown.addAll(values);
+        preview(values.isEmpty()?null:values.get(0));
+        boolean homepage=mode.equals("movie")&&mediaCategory.isEmpty()&&movieQuery.isEmpty()&&moviePage==1;
+        shelves.setVisibility(homepage?View.VISIBLE:View.GONE);list.setVisibility(homepage?View.GONE:View.VISIBLE);
+        if(homepage){
+            shelfContent.removeAllViews();
+            for(final String category:new String[]{"电影","剧集","纪录片","动漫","短剧","漫剧","其它"}){
+                ArrayList<Entry> sectionItems=new ArrayList<Entry>();
+                for(Entry entry:values)if(categoryOf(entry.group).equals(category))sectionItems.add(entry);
+                if(sectionItems.isEmpty())continue;
+                shelfContent.addView(text(category,20));
+                HorizontalScrollView horizontal=new HorizontalScrollView(this);LinearLayout strip=new LinearLayout(this);
+                for(final Entry entry:sectionItems){
+                    LinearLayout card=column();card.setPadding(dp(4),dp(4),dp(4),dp(4));card.setFocusable(true);card.setClickable(true);card.setBackgroundDrawable(tileColors());
+                    ImageView poster=new ImageView(this);poster.setScaleType(ImageView.ScaleType.CENTER_CROP);card.addView(poster,new LinearLayout.LayoutParams(-1,dp(106)));loadPoster(entry.poster,poster);
+                    TextView title=text(entry.name,15);title.setSingleLine(true);title.setEllipsize(android.text.TextUtils.TruncateAt.END);card.addView(title);
+                    LinearLayout.LayoutParams size=new LinearLayout.LayoutParams(dp(190),dp(148));size.setMargins(0,0,dp(10),0);strip.addView(card,size);
+                    card.setOnFocusChangeListener(new View.OnFocusChangeListener(){public void onFocusChange(View v,boolean focused){if(focused)preview(entry);}});
+                    card.setOnClickListener(new View.OnClickListener(){public void onClick(View v){preview(entry);details(entry);}});
+                }
+                horizontal.addView(strip);shelfContent.addView(horizontal);
+            }
+        }
         final ArrayList<Entry> cards=new ArrayList<Entry>(values);
         final String section=mode;
         list.setAdapter(new BaseAdapter(){
@@ -153,27 +203,27 @@ public class MainActivity extends Activity {
             public View getView(int position,View recycled,ViewGroup parent){
                 Entry entry=getItem(position);
                 LinearLayout card=new LinearLayout(MainActivity.this);
-                card.setGravity(Gravity.CENTER_VERTICAL);card.setPadding(dp(10),dp(8),dp(8),dp(8));
+                card.setOrientation(LinearLayout.VERTICAL);card.setPadding(dp(4),dp(4),dp(4),dp(4));
                 card.setBackgroundDrawable(tile(0xff18334a,0xff294d68));
-                card.setLayoutParams(new AbsListView.LayoutParams(-1,dp(100)));
+                card.setLayoutParams(new AbsListView.LayoutParams(-1,dp(158)));
                 FrameLayout art=new FrameLayout(MainActivity.this);
                 art.setBackgroundDrawable(tile(section.equals("live")?0xff126582:0xff594784,0xff477791));
-                card.addView(art,new LinearLayout.LayoutParams(dp(58),-1));
-                TextView symbol=text(section.equals("live")?String.format(Locale.US,"%02d",position+1):"▶",22);
+                card.addView(art,new LinearLayout.LayoutParams(-1,dp(100)));
+                TextView symbol=text(section.equals("live")?entry.name:"▶",22);
                 symbol.setGravity(Gravity.CENTER);art.addView(symbol,new FrameLayout.LayoutParams(-1,-1));
                 if(!entry.poster.isEmpty()){
                     ImageView image=new ImageView(MainActivity.this);image.setScaleType(section.equals("live")?ImageView.ScaleType.FIT_CENTER:ImageView.ScaleType.CENTER_CROP);
                     art.addView(image,new FrameLayout.LayoutParams(-1,-1));loadPoster(entry.poster,image);
                 }
                 LinearLayout details=new LinearLayout(MainActivity.this);details.setOrientation(LinearLayout.VERTICAL);
-                card.addView(details,new LinearLayout.LayoutParams(0,-2,1));
-                TextView title=text(entry.name,17);title.setMaxLines(2);title.setEllipsize(android.text.TextUtils.TruncateAt.END);details.addView(title);
-                TextView category=text(entry.group.isEmpty()?"点播":entry.group,13);category.setSingleLine(true);category.setTextColor(0xff9ed5eb);details.addView(category);
+                card.addView(details,new LinearLayout.LayoutParams(-1,-2));
+                TextView title=text(entry.name,15);title.setMaxLines(1);title.setEllipsize(android.text.TextUtils.TruncateAt.END);details.addView(title);
+                TextView category=text(entry.group.isEmpty()?"点播":entry.group,13);category.setSingleLine(true);category.setTextColor(0xff9ed5eb);if(section.equals("episodes"))details.addView(category);
                 return card;
             }
         });
         note(label+" · "+values.size()+" 项");
-        if(!values.isEmpty()){list.setSelection(0);list.requestFocus();}
+        if(!values.isEmpty()){list.setSelection(0);}
     }
     final android.util.LruCache<String,android.graphics.Bitmap> posters=new android.util.LruCache<String,android.graphics.Bitmap>(40);
     final ThreadPoolExecutor artwork=new ThreadPoolExecutor(2,2,0L,TimeUnit.MILLISECONDS,
@@ -245,7 +295,7 @@ public class MainActivity extends Activity {
     void chooseLiveSubscription(){
         final String[] names={"默认 / 自定义","中国频道","香港频道","台湾频道","体育频道"};
         final String base="https://iptv-org.github.io/iptv/";
-        final String[] urls={"",base+"countries/cn.m3u",base+"countries/hk.m3u",base+"countries/tw.m3u",base+"categories/sports.m3u"};
+        final String[] urls={"","https://raw.githubusercontent.com/kimmy542008/aobing-vision/main/android-legacy/assets/live-global.m3u",base+"countries/hk.m3u",base+"countries/tw.m3u",base+"categories/sports.m3u"};
         new AlertDialog.Builder(new android.view.ContextThemeWrapper(this,android.R.style.Theme_Holo_Dialog)).setTitle("切换直播源").setItems(names,new DialogInterface.OnClickListener(){public void onClick(DialogInterface dialog,int index){
             liveSubscription=urls[index];
             group="全部";

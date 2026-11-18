@@ -1,0 +1,46 @@
+name: Build Switch homebrew prototype
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['switch/**', '.github/workflows/switch.yml']
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: devkitpro/devkita64:latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Switch libraries
+        run: dkp-pacman -Syu --noconfirm switch-sdl2 switch-sdl2_ttf switch-curl switch-ffmpeg switch-pkg-config
+      - name: Prepare pinned JSON header and CA certificates
+        shell: bash
+        run: |
+          mkdir -p switch/include/nlohmann
+          curl -fL --retry 3 https://raw.githubusercontent.com/nlohmann/json/v3.12.0/single_include/nlohmann/json.hpp -o switch/include/nlohmann/json.hpp
+          echo 'aaf127c04cb31c406e5b04a63f1ae89369fccde6d8fa7cdda1ed4f32dfc5de63  switch/include/nlohmann/json.hpp' | sha256sum -c -
+          cp /etc/ssl/certs/ca-certificates.crt switch/romfs/cacert.pem
+      - name: Compile NRO
+        shell: bash
+        run: |
+          source /opt/devkitpro/switchvars.sh
+          make -C switch -j2
+      - name: Package prototype and matching source
+        shell: bash
+        run: |
+          mkdir -p installer/switch/switch/aobing-vision
+          cp switch/*.nro installer/switch/switch/aobing-vision/
+          cp switch/README.md switch/vod-api.txt installer/switch/switch/aobing-vision/
+          cp switch/romfs/live.m3u installer/switch/switch/aobing-vision/
+          cd installer/switch
+          zip -r Aobing-Vision-Switch-0.1.0.zip switch
+          cd ../..
+          git archive --format=zip HEAD -o installer/switch/Aobing-Vision-Switch-0.1.0-source.zip
+          cd installer/switch
+          sha256sum *.zip > SHA256SUMS.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Switch-homebrew-prototype-0.1.0
+          path: installer/switch/*.zip
+          if-no-files-found: error
