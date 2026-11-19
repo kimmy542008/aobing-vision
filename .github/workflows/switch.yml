@@ -13,7 +13,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Install Switch libraries
-        run: dkp-pacman -Syu --noconfirm switch-sdl2 switch-sdl2_ttf switch-curl switch-ffmpeg switch-pkg-config
+        run: |
+          if ! dkp-pacman -Q switch-sdl2 switch-sdl2_ttf switch-curl switch-ffmpeg switch-pkg-config; then
+            dkp-pacman -Syu --noconfirm switch-sdl2 switch-sdl2_ttf switch-curl switch-ffmpeg switch-pkg-config
+          fi
       - name: Prepare pinned JSON header and CA certificates
         shell: bash
         run: |
