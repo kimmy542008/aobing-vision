@@ -8,7 +8,7 @@ endif
 
 APP_TITLE := 敖丙视界
 APP_AUTHOR := Rios敖丙
-APP_VERSION := 0.1.0
+APP_VERSION := 0.1.1
 TOPDIR ?= $(CURDIR)
 include $(DEVKITPRO)/libnx/switch_rules
 export PKG_CONFIG_LIBDIR := $(DEVKITPRO)/portlibs/switch/lib/pkgconfig
@@ -42,7 +42,7 @@ export PKG_CONFIG_PATH := $(PKG_CONFIG_LIBDIR)
 #   of a homebrew executable (.nro). This is intended to be used for sysmodules.
 #   NACP building is skipped as well.
 #---------------------------------------------------------------------------------
-TARGET := Aobing-Vision-Switch-0.1.0
+TARGET := Aobing-Vision-Switch-0.1.1
 BUILD		:=	build
 SOURCES		:=	source
 DATA		:=	data

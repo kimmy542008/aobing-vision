@@ -24,6 +24,9 @@ jobs:
           curl -fL --retry 3 https://raw.githubusercontent.com/nlohmann/json/v3.12.0/single_include/nlohmann/json.hpp -o switch/include/nlohmann/json.hpp
           echo 'aaf127c04cb31c406e5b04a63f1ae89369fccde6d8fa7cdda1ed4f32dfc5de63  switch/include/nlohmann/json.hpp' | sha256sum -c -
           cp /etc/ssl/certs/ca-certificates.crt switch/romfs/cacert.pem
+      - name: Build HTTPS-capable FFmpeg
+        shell: bash
+        run: bash switch/build-ffmpeg.sh
       - name: Compile NRO
         shell: bash
         run: |
@@ -37,14 +40,14 @@ jobs:
           cp switch/README.md switch/vod-api.txt installer/switch/switch/aobing-vision/
           cp switch/romfs/live.m3u installer/switch/switch/aobing-vision/
           cd installer/switch
-          zip -r Aobing-Vision-Switch-0.1.0.zip switch
+          zip -r Aobing-Vision-Switch-0.1.1.zip switch
           cd ../..
-          git -c safe.directory="$PWD" archive --format=zip HEAD -o installer/switch/Aobing-Vision-Switch-0.1.0-source.zip
+          git -c safe.directory="$PWD" archive --format=zip HEAD -o installer/switch/Aobing-Vision-Switch-0.1.1-source.zip
           cd installer/switch
           sha256sum *.zip > SHA256SUMS.txt
       - uses: actions/upload-artifact@v4
         with:
-          name: Switch-homebrew-prototype-0.1.0
+          name: Switch-homebrew-prototype-0.1.1
           path: |
             installer/switch/*.zip
             installer/switch/SHA256SUMS.txt
@@ -57,17 +60,17 @@ jobs:
     steps:
       - uses: actions/download-artifact@v4
         with:
-          name: Switch-homebrew-prototype-0.1.0
+          name: Switch-homebrew-prototype-0.1.1
           path: release-assets
       - uses: actions/github-script@v7
         with:
           script: |
             const fs=require('fs');
-            const tag='switch-v0.1.0';
-            const body='敖丙视界 Switch 自制软件原型 0.1.0。仅适用于已能运行自制软件的初代 Switch，解压 ZIP 到 SD 根目录，通过现有启动器运行 NRO。\n\n提供手柄导航、M3U 直播分类、JSON 点播接口配置与搜索、选集、FFmpeg/SDL 内置播放。采用软件解码，尚无硬件加速；不是电视版全部功能的移植，未经过 Switch 真机播放验证，不保证高清流畅。\n\n具体操作和限制见包内 README，匹配源代码及 SHA256 随附。开发者 Rios敖丙。';
+            const tag='switch-v0.1.1';
+            const body='敖丙视界 Switch 自制软件原型 0.1.1。仅适用于已能运行自制软件的初代 Switch，解压 ZIP 到 SD 根目录，通过现有启动器运行 NRO。\n\n提供手柄导航、M3U 直播分类、JSON 点播接口配置与搜索、选集、FFmpeg/SDL 内置播放。采用软件解码，尚无硬件加速；不是电视版全部功能的移植，未经过 Switch 真机播放验证，不保证高清流畅。\n\n具体操作和限制见包内 README，匹配源代码及 SHA256 随附。开发者 Rios敖丙。';
             let release;
             try { release=(await github.rest.repos.getReleaseByTag({...context.repo,tag})).data; }
-            catch(e) { if(e.status!==404)throw e; release=(await github.rest.repos.createRelease({...context.repo,tag_name:tag,target_commitish:context.sha,name:'敖丙视界 Switch 自制软件原型 0.1.0',body,prerelease:true})).data; }
+            catch(e) { if(e.status!==404)throw e; release=(await github.rest.repos.createRelease({...context.repo,tag_name:tag,target_commitish:context.sha,name:'敖丙视界 Switch 自制软件原型 0.1.1',body,prerelease:true})).data; }
             for(const name of fs.readdirSync('release-assets')) {
               if(release.assets.some(a=>a.name===name))throw new Error('Preserve existing asset: '+name);
               await github.rest.repos.uploadReleaseAsset({...context.repo,release_id:release.id,name,data:fs.readFileSync('release-assets/'+name)});

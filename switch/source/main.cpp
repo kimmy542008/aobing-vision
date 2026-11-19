@@ -72,7 +72,7 @@ static void text(const std::string& value,int x,int y,SDL_Color color={235,245,2
 }
 static void rect(int x,int y,int w,int h,SDL_Color c){SDL_SetRenderDrawColor(renderer,c.r,c.g,c.b,c.a);SDL_Rect r={x,y,w,h};SDL_RenderFillRect(renderer,&r);}
 static void screen(){
-    rect(0,0,1280,720,{9,19,35,255});text("敖丙视界  |  Switch 0.1.0",36,22);
+    rect(0,0,1280,720,{9,19,35,255});text("敖丙视界  |  Switch 0.1.1",36,22);
     text("L / R  切换栏目       X  设置       +  退出",650,26,{150,190,210,255});
     const char* tabs[]={"首页","直播","电影","剧集"};
     for(int i=0;i<4;i++){rect(36+i*160,80,145,48,i==tab?SDL_Color{8,155,183,255}:SDL_Color{25,47,70,255});text(tabs[i],60+i*160,88);}
@@ -109,11 +109,13 @@ struct Player {
     void decode(std::string url){
         AVFormatContext* fmt=avformat_alloc_context();fmt->interrupt_callback={interrupt,this};deadline=now()+12000;
         AVDictionary* opts=nullptr;av_dict_set(&opts,"tls_verify","1",0);av_dict_set(&opts,"ca_file","romfs:/cacert.pem",0);
+        std::string stage="连接视频";
         int rc=avformat_open_input(&fmt,url.c_str(),nullptr,&opts);av_dict_free(&opts);
         AVCodecContext *vc=nullptr,*ac=nullptr;SwsContext* scale=nullptr;SwrContext* resample=nullptr;
         AVPacket* packet=av_packet_alloc();AVFrame* frame=av_frame_alloc();int vi=-1,ai=-1;int64_t start=now();double first=-1;
-        if(rc>=0)rc=avformat_find_stream_info(fmt,nullptr);
+        if(rc>=0){stage="识别视频格式";deadline=now()+30000;rc=avformat_find_stream_info(fmt,nullptr);}
         if(rc>=0){
+            stage="初始化解码器";
             vi=av_find_best_stream(fmt,AVMEDIA_TYPE_VIDEO,-1,-1,nullptr,0);ai=av_find_best_stream(fmt,AVMEDIA_TYPE_AUDIO,-1,-1,nullptr,0);
             auto codec=[&](int index)->AVCodecContext*{if(index<0)return nullptr;auto* par=fmt->streams[index]->codecpar;const auto* c=avcodec_find_decoder(par->codec_id);if(!c)return nullptr;auto* ctx=avcodec_alloc_context3(c);avcodec_parameters_to_context(ctx,par);ctx->thread_count=2;if(avcodec_open2(ctx,c,nullptr)<0)avcodec_free_context(&ctx);return ctx;};
             vc=codec(vi);ac=codec(ai);if(!vc)rc=AVERROR_DECODER_NOT_FOUND;
@@ -141,7 +143,7 @@ struct Player {
             }
             av_packet_unref(packet);
         }
-        if(rc<0&&rc!=AVERROR_EOF&&!stop){char message[256];av_strerror(rc,message,sizeof(message));std::lock_guard<std::mutex> guard(lock);error=message;}
+        if(rc<0&&rc!=AVERROR_EOF&&!stop){char message[256];av_strerror(rc,message,sizeof(message));std::lock_guard<std::mutex> guard(lock);error=stage+"："+message;}
         av_frame_free(&frame);av_packet_free(&packet);avcodec_free_context(&vc);avcodec_free_context(&ac);sws_freeContext(scale);swr_free(&resample);avformat_close_input(&fmt);stop=true;
     }
 };
