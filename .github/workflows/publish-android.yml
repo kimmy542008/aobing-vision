@@ -1,0 +1,37 @@
+name: Publish verified Android artifacts
+on:
+  workflow_dispatch:
+    inputs:
+      run_id:
+        description: Successful Android build run ID
+        required: true
+        default: '45403113408'
+  push:
+    paths: ['.github/workflows/publish-android.yml']
+permissions:
+  contents: write
+  actions: read
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: android9-packages-and-source
+          path: release-assets
+          run-id: ${{ inputs.run_id || '45403113408' }}
+          github-token: ${{ github.token }}
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            const fs=require('fs'),crypto=require('crypto');
+            const report=JSON.parse(fs.readFileSync('release-assets/Android-compatibility-report.json'));
+            if(!/^0\.4\.\d+$/.test(report.version)||report.assets.length!==4)throw Error('Unexpected report');
+            for(const item of report.assets){const data=fs.readFileSync('release-assets/'+item.name);if(data.length!==item.size||crypto.createHash('sha256').update(data).digest('hex')!==item.sha256)throw Error('Digest mismatch');}
+            const tag='android-v'+report.version;
+            let release;
+            try{release=(await github.rest.repos.getReleaseByTag({...context.repo,tag})).data;}
+            catch(e){if(e.status!==404)throw e;release=(await github.rest.repos.createRelease({...context.repo,tag_name:tag,target_commitish:'main',name:'敖丙视界 Android TV / 华为电视 / 手机平板 '+report.version,prerelease:true,body:'华为可安装APK的电视请选择ARM32；其它电视按架构选择；手机平板选择Mobile-Universal。最低API21；志高A10 API19请使用独立兼容版。同步频道、台标及版本信息。不是原生鸿蒙HAP。红果站内内容接口和云账号尚未接入。安装包来自构建45403113408，对应源码与SHA256随附，发布前复核四个APK校验值。开发者Rios敖丙。'})).data;}
+            const names=fs.readdirSync('release-assets').filter(n=>n!=='SHA256SUMS.txt');
+            fs.writeFileSync('release-assets/SHA256SUMS.txt',names.map(n=>crypto.createHash('sha256').update(fs.readFileSync('release-assets/'+n)).digest('hex')+'  '+n).join('\n')+'\n');
+            for(const name of [...names,'SHA256SUMS.txt']){if(release.assets.some(a=>a.name===name))continue;await github.rest.repos.uploadReleaseAsset({...context.repo,release_id:release.id,name,data:fs.readFileSync('release-assets/'+name)});}
