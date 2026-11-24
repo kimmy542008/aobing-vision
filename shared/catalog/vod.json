@@ -1,0 +1,71 @@
+{
+  "lives": [
+    {
+      "name": "央视精选 · 内置快照",
+      "url": "assets://aobing/live-snapshot.m3u",
+      "timeZone": "Asia/Shanghai",
+      "boot": false
+    },
+    {
+      "name": "全球高清频道",
+      "url": "assets://aobing/live-global.m3u"
+    },
+    {
+      "name": "公开频道备选 · 内置快照",
+      "url": "assets://aobing/live-candidates.m3u",
+      "timeZone": "Asia/Shanghai",
+      "boot": false
+    },
+    {
+      "name": "IPTV-org · 在线中国频道列表",
+      "url": "https://iptv-org.github.io/iptv/countries/cn.m3u",
+      "timeZone": "Asia/Shanghai",
+      "boot": false
+    }
+  ],
+  "parses": [],
+  "sites": [
+    {
+      "type": 1,
+      "filterable": 0,
+      "categories": [
+        "电影片",
+        "动作片",
+        "喜剧片",
+        "科幻片",
+        "恐怖片",
+        "爱情片",
+        "剧情片",
+        "战争片",
+        "纪录片",
+        "动画片",
+        "连续剧",
+        "国产剧",
+        "欧美剧",
+        "香港剧",
+        "韩国剧",
+        "台湾剧",
+        "日本剧",
+        "海外剧",
+        "泰国剧",
+        "动漫片",
+        "国产动漫",
+        "日韩动漫",
+        "欧美动漫",
+        "港台动漫",
+        "海外动漫",
+        "综艺片",
+        "大陆综艺",
+        "港台综艺",
+        "日韩综艺",
+        "欧美综艺",
+        "短剧"
+      ],
+      "api": "https://api.changzhang.tv/api.php/provide/vod/from/changzhangm3u8/",
+      "name": "影视点播 · 电影电视剧",
+      "quickSearch": 1,
+      "searchable": 1,
+      "key": "aobing_cz"
+    }
+  ]
+}
