@@ -12,8 +12,8 @@ Windows 与 Intel Mac 影视直播播放器：电影电视剧分类、片名搜�
 |---|---|---|
 | Windows 10/11 x64 | 0.2.8 | 便携 EXE；本机曾实际播放抽样点播 1080p、直播 720p；非每个频道验证 |
 | Intel Mac x86_64 | 0.2.8 | macOS 13+；测试版，未经过用户 Intel Mac 实机播放验证；没有 Apple Developer ID 签名或公证 |
-| Android TV / Android 9.0 | 0.4.13 | ARM32、ARM64、双ARM架构独立APK，v1/v2签名；待用户机顶盒验证，见 [安卓说明](android/README.md) |
-| Android 手机 / 平板 | 0.4.13 | [触屏版 APK](https://github.com/kimmy542008/aobing-vision/releases/download/android-v0.4.13/AobingTV-Mobile-Universal-v0.4.13.apk)，ARM32/ARM64，支持系统软键盘，可与电视版并存 |
+| Android TV / Android 9.0 | 0.4.16 | ARM32、ARM64、双ARM架构独立APK，v1/v2签名；待用户机顶盒验证，见 [安卓说明](android/README.md) |
+| Android 手机 / 平板 | 0.4.16 | [触屏版 APK](https://github.com/kimmy542008/aobing-vision/releases/download/android-v0.4.16/AobingTV-Mobile-Universal-v0.4.16.apk)，ARM32/ARM64，支持系统软键盘，可与电视版并存 |
 | Nintendo Switch 自制软件 | 0.1.0 | [开发说明](switch/README.md)，NRO 原型、软件解码，未真机验证 |
 | 志高 A10 / API19 老盒子 | 0.4.14 | [API19兼容版下载](https://github.com/kimmy542008/aobing-vision/releases/tag/android-api19-v0.4.14)，使用系统播放器；Android4.4模拟器安装启动通过，用户盒子待验证，见 [兼容版说明](android-legacy/README.md) |
 
