@@ -26,7 +26,7 @@ patch -p1 < ../tls.patch
  --enable-protocol=file,http,https,tcp,udp,rtmp,tls,httpproxy,crypto,data \
  --enable-zlib --enable-bzlib --enable-libass --enable-libfreetype --enable-libfribidi --enable-libdav1d \
  --enable-libnx --enable-nvtegra
-grep -q '^#define CONFIG_HTTPS_PROTOCOL 1' config.h
-grep -q '^#define CONFIG_CRYPTO_PROTOCOL 1' config.h
+grep -q '^#define CONFIG_HTTPS_PROTOCOL 1' config_components.h
+grep -q '^#define CONFIG_CRYPTO_PROTOCOL 1' config_components.h
 make -j4
 make install

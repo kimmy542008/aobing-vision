@@ -17,7 +17,7 @@ import java.util.concurrent.*;
 
 /** Standalone API19 edition; no AndroidX, Media3, WebView or native ABI dependencies. */
 public class MainActivity extends Activity {
-    static final String VERSION="0.4.14";
+    static final String VERSION="0.4.15";
     JSONObject channelLogos=new JSONObject();
     final ExecutorService executor=Executors.newSingleThreadExecutor();
     final ArrayList<Entry> channels=new ArrayList<Entry>();
@@ -164,9 +164,9 @@ public class MainActivity extends Activity {
     }
     void settingsMenu(){
         new AlertDialog.Builder(new android.view.ContextThemeWrapper(this,android.R.style.Theme_Holo_Dialog))
-            .setTitle("设置与工具").setItems(new String[]{"直播分类","切换直播源","配置点播与直播接口","播放地址","央视官网","关于"},new DialogInterface.OnClickListener(){
+            .setTitle("设置与工具").setItems(new String[]{"直播分类","切换直播源","配置点播与直播接口","播放地址","央视官网","关于","播放方式"},new DialogInterface.OnClickListener(){
                 public void onClick(DialogInterface d,int index){
-                    if(index==0)groups();else if(index==1)chooseLiveSubscription();else if(index==2)config();else if(index==3)direct();else if(index==5)about();
+                    if(index==0)groups();else if(index==1)chooseLiveSubscription();else if(index==2)config();else if(index==3)direct();else if(index==5)about();else if(index==6)playerSettings();
                     else try{startActivity(new Intent(Intent.ACTION_VIEW,Uri.parse("https://tv.cctv.com/live/")));}catch(ActivityNotFoundException e){note("设备没有浏览器");}
                 }
             }).setNegativeButton("关闭",null).show();
@@ -428,13 +428,26 @@ public class MainActivity extends Activity {
         }});
     }
     void about(){new AlertDialog.Builder(new android.view.ContextThemeWrapper(this,android.R.style.Theme_Holo_Dialog)).setTitle("敖丙视界兼容版 "+VERSION).setMessage("开发者：Rios敖丙\n\n当前 API："+Build.VERSION.SDK_INT+"\n架构："+Build.CPU_ABI+"\n\n适配 API19+，使用系统播放器。高码率、HEVC及部分直播格式能否播放，取决于盒子硬件和固件。直播列表为候选快照，源站可能变动。\n\n本兼容版采用 GPL-3.0 许可，源列表沿用原有来源署名；其他版本第三方许可不变。").setPositiveButton("知道了",null).show();}
+    void playerSettings(){
+        final String[] modes={"盒子自带播放器（推荐）","内置播放器 · TLS转接","内置播放器 · 直接连接"};
+        new AlertDialog.Builder(new android.view.ContextThemeWrapper(this,android.R.style.Theme_Holo_Dialog))
+            .setTitle("播放方式").setSingleChoiceItems(modes,prefs.getInt("playerMode",0),new DialogInterface.OnClickListener(){
+                public void onClick(DialogInterface d,int which){prefs.edit().putInt("playerMode",which).apply();d.dismiss();}
+            }).setNegativeButton("取消",null).show();
+    }
+    boolean systemPlay(Entry entry){
+        Intent intent=new Intent(Intent.ACTION_VIEW);intent.setDataAndType(Uri.parse(entry.url),"video/*");
+        intent.putExtra(Intent.EXTRA_TITLE,entry.name);
+        try{startActivity(intent);return true;}catch(ActivityNotFoundException e){return false;}
+    }
     void play(final Entry entry){
         try{
             if(!entry.url.startsWith("http://")&&!entry.url.startsWith("https://"))throw new IOException("此地址不是可直接播放的 HTTP 视频");
+            if(prefs.getInt("playerMode",0)==0&&systemPlay(entry))return;
             ++requestId;beforePlayback=new ArrayList<Entry>(shown);currentName=entry.name;currentUrl=entry.url;
             currentChannel=-1;if(mode.equals("live"))for(int i=0;i<channels.size();i++)if(channels.get(i).url.equals(entry.url)){currentChannel=i;break;}
             if(proxy==null)proxy=new StreamProxy();
-            final String local=proxy.url(entry.url);
+            final String local=prefs.getInt("playerMode",0)==2?entry.url:proxy.url(entry.url);
             FrameLayout screen=new FrameLayout(this);screen.setBackgroundColor(Color.BLACK);
             video=new VideoView(this);FrameLayout.LayoutParams vp=new FrameLayout.LayoutParams(-1,-1,Gravity.CENTER);screen.addView(video,vp);
             status=text("正在连接："+entry.name+"\n返回：频道列表；菜单：播放操作",19);status.setBackgroundColor(0x99000000);
