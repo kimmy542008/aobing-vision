@@ -19,4 +19,13 @@ async function catalog(page){
  if(!response.ok)throw Error('红果官网返回 HTTP '+response.status);
  const html=await response.text();if(html.length>8*1024*1024)throw Error('目录响应过大');return extract(html);
 }
-module.exports={catalog,extract,origin};
+async function search(query,page=1){
+ if(typeof query!=='string'||!query.trim()||Array.from(query.trim()).length>30)throw Error('红果搜索请输入1–30个字符');
+ if(!Number.isInteger(page)||page<1||page>500)throw Error('页码无效');
+ const params=new URLSearchParams({query:query.trim(),offset:String((page-1)*20),count:'20'});
+ const response=await fetch(origin+'/api/search/result?'+params,{signal:AbortSignal.timeout(20000),headers:{'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/142.0.0.0 Safari/537.36','Referer':origin+'/'}});
+ if(!response.ok)throw Error('红果搜索返回 HTTP '+response.status);
+ const data=await response.json();if(!Array.isArray(data.searchList))throw Error('红果搜索数据格式已变化');
+ return {items:data.searchList.filter(v=>/^\d+$/.test(v.video_data?.series_id)).map(v=>({id:v.video_data.series_id,name:v.video_data.series_title||v.name,poster:v.video_data.series_cover,total:v.video_data.episode_cnt,accessible:data.accessibleEpisodeCnt})),pages:Math.min(500,Math.max(1,Number(data.totalPages)||1))};
+}
+module.exports={catalog,search,extract,origin};
